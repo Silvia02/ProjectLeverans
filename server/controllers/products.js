@@ -18,3 +18,23 @@ export const getOneProduct = async (req, res) => {
     res.status(404).json({message: error.message})
   }
 }
+
+export const addNewProduct = async (req, res) => {
+  try {
+    // const {products} = req.body;
+
+    // for (let product of products) {
+    //   await new Product(product).save();
+    // }
+
+    // res.status(201).json('bulked added products');
+
+    const product = req.body;
+    const newProduct = new Product(product)
+
+    await newProduct.save();
+    res.status(201).json(newProduct);
+  } catch (error) {
+    res.status(409).json({message: error.message})
+  }
+}
