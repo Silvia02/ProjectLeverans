@@ -16,12 +16,12 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   cart: {
-    type: Cart,
-    default: [],
+    type: Cart.schema,
+    default: () => ({}),
   },
   wishList: {
-    type: Cart,
-    default: [],
+    type: Cart.schema,
+    default: () => ({}),
   }
 })
 

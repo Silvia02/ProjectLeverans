@@ -12,7 +12,7 @@ const CartSchema = new mongoose.Schema({
     default: 0,
   },
   products: {
-    type: [Product],
+    type: [Product.schema],
     default: [],
   },
 })
