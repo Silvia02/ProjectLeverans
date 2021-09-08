@@ -9,6 +9,7 @@ import './App.css'
 import FrontPage from './pages/FrontPage';
 import Login from './pages/Login';
 import RegisterPage from './pages/RegisterPage';
+import ShippingDetails from './pages/ShippingDetails';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
           <Route path="/register">
             <RegisterPage />
           </Route>
+          <Route path = "/checkout">
+            <ShippingDetails/>
+            </Route>
         </Switch>
       </div>
     </Router>
