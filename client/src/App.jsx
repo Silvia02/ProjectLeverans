@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import './App.css'
 import FrontPage from './pages/FrontPage';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import RegisterPage from './pages/RegisterPage';
 
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path="/register">
             <RegisterPage />
+          </Route>
+          <Route path="/home">
+            <Home />
           </Route>
         </Switch>
       </div>
