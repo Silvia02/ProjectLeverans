@@ -10,7 +10,7 @@ export const PhotoCard = styled.div`
 `;
 export const Photo = styled.img`
   width:100%;
-  height:220px;
+  height:180px;
   object-fit: cover;
   position: relative;
   margin-left: auto;
