@@ -1,0 +1,22 @@
+.shippingDetails{
+
+  margin-top: 80px;
+}
+hr{
+  width: 170px;
+  border-style: dotted; 
+}
+p{
+  margin-left: 50px;
+}
+tr{
+  text-align: left;
+}
+button{
+  background-color:gold;
+  border-style: none;
+  border-radius: 15px;
+  padding:12px;
+  margin-bottom: 20px;
+  width: 150px;
+}
