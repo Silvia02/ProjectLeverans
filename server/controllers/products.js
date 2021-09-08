@@ -22,7 +22,9 @@ export const getOneProduct = async (req, res) => {
 export const getCategory = async (req, res) => {
   try {
     const {category} = req.params;
-    const product = await Product.find({category: category}).exec();
+    const product = await Product.find({
+      category: {$regex: new RegExp(category, 'i')} // case insensitive query
+    }).exec();
     res.status(200).json(product);
   } catch (error) {
     res.status(404).json({message: error.message})
