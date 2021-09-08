@@ -71,6 +71,20 @@ export const ShippingForm = () => {
               <Paper elevation = {10}
                 style={paperStyle}>
                 priceDetails
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Items</TableCell>
+                      <TableCell align='right'>Quantity</TableCell>
+                      <TableCell align='right'>Price</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell rowSpan={3}/>
+                      <TableCell colSpan={1}> Total Amount </TableCell>
+                      <TableCell align='right'>xxxkr</TableCell>
+                    </TableRow>
+                  </TableHead>
+               </Table> 
               </Paper>
                 </Grid>
             </div>
