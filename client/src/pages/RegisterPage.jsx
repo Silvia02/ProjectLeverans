@@ -4,25 +4,32 @@ import {
   StlyedFormWrappper,
   StlyedForm,
   StlyedInput,
-  Button
+  Button,
 } from "./FrontPageStyle";
 
 
-const Login = () => {
+const Register = () => {
   return (
     <>
-      <h1>Login Page</h1>
+      <h1>Register Page</h1>
       <StlyedFormWrappper>
         <StlyedForm>
           <label htmlFor="UserName">User Name</label>
           <StlyedInput type="text" name="UserName" placeholder="UserName" />
-          <label htmlFor="Password">Password</label>
-          <StlyedInput type="text" name="Password" placeholder="Password" />
-          <Link to="/">
-            <Button>Login</Button>
-          </Link>
+          <label htmlFor="Email">Email</label>
 
-          <Link to="/register">
+          <StlyedInput type="text" name="Email" placeholder="Email" />
+          <label htmlFor="Password">Password</label>
+
+          <StlyedInput type="text" name="Password" placeholder="Password" />
+
+          <label htmlFor="Password">Confirm Password</label>
+          <StlyedInput
+            type="text"
+            name="Password"
+            placeholder="Confirm Password"
+          />
+          <Link to="/login">
             <Button>Register</Button>
           </Link>
         </StlyedForm>
@@ -31,4 +38,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
