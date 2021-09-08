@@ -7,20 +7,25 @@ import {
 } from "react-router-dom";
 import './App.css'
 import FrontPage from './pages/FrontPage';
+import Login from './pages/Login';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Front page </h1>
-      <Router>
+   
+       
+    <Router>
+      <div className="App">
+      
+
         <Switch>
-            <Route exact path="/">
-              <FrontPage />
+          <Route exact path="/">
+            <FrontPage />
             </Route>
+            <Route path="/login"><Login/></Route>
         </Switch>
-     </Router>
-    </div>
-  )
+      </div>
+      </Router>
+  );
 }
 
 export default App;
