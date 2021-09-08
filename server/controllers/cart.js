@@ -1,27 +1,32 @@
+import User from '../models/user.js'
 import Cart from '../models/cart.js'
 import Product from '../models/product.js'
 
 export const getCart = async (req, res) => {
   try {
     const cart = await Cart.find();
-    res.status(200).json(products);
+    res.status(200).json(cart);
   } catch (error) {
-    res.status(404).json({message: error.message})
+    res.status(404).json({message: error.message});
   }
 }
 
-// export const addToCart = async (req, res) => {
-//   try {
-//     const product = req.body;
+export const addToCart = async (req, res) => {
+  try {
+    const {userId, productId} = req.body;
 
-//     const isProductInCart = await Cart.findOne({name: product.name});
-//     if (isProductInCart) {
-//       await isProductInCart.find({quantity})
-//       await isProductInCart.updateOne({quantity: })
-//     }
-//     const
-//       res.status(200).json(products);
-//   } catch (error) {
-//     res.status(404).json({message: error.message})
-//   }
-// }
+    const cartId = await User.findById(userId).cart.id;
+    const product = await Product.findById(productId);
+
+    await Cart.findByIdAndUpdate(cartId,
+      {
+        $push: {
+          product: product
+        }
+      }
+    )
+    res.status(200);
+  } catch (error) {
+    res.status(404).json({message: error.message});
+  }
+}

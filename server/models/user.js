@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Cart from './cart.js';
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -15,11 +16,11 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   cart: {
-    type: [String], // <-- Array of product IDs to refence -OR- subSchema
+    type: Cart,
     default: [],
   },
   wishList: {
-    type: [String], // ^^^
+    type: Cart,
     default: [],
   }
 })

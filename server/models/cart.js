@@ -1,17 +1,18 @@
 import mongoose from 'mongoose';
+import Product from './product.js';
 
 // Shopping cart and wishlist will use same schema
 const CartSchema = new mongoose.Schema({
   totalPrice: {
     type: Number,
-    required: true,
+    default: 0,
   },
   totalQuantity: {
     type: Number,
-    required: true,
+    default: 0,
   },
   products: {
-    type: [subSchema],
+    type: [Product],
     default: [],
   },
 })
