@@ -12,6 +12,7 @@ import RegisterPage from './pages/RegisterPage';
 import ShippingDetails from './pages/ShippingDetails';
 
 function App() {
+  //hellow world
   return (
     <Router>
       <div className="App">
