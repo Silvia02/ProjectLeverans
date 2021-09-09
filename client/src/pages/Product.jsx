@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import { AddtoCartButton,AddtoCartWrapper,ProductDetailButton, ProductDetailCard, ProductDescription, SizeButton, SizeButtonWrapper, ProductLabel } from './ProductStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import ToggleDisplay from 'react-toggle-display';
 
 const Product = () => {
   const {id} = useParams()
   const [product, setProduct] = useState({});
+  const [show, setShow] = useState(false);
   useEffect(() => {
     fetchProduct();
   }, []);
@@ -15,6 +17,9 @@ const Product = () => {
     const data = await response.json();
     console.log(data)
     setProduct(data)
+  }
+  const handleClick = () => { 
+    setShow(!show)
   }
   return (
     <div>
@@ -40,8 +45,8 @@ const Product = () => {
         </SizeButtonWrapper>
         
         <div>
-          <ProductDetailButton>Product information</ProductDetailButton>
-          <ProductDescription>{product.description}</ProductDescription>
+          <ProductDetailButton onClick={() => handleClick()}>Product information</ProductDetailButton>
+          <ToggleDisplay show={show}>{product.description}</ToggleDisplay>
         </div>
         <AddtoCartWrapper>
           <AddtoCartButton>Add to cart</AddtoCartButton>
