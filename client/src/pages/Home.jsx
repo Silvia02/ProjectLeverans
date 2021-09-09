@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getAllProducts } from '../../../server/controllers/products';
-import { ProductCard, ProductPrice, ProductWrapper } from './HomeStyle';
+import { ProductCard, ProductPrice, ProductName, ProductWrapper } from './HomeStyle';
+import Product from './Product';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+
 
 
 const Home = () => {
@@ -23,17 +26,16 @@ const Home = () => {
       <h1>Home page</h1>
       <hr/>
       <ProductWrapper>
-        {
-          products.map(product => 
+        {products.map(product => 
             <ProductCard key={product._id}>
-              <img src={product.image} alt="shoes" style={{ width: '100%'}}/>
-              <ProductPrice>{product.name}</ProductPrice>
-              <p>{product.price}</p>
+              <FavoriteBorderIcon style={{ marginLeft: '85%', marginBottom: '-15%', zIndex: '5' }} />
+              <img src={product.image} alt="shoes" style={{ width: '100%' }} />
+              <ProductName>{product.name}</ProductName>
+              <ProductPrice>{product.price}</ProductPrice>
               {/*<p>{product.description}</p>*/}
-          </ProductCard>
-          )
-        }
-        </ProductWrapper>
+            </ProductCard>
+          )} 
+      </ProductWrapper>
     </>
   )
 }
