@@ -10,25 +10,27 @@ export const PhotoCard = styled.div`
 `;
 export const Photo = styled.img`
   width:100%;
-  height:220px;
+  height:160px;
   object-fit: cover;
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5px;
+  margin-top: 8px;
   display: block;    
 `;
 export const CategoryButton = styled.button`
   position: absolute;
   left: 38%;
-  top: 40%;
-  width:25%;
-  height:20%;
+  top: 38%;
+  width:22%;
+  height:25%;
   border-radius:20px;
   border:none;
+  padding:1px;
   background-color:gold;
-  font-size: 1.2em;
-  font-weight: bold;
+  font-size: 1.3em;
+  text-align: center;
+  justify-content: center;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
   `;
 
