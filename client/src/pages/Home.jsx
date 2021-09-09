@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getAllProducts } from '../../../server/controllers/products';
 import { ProductCard, ProductPrice, ProductName, ProductWrapper } from './HomeStyle';
-import Product from './Product';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 
@@ -27,13 +27,17 @@ const Home = () => {
       <hr/>
       <ProductWrapper>
         {products.map(product => 
-            <ProductCard key={product._id}>
+          
+          <ProductCard key={product._id}>
+            <Link to={`/products/${product._id}`}>
               <FavoriteBorderIcon style={{ marginLeft: '85%', marginBottom: '-15%', zIndex: '5' }} />
               <img src={product.image} alt="shoes" style={{ width: '100%' }} />
               <ProductName>{product.name}</ProductName>
               <ProductPrice>{product.price}</ProductPrice>
-              {/*<p>{product.description}</p>*/}
-            </ProductCard>
+            {/*<p>{product.description}</p>*/}
+            </Link>
+          </ProductCard>
+          
           )} 
       </ProductWrapper>
     </>
