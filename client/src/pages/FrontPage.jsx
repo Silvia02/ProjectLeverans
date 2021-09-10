@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import sportPhoto from '../images/sportblack.png';
 import formalPhoto from '../images/highheel.jpeg';
 import casualPhoto from '../images/casualblack.png';
@@ -11,7 +12,7 @@ const FrontPage = () => {
       <h1>Front page</h1>
       <PhotoCard>
         <Photo src={allkinds} alt="formal-shoes" />
-        <CategoryButton>All</CategoryButton>
+        <CategoryButton><Link to="/products" style={{textDecoration:"none"}}>All</Link></CategoryButton>
       </PhotoCard>
       <PhotoCard>
         <Photo src={sportPhoto} alt="sport-shoes" />
