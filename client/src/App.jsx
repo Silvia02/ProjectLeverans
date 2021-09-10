@@ -9,6 +9,7 @@ import './App.css'
 import FrontPage from './pages/FrontPage';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import MyCart from './pages/MyCart';
 import RegisterPage from './pages/RegisterPage';
 import ShippingDetails from './pages/ShippingDetails';
 
@@ -32,6 +33,9 @@ function App() {
             </Route>
             <Route path = "/checkout">
               <ShippingDetails/>
+          </Route>
+          <Route path = "/mycart">
+              <MyCart/>
             </Route>
           </Switch>
         </Router>
