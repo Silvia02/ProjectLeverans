@@ -7,8 +7,10 @@ import {
 } from "react-router-dom";
 import './App.css'
 import FrontPage from './pages/FrontPage';
-import Home from './pages/Home';
+import Products from './pages/Home';
 import Login from './pages/Login';
+
+import Product from './pages/Product';
 import MyCart from './pages/MyCart';
 import RegisterPage from './pages/RegisterPage';
 import ShippingDetails from './pages/ShippingDetails';
@@ -28,9 +30,12 @@ function App() {
             <Route path="/register">
               <RegisterPage />
             </Route>
-            <Route path="/home">
-              <Home />
-            </Route>
+            <Route exact path="/products">
+              <Products />
+          </Route>
+          <Route path="/products/:id">
+            <Product />
+          </Route>
             <Route path = "/checkout">
               <ShippingDetails/>
           </Route>
