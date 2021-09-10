@@ -50,7 +50,7 @@ const Product = () => {
         </div>
         <AddtoCartWrapper>
           <AddtoCartButton>Add to cart</AddtoCartButton>
-          <FavoriteBorderIcon style={{width:"50px", height:"48px", marginLeft:"10px", border:"1px solid black"}}/>
+          <FavoriteBorderIcon style={{width:"40px", height:"40px", marginLeft:"10px", border:"1px solid black"}}/>
         </AddtoCartWrapper>
       </ProductDetailCard>
     </div>

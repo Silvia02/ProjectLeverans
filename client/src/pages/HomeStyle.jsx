@@ -19,10 +19,29 @@ export const ProductCard = styled.div`
   width:40%;
  
 `
+export const ImageWrapper = styled.div`
+  height: 100%;
+  margin-bottom: 5%;
+
+`
+
+export const ProductInformationWrapper = styled.div`
+  height:50px;
+  width:100%;
+  display:flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  font-size: 1em;
+  text-align: center;
+  justify-content: center;
+  padding-bottom: 10px;
+
+`
+
 export const ProductPrice = styled.span`
-  margin-top: 20px;
+ 
 `
 export const ProductName = styled.span`
-  margin-top: 20px;
+ 
 `
 
