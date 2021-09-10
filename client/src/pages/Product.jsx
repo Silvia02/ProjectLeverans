@@ -46,7 +46,8 @@ const Product = () => {
         
         <div>
           <ProductDetailButton onClick={() => handleClick()}>Product information</ProductDetailButton>
-          <ToggleDisplay show={show}>{product.description}</ToggleDisplay>
+          <ToggleDisplay show={show}><p style={{lineHeight:'1.2em', fontSize:"1.2em", width:"80%"}}>{product.description}</p></ToggleDisplay>
+          
         </div>
         <AddtoCartWrapper>
           <AddtoCartButton>Add to cart</AddtoCartButton>
