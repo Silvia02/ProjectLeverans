@@ -44,7 +44,7 @@ function App() {
               <MyCart/>
           </Route>
           <Route path="/home">{
-            user && user._id ? <Home/> : <Login setUserLogin={setUserLogin}/>
+            user && user._id ? <Home setUserLogin={setUserLogin}/> : <Login setUserLogin={setUserLogin}/>
           }
               
             </Route>

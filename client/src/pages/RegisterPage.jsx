@@ -10,7 +10,7 @@ import {
 } from "./FrontPageStyle";
 
 
-const Register = (e) => {
+const Register = () => {
   const history = useHistory();
   const [user, setUser] = useState({
     name: "",
@@ -72,7 +72,7 @@ const Register = (e) => {
             onChange={handleChange}
           />
             <Button onClick={register}>Register</Button>
-            <Button onClick={()=> history.push('/login')}>Login</Button>
+          <Button onClick={() => history.push('/login')}>Login</Button>
         </StlyedForm>
       </StlyedFormWrappper>
     </>
