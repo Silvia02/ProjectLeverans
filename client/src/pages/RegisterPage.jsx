@@ -1,6 +1,7 @@
 import React,{ useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { useHistory } from "react-router";
 import {
   StlyedFormWrappper,
   StlyedForm,
@@ -9,7 +10,8 @@ import {
 } from "./FrontPageStyle";
 
 
-const Register = () => {
+const Register = (e) => {
+  const history = useHistory();
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -29,7 +31,11 @@ const Register = () => {
     const { name, email, password, confirmPassword } = user;
     if (name && email && password && (password === confirmPassword)) {
       axios.post('http://localhost:4000/users', user)
-      .then(res =>console.log(res))
+        .then(res => {
+          alert(res.data.message)
+          history.push('/home')
+        })
+          
       
     
     } else if (password !== confirmPassword) {
@@ -66,7 +72,7 @@ const Register = () => {
             onChange={handleChange}
           />
             <Button onClick={register}>Register</Button>
-      
+            <Button onClick={()=> history.push('/login')}>Login</Button>
         </StlyedForm>
       </StlyedFormWrappper>
     </>
