@@ -1,3 +1,4 @@
+import { response } from 'express';
 import User from '../models/user.js'
 
 export const getAllUsers = async (req, res) => {
@@ -21,10 +22,27 @@ export const getOneUser = async (req, res) => {
 }
 
 export const createUser = async (req, res) => {
-  try {
-    // create user
-    res.status(200);
-  } catch (error) {
-    res.status(404).json({message: error.message});
+  const { name, email, password } = req.body;
+  const userExists = await User.findOne({email})
+  if (userExists) {
+    res.status(400);
+    throw new error('User Already Exists');
+  }
+  const user = await User.create({
+    name,
+    email,
+    password
+  });
+  if (user) {
+    res.status(201).json({
+      _id:user._id,
+      name:user.name,
+      email:user.email
+    })
+  }else {
+    res.status(404).json({
+      message: error.message
+    });
   }
 }
+
