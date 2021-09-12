@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,6 +18,15 @@ import Home from './pages/Home';
 function App() {
   
   const [user, setUserLogin] = useState({})
+  
+  //check is user is store in local storage
+  useEffect(() => {
+   setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
+  },[])
+  const stayLogedin = (user) => {
+    localStorage.setItem("MyUser", JSON.stringify(user))
+    setUserLogin(user)
+  }
   return (
      <div className="App">
         <Router>
@@ -26,7 +35,7 @@ function App() {
               <FrontPage />
             </Route>
             <Route path="/login">
-              <Login setUserLogin={setUserLogin}/>
+              <Login stayLogedin={stayLogedin}/>
             </Route>
             <Route path="/register">
               <RegisterPage />
@@ -44,9 +53,8 @@ function App() {
               <MyCart/>
           </Route>
           <Route path="/home">{
-            user && user._id ? <Home setUserLogin={setUserLogin}/> : <Login setUserLogin={setUserLogin}/>
-          }
-              
+            user && user._id ? <Home stayLogedin={stayLogedin}/> : <Login stayLogedin={stayLogedin}/>
+          } 
             </Route>
           </Switch>
         </Router>
