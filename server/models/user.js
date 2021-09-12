@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+    minlength: [6, 'Minimum password length must be 6 characters']
   },
   cart: {
     type: Cart.schema,
@@ -24,6 +25,12 @@ const UserSchema = new mongoose.Schema({
     default: () => ({}),
   }
 })
-
+// UserSchema.pre('save', async function (next) {
+//   if (!this.isModified('password')) {
+//     next();
+//   }
+//   const salt = await bcrypt.genSalt(10);
+//   this.password = await bcrypt.hash(this.password)
+// });
 const User = mongoose.model('User', UserSchema);
 export default User;
