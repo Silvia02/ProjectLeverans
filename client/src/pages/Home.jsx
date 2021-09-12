@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { getAllProducts } from '../../../server/controllers/products';
 import { ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper } from './HomeStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import Header from '../components/Header/Header';
 
 
 
-const Home = ({stayLogedin}) => {
+
+const Home = () => {
   const [products, setProducts] = useState([ ]);
   const [users, setUsers] = [];
   const [favorite, setFavorite] = useState([])
@@ -27,8 +29,7 @@ const Home = ({stayLogedin}) => {
 
   return (
     <>
-      <h1>Wellcome</h1>
-      <p onClick={()=>stayLogedin({})}>Logout</p>
+      <h1>The Shoe Shop</h1>
       <hr/>
       <ProductWrapper>
         {products.map(product => 

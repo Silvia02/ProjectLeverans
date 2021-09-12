@@ -14,6 +14,7 @@ import MyCart from './pages/MyCart';
 import RegisterPage from './pages/RegisterPage';
 import ShippingDetails from './pages/ShippingDetails';
 import Home from './pages/Home';
+import Header from './components/Header/Header';
 
 function App() {
   
@@ -52,10 +53,11 @@ function App() {
           <Route path = "/mycart">
               <MyCart/>
           </Route>
-          <Route path="/home">{
-            user && user._id ? <Home stayLogedin={stayLogedin}/> : <Login stayLogedin={stayLogedin}/>
-          } 
-            </Route>
+          <Route>{
+            user && user._id ? <Header stayLogedin={stayLogedin} userName={user.name}/> : <Login stayLogedin={stayLogedin}/>
+          }
+            <Home/>
+          </Route>
           </Switch>
         </Router>
      </div>
