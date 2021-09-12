@@ -5,7 +5,7 @@ import { AddtoCartButton,AddtoCartWrapper,ProductDetailButton, ProductDetailCard
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ToggleDisplay from 'react-toggle-display';
 
-const Product = () => {
+const Product = ({ addToShoppingList}) => {
   const {id} = useParams()
   const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
@@ -49,7 +49,7 @@ const Product = () => {
           <ToggleDisplay show={show}>{product.description}</ToggleDisplay>
         </div>
         <AddtoCartWrapper>
-          <AddtoCartButton>Add to cart</AddtoCartButton>
+          <AddtoCartButton onClick={()=>addToShoppingList(product)}>Add to cart</AddtoCartButton>
           <FavoriteBorderIcon style={{width:"40px", height:"40px", marginLeft:"10px", border:"1px solid black"}}/>
         </AddtoCartWrapper>
       </ProductDetailCard>

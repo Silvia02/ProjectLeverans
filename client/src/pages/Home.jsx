@@ -3,13 +3,17 @@ import { Link } from 'react-router-dom';
 import { getAllProducts } from '../../../server/controllers/products';
 import { ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper } from './HomeStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import Header from '../components/Header/Header';
 
 
 
-const Home = ({setUserLogin}) => {
+
+
+const Home = () => {
+const Home = ({stayLogedin, onAdd}) => {
+
   const [products, setProducts] = useState([ ]);
   const [users, setUsers] = [];
-  const [favorite, setFavorite] = useState([])
   
   useEffect(() => {
     getAllProducts();
@@ -27,15 +31,15 @@ const Home = ({setUserLogin}) => {
 
   return (
     <>
-      <h1>Wellcome</h1>
-      <p onClick={()=>setUserLogin({})}>Logout</p>
+      <h1>The Shoe Shop</h1>
       <hr/>
       <ProductWrapper>
         {products.map(product => 
           <ProductCard key={product._id}>
             <FavoriteBorderIcon
               style={{ marginLeft: '85%', marginBottom: '-15%', zIndex: '5' }}
-              onClick={() => handleClick()} />
+              onClick={() => onAdd(product)}
+            />
             <Link to={`/products/${product._id}`}> 
               <ImageWrapper>
                 <img src={product.image} alt="shoes" style={{ width: '100%', height:'200px', objectFit: 'cover' }} />
