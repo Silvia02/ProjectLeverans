@@ -143,13 +143,6 @@ const removeFromShoppingList = (product) => {
           }
             <Home/>
           </Route>
-
-            </Route>
-            <Route path="/home">{
-              user && user._id ? <Home stayLogedin={stayLogedin}/> : <Login stayLogedin={stayLogedin}/>
-            } 
-            </Route>
-
           </Switch>
         </Router>
      </div>
