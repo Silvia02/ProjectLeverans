@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllProducts } from '../../../server/controllers/products';
-import { ProductCard, ProductPrice, ProductName, ProductWrapper } from './HomeStyle';
+import { ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper } from './HomeStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 
@@ -9,6 +9,8 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 const Home = ({setUserLogin}) => {
   const [products, setProducts] = useState([ ]);
   const [users, setUsers] = [];
+  const [favorite, setFavorite] = useState([])
+  
   useEffect(() => {
     getAllProducts();
   }, [ ])
@@ -21,6 +23,8 @@ const Home = ({setUserLogin}) => {
     console.log(products);
   }
 
+  
+
   return (
     <>
       <h1>Wellcome</h1>
@@ -28,15 +32,22 @@ const Home = ({setUserLogin}) => {
       <hr/>
       <ProductWrapper>
         {products.map(product => 
-          
           <ProductCard key={product._id}>
-            <Link to={`/products/${product._id}`}>
-              <FavoriteBorderIcon style={{ marginLeft: '85%', marginBottom: '-15%', zIndex: '5' }} />
-              <img src={product.image} alt="shoes" style={{ width: '100%' }} />
-              <ProductName>{product.name}</ProductName>
-              <ProductPrice>{product.price}</ProductPrice>
-            {/*<p>{product.description}</p>*/}
+            <FavoriteBorderIcon
+              style={{ marginLeft: '85%', marginBottom: '-15%', zIndex: '5' }}
+              onClick={() => handleClick()} />
+            <Link to={`/products/${product._id}`}> 
+              <ImageWrapper>
+                <img src={product.image} alt="shoes" style={{ width: '100%', height:'200px', objectFit: 'cover' }} />
+              </ImageWrapper>
             </Link>
+            <ProductInformationWrapper>
+              <ProductName>{product.name}</ProductName>
+              <br/>
+              <ProductPrice>{product.price}</ProductPrice>
+            </ProductInformationWrapper>
+            {/*<p>{product.description}</p>*/}
+           
           </ProductCard>
           
           )} 
