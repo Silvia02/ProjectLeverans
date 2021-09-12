@@ -19,6 +19,7 @@ function App() {
   
   const [user, setUserLogin] = useState({})
   const [favourites, setFavourites] = useState([])
+  const [shoppingList, setShoppingList] = useState([]);
   
   //check is user is store in local storage
   useEffect(() => {
@@ -30,19 +31,18 @@ function App() {
   }
 
   const onAdd = (product) => {
-    //const exist = favourites.find(favourite => favourite._id === product._id);
+    const exist = favourites.find(favourite => favourite._id === product._id);
     setFavourites([...favourites, { ...product }])
-
-    {/*if (exist) {
-      setFavourites(
-        favourites.map(favourite =>
-          favourite._id === product._id ? { ...exist, quantity: exist.quantity + 1 }
-            : favourite
+      if (exist) {
+        setFavourites(
+          favourites.map(favourite =>
+            favourite._id === product._id ? { ...exist, quantity: exist.quantity + 1 }
+              : favourite
+          )
         )
-      )
-    } else {
-      setFavourites([...favourites, product])
-    }*/}
+      } else {
+        setFavourites([...favourites, product])
+      }
     console.log('favourite button is onclick')
     console.log(product)
     console.log(favourites)
@@ -61,6 +61,38 @@ function App() {
       )
     }
   }
+
+  const addToShoppingList = (product) => { 
+    const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
+    setShoppingList([...shoppingList, { ...product }])
+    if (exist) {
+      setShoppingList(
+        shoppingList.map(shoppingItem =>
+          shoppingItem._id === product._id ? { ...exist, quantity: exist.quantity + 1 }
+            : shoppingItem
+        )
+      )
+    } else {
+      setShoppingList([...shoppingList, product])
+    }
+    console.log('Add to cart button is onclick')
+    console.log(product)
+    console.log(shoppingList)
+  }
+const removeFromShoppingList = (product) => {
+  const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
+  if (exist.quantity === 1) {
+    setShoppingList(shoppingList.filter(shoppingItem => shoppingItem._id !== product._id))
+  } else {
+    setShoppingList(
+      shoppingList.map(shoppingItem =>
+        shoppingItem._id === product._id
+          ? { ...exist, quantity: exist.quantity - 1 }
+          : shoppingItem
+      )
+    )
+  }
+}
   return (
      <div className="App">
         <Router>
@@ -81,9 +113,11 @@ function App() {
               />
             </Route>
             <Route path="/products/:id">
-              <Product 
-                  favourites={favourites}
-                  onAdd={onAdd} 
+            <Product
+              favourites={favourites}
+              shoppingList={shoppingList}
+              onAdd={onAdd}
+              addToShoppingList={addToShoppingList}
               />
             </Route>
             <Route path="/products/favourites">
@@ -106,7 +140,6 @@ function App() {
           </Switch>
         </Router>
      </div>
-   
   );
 }
 
