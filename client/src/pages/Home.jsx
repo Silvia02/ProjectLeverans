@@ -4,12 +4,9 @@ import { getAllProducts } from '../../../server/controllers/products';
 import { ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper } from './HomeStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
-
-
-const Home = ({onAdd}) => {
+const Home = ({stayLogedin, onAdd}) => {
   const [products, setProducts] = useState([ ]);
   const [users, setUsers] = useState([]);
-  const [favorites, setFavorites] = useState([])
   
   useEffect(() => {
     getAllProducts();
@@ -25,7 +22,8 @@ const Home = ({onAdd}) => {
   
   return (
     <>
-      <h1>Home page</h1>
+      <h1>Wellcome</h1>
+      <p onClick={()=>stayLogedin({})}>Logout</p>
       <hr/>
       <ProductWrapper>
         {products.map(product => 
