@@ -12,14 +12,14 @@ import Product from './pages/Product';
 import MyCart from './pages/MyCart';
 import RegisterPage from './pages/RegisterPage';
 import ShippingDetails from './pages/ShippingDetails';
-import Favorites from './pages/Favorites'
+import Favourites from './pages/Favourites'
 import Home from './pages/Home';
 
 
 function App() {
   
   const [user, setUserLogin] = useState({})
-  const [favorites, setFavorites] = useState([])
+  const [favourites, setFavourites] = useState([])
   
   //check is user is store in local storage
   useEffect(() => {
@@ -31,33 +31,33 @@ function App() {
   }
   
   const onAdd = (product) => {
-    //const exist = favorites.find(favorite => favorite._id === product._id);
-    setFavorites([...favorites, { ...product }])
+    //const exist = favourites.find(favourite => favourite._id === product._id);
+    setFavourites([...favourites, { ...product }])
 
     {/*if (exist) {
-      setFavorites(
-        favorites.map(favorite =>
-          favorite._id === product._id ? { ...exist, quantity: exist.quantity + 1 }
-            : favorite
+      setFavourites(
+        favourites.map(favourite =>
+          favourite._id === product._id ? { ...exist, quantity: exist.quantity + 1 }
+            : favourite
         )
       )
     } else {
-      setFavorites([...favorites, product])
+      setFavourites([...favourites, product])
     }*/}
-    console.log('favorite button is onclick')
+    console.log('favourite button is onclick')
     console.log(product)
-    console.log(favorites)
+    console.log(favourites)
   }
   const onRemove = (product) => {
-    const exist = favorites.find(favorite => favorite._id === product._id);
+    const exist = favourites.find(favourite => favourite._id === product._id);
     if (exist.quantity === 1) {
-      setFavorites(favorites.filter(favorite => favorite._id !== product._id))
+      setFavourites(favourites.filter(favourite => favourite._id !== product._id))
     } else {
       setFavorites(
-        favorites.map(favorite =>
-          favorite._id === product._id
+        favourites.map(favourite =>
+          favourite._id === product._id
             ? { ...exist, quantity: exist.quantity - 1 }
-            : favorite
+            : favourite
         )
       )
     }
@@ -83,7 +83,7 @@ function App() {
             </Route>
             <Route path="/products/:id">
               <Product
-                favorites={favorites}
+                favourites={favourites}
                 onAdd={onAdd} 
             />
             </Route>
@@ -93,9 +93,9 @@ function App() {
             <Route path = "/mycart">
                 <MyCart/>
             </Route>
-            <Route path="/favorites" >
-              <Favorites
-                favorites={favorites}
+            <Route path="/favourites" >
+              <Favourites
+                favourites={favourites}
                 onAdd={onAdd}
                 onRemove={onRemove}
                 />
