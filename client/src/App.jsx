@@ -20,7 +20,7 @@ function App() {
   
     const onAdd = (product) => {
       //const exist = favorites.find(favorite => favorite._id === product._id);
-      setFavorites([...favorites, product])
+      setFavorites([...favorites, { ...product }])
       
       {/*if (exist) {
         setFavorites(
@@ -35,6 +35,20 @@ function App() {
       console.log('favorite button is onclick')
       console.log(product)
       console.log(favorites)
+    }
+    const onRemove = (product) => {
+      const exist = favorites.find(favorite => favorite._id === product._id);
+      if (exist.quantity === 1) {
+        setFavorites(favorites.filter(favorite => favorite._id !== product._id))
+      } else {
+        setFavorites(
+          favorites.map(favorite =>
+            favorite._id === product._id
+              ? { ...exist, quantity: exist.quantity - 1 }
+              : favorite
+          )
+        )
+      }
     }
   return (
      <div className="App">
@@ -51,9 +65,9 @@ function App() {
             </Route>
             <Route exact path="/products">
               <Products 
-                onAdd={onAdd}
                 favorites={favorites}
-                />
+                onAdd={onAdd}
+              />
             </Route>
             <Route path="/products/:id">
               <Product
@@ -71,6 +85,7 @@ function App() {
               <Favorites
                 favorites={favorites}
                 onAdd={onAdd}
+                onRemove={onRemove}
                 />
             </Route>
           </Switch>

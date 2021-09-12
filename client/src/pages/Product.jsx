@@ -5,7 +5,7 @@ import { AddtoCartButton,AddtoCartWrapper,ProductDetailButton, ProductDetailCard
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ToggleDisplay from 'react-toggle-display';
 
-const Product = () => {
+const Product = ({ favorites, onAdd}) => {
   const {id} = useParams()
   const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
@@ -45,7 +45,7 @@ const Product = () => {
         </SizeButtonWrapper>
         
         <div>
-          <ProductDetailButton onClick={() => handleClick()}>Product information</ProductDetailButton>
+          <ProductDetailButton onClick={() => onAdd(product)}>Product information</ProductDetailButton>
           <ToggleDisplay show={show}><p style={{lineHeight:'1.2em', fontSize:"1.2em", width:"80%"}}>{product.description}</p></ToggleDisplay>
           
         </div>

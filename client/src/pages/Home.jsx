@@ -6,10 +6,10 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 
 
-const Home = () => {
+const Home = ({onAdd}) => {
   const [products, setProducts] = useState([ ]);
-  const [users, setUsers] = [];
-  const [favorite, setFavorite] = useState([])
+  const [users, setUsers] = useState([]);
+  const [favorites, setFavorites] = useState([])
   
   useEffect(() => {
     getAllProducts();
@@ -22,9 +22,7 @@ const Home = () => {
     setProducts(data);
     console.log(products);
   }
-
   
-
   return (
     <>
       <h1>Home page</h1>
@@ -32,9 +30,10 @@ const Home = () => {
       <ProductWrapper>
         {products.map(product => 
           <ProductCard key={product._id}>
-            <FavoriteBorderIcon
-              style={{ marginLeft: '85%', marginBottom: '-15%', zIndex: '5' }}
-              onClick={() => handleClick()} />
+              <FavoriteBorderIcon
+                style={{ marginLeft: '85%', marginBottom: '-15%', zIndex: '5' }}
+              onClick={() => onAdd( product )}
+              />
             <Link to={`/products/${product._id}`}> 
               <ImageWrapper>
                 <img src={product.image} alt="shoes" style={{ width: '100%', height:'200px', objectFit: 'cover' }} />
