@@ -6,7 +6,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 
 
-const Home = ({setUserLogin}) => {
+const Home = ({stayLogedin}) => {
   const [products, setProducts] = useState([ ]);
   const [users, setUsers] = [];
   const [favorite, setFavorite] = useState([])
@@ -28,7 +28,7 @@ const Home = ({setUserLogin}) => {
   return (
     <>
       <h1>Wellcome</h1>
-      <p onClick={()=>setUserLogin({})}>Logout</p>
+      <p onClick={()=>stayLogedin({})}>Logout</p>
       <hr/>
       <ProductWrapper>
         {products.map(product => 

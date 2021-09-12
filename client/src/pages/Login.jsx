@@ -10,7 +10,7 @@ import {
 } from "./FrontPageStyle";
 
 
-const Login = ({setUserLogin}) => {
+const Login = ({stayLogedin}) => {
 
   const history = useHistory();
   const [user, setUser] = useState({
@@ -34,7 +34,7 @@ const Login = ({setUserLogin}) => {
     axios.post('http://localhost:4000/login', user)
       .then(res => {
         alert(res.data.message)
-        setUserLogin(res.data.user)
+        stayLogedin(res.data.user)
         history.push('/home')
       })
   }
