@@ -10,11 +10,9 @@ export const PhotoCard = styled.div`
 `;
 export const Photo = styled.img`
   width:100%;
-<<<<<<< HEAD
   height:220px;
-=======
   height:180px;
->>>>>>> f7ba2f26a72564c889a292ecf6bde8460b4bfcf3
+  height:180px;
   object-fit: cover;
   position: relative;
   margin-left: auto;
