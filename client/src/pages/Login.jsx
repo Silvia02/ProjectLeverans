@@ -12,6 +12,9 @@ import {
 
 const Login = ({stayLogedin}) => {
 
+
+  //testing some things
+
   const history = useHistory();
   const [user, setUser] = useState({
     email: "",
