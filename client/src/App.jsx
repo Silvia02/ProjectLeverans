@@ -136,7 +136,8 @@ const removeFromShoppingList = (product) => {
 
           </Route>
           <Route>{
-            user && user._id ? <Header stayLogedin={stayLogedin} userName={user.name}/> : <Login stayLogedin={stayLogedin}/>
+            user && user._id ? <Header stayLogedin={stayLogedin}
+              userName={user.name.charAt(0).toUpperCase()+user.name.slice(1)} /> : <Login stayLogedin={stayLogedin} />
           }
             <Home onAdd={onAdd}/>
           </Route>
