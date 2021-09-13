@@ -1,0 +1,14 @@
+img{
+  height:40%;
+  width: 40%;
+}
+.itemImage{
+  display: flex;
+  flex-direction: column;
+}
+p{
+  text-align: left;
+}
+h4{
+  text-align: right;
+}
