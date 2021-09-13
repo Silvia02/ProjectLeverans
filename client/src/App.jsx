@@ -6,16 +6,13 @@ import {
 } from "react-router-dom";
 import './App.css'
 import FrontPage from './pages/FrontPage';
-import Products from './pages/Home';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Product from './pages/Product';
 import MyCart from './pages/MyCart';
 import RegisterPage from './pages/RegisterPage';
 import ShippingDetails from './pages/ShippingDetails';
-import Home from './pages/Home';
-
 import Header from './components/Header/Header';
-
 import Favourites from './pages/Favourites';
 
 
@@ -111,18 +108,18 @@ const removeFromShoppingList = (product) => {
               <RegisterPage />
             </Route>
             <Route exact path="/products">
-              <Products 
+              <Home
                 favourites={favourites}
                 onAdd={onAdd}
               />
             </Route>
             <Route path="/products/:id">
-            <Product
-              favourites={favourites}
-              shoppingList={shoppingList}
-              onAdd={onAdd}
-              addToShoppingList={addToShoppingList}
-              />
+              <Product
+                favourites={favourites}
+                shoppingList={shoppingList}
+                onAdd={onAdd}
+                addToShoppingList={addToShoppingList}
+                />
             </Route>
             <Route path="/products/favourites">
               <Favourites 
@@ -139,9 +136,10 @@ const removeFromShoppingList = (product) => {
 
           </Route>
           <Route>{
-            user && user._id ? <Header stayLogedin={stayLogedin} userName={user.name}/> : <Login stayLogedin={stayLogedin}/>
+            user && user._id ? <Header stayLogedin={stayLogedin}
+              userName={user.name.charAt(0).toUpperCase()+user.name.slice(1)} /> : <Login stayLogedin={stayLogedin} />
           }
-            <Home/>
+            <Home onAdd={onAdd}/>
           </Route>
           </Switch>
         </Router>

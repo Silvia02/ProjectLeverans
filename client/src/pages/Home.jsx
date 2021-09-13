@@ -6,7 +6,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Header from '../components/Header/Header';
 
 
-const Home = () => {
+const Home = ({onAdd}) => {
 
   const [products, setProducts] = useState([]);
   const [users, setUsers] = [];
