@@ -20,13 +20,27 @@ export const getOneUser = async (req, res) => {
     res.status(404).json({message: error.message});
   }
 }
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+  User.findOne({ email: email }, (err, user) => {
+    if (user) {
+      if (password === user.password) {
+            res.send({message:"Login Scucessfull", user})
+      } else {
+            res.send({message:"Password didn't match"})
+          }
+    } else {
+            res.send({message:"User not registered!"})
+    }
+  })
+}
 
 export const createUser = async (req, res) => {
   const { name, email, password } = req.body;
-  User.findOne({ email }, (err, user) => {
+  User.findOne({ email:email }, (err, user) => {
     
     if (user) {
-      res.send({message:"User Already Exists"});
+      res.send({message:"User Already Exists!Please try again"});
     } else {
       const user = new User ({
         name,
@@ -37,7 +51,7 @@ export const createUser = async (req, res) => {
         if (err) {
           res.send(err)
         } else {
-          res.send({message:'Registered Successfully'})
+          res.send({message:'Registered Successfully',user: user})
         }
       })
     }
