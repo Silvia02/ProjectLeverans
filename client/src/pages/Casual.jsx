@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Link } from "react-router-dom";
 import {
+  BackArrow
+} from "./HomeStyle";
+import {
   ProductCard,
   ProductPrice,
   ProductName,
@@ -25,8 +28,13 @@ const Casual = () => {
     }, [])
    
     return (
-        <div>
-            <h1>Hello from casual</h1>
+      <div>
+        {/* <h1>Hello from casual</h1> */}
+        <BackArrow>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            &#8592;
+          </Link>
+        </BackArrow>
         <ProductWrapper>
           {categories.map((categorie) => (
             <ProductCard key={categorie._id}>
@@ -55,7 +63,6 @@ const Casual = () => {
                 <ProductName>{categorie.name}</ProductName>
                 <br />
                 <ProductPrice>{categorie.price}</ProductPrice>
-           
               </ProductInformationWrapper>
             </ProductCard>
           ))}

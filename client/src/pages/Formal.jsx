@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Link } from "react-router-dom";
+import { BackArrow } from "./HomeStyle";
 import {
   ProductCard,
   ProductPrice,
@@ -24,7 +25,11 @@ const Formal = () => {
 
   return (
     <div>
-      <h1>Hello from Formal</h1>
+      <BackArrow>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          &#8592;
+        </Link>
+      </BackArrow>
       <ProductWrapper>
         {formals.map((formalCate) => (
           <ProductCard key={formalCate._id}>
