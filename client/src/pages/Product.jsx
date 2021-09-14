@@ -7,7 +7,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ToggleDisplay from 'react-toggle-display';
 import logo from '../images/shop.png'
 import { HeaderWrapper } from './FrontPageStyle';
-import { BackErrow } from './HomeStyle';
+import { BackArrow } from './HomeStyle';
 
 const Product = ({ addToShoppingList,onAdd}) => {
   const {id} = useParams()
@@ -27,7 +27,7 @@ const Product = ({ addToShoppingList,onAdd}) => {
   }
   return (
     <div>
-      <BackErrow><Link to="/products" style={{ textDecoration: 'none' }}>&#8592;</Link></BackErrow>
+      <BackArrow><Link to="/products" style={{ textDecoration: 'none' }}>&#8592;</Link></BackArrow>
       <ProductDetailCard>
         <img src={product.image} alt="" style={{ width: "100%", marginTop: "10px", marginBottom: "10px" }} />
         <ProductLabel>

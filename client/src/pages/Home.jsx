@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllProducts } from '../../../server/controllers/products';
-import { ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper, BackErrow } from './HomeStyle';
+import { ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper, BackArrow } from './HomeStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Header from '../components/Header/Header';
 
@@ -25,7 +25,7 @@ const Home = ({onAdd}) => {
 
   return (
     <>
-      <BackErrow><Link to="/" style={{textDecoration:'none'}}>&#8592;</Link></BackErrow>
+      <BackArrow><Link to="/" style={{textDecoration:'none'}}>&#8592;</Link></BackArrow>
       <ProductWrapper>
         {products.map(product =>
           <ProductCard key={product._id}>

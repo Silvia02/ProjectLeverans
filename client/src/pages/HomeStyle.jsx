@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BackErrow = styled.p`
+export const BackArrow = styled.p`
   width:40px;
   height:40px;
   font-size:2.5em;
