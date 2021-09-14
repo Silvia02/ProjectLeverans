@@ -37,16 +37,16 @@ function App() {
   const onAdd = (product) => {
     const exist = favourites.find(favourite => favourite._id === product._id);
     setFavourites([...favourites, { ...product }])
-      if (exist) {
-        setFavourites(
-          favourites.map(favourite =>
-            favourite._id === product._id ? { ...exist, quantity: exist.quantity + 1 }
-              : favourite
-          )
+    if (exist) {
+      setFavourites(
+        favourites.map(favourite =>
+          favourite._id === product._id ? { ...exist, quantity: exist.quantity + 1 }
+            : favourite
         )
-      } else {
-        setFavourites([...favourites, product])
-      }
+      )
+    } else {
+      setFavourites([...favourites, product])
+    }
     console.log('favourite button is onclick')
     console.log(product)
     console.log(favourites)
@@ -66,7 +66,7 @@ function App() {
     }
   }
 
-  const addToShoppingList = (product) => { 
+  const addToShoppingList = (product) => {
     const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
     setShoppingList([...shoppingList, { ...product }])
     if (exist) {
@@ -83,20 +83,20 @@ function App() {
     console.log(product)
     console.log(shoppingList)
   }
-const removeFromShoppingList = (product) => {
-  const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
-  if (exist.quantity === 1) {
-    setShoppingList(shoppingList.filter(shoppingItem => shoppingItem._id !== product._id))
-  } else {
-    setShoppingList(
-      shoppingList.map(shoppingItem =>
-        shoppingItem._id === product._id
-          ? { ...exist, quantity: exist.quantity - 1 }
-          : shoppingItem
+  const removeFromShoppingList = (product) => {
+    const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
+    if (exist.quantity === 1) {
+      setShoppingList(shoppingList.filter(shoppingItem => shoppingItem._id !== product._id))
+    } else {
+      setShoppingList(
+        shoppingList.map(shoppingItem =>
+          shoppingItem._id === product._id
+            ? { ...exist, quantity: exist.quantity - 1 }
+            : shoppingItem
+        )
       )
-    )
+    }
   }
-}
   return (
 
     <div className="App">
@@ -105,7 +105,7 @@ const removeFromShoppingList = (product) => {
           <Route exact path="/">
             <FrontPage />
           </Route>
-          <Route  path="/casual">
+          <Route path="/casual">
             <Casual />
           </Route>
           <Route path="/sport">
@@ -114,9 +114,9 @@ const removeFromShoppingList = (product) => {
           <Route path="/formal">
             <Formal />
           </Route>
-          <Route path="/login">
+          {/*<Route path="/login">
             <Login stayLogedin={stayLogedin} />
-          </Route>
+          </Route>*/}
           <Route path="/register">
             <RegisterPage />
           </Route>
@@ -144,7 +144,7 @@ const removeFromShoppingList = (product) => {
           <Route path="/mycart">
             <MyCart />
           </Route>
-          <Route>
+          {/*<Route>
             {user && user._id ? (
               <Header
                 stayLogedin={stayLogedin}
@@ -153,15 +153,17 @@ const removeFromShoppingList = (product) => {
                 }
               />
             ) : (
-              <Login stayLogedin={stayLogedin} />
-            )}
+                <Login stayLogedin={stayLogedin} />
+              )}
             <Home onAdd={onAdd} />
-          </Route>
+          </Route>*/}
         </Switch>
       </Router>
-    </div>
+    </div>)
+}
 
-     <div className="App">
+export default App;
+    {/* <div className="App">
         <Router>
           <Switch>
             <Route exact path="/">
@@ -204,18 +206,18 @@ const removeFromShoppingList = (product) => {
               <MyCart/>
 
           </Route>
-          {/* <Route>
+         <Route>
           {
             user && user._id ? <Header stayLogedin={stayLogedin}
               userName={user.name.charAt(0).toUpperCase()+user.name.slice(1)} /> : <Login stayLogedin={stayLogedin} />
           }
             <Home onAdd={onAdd}/>
-          </Route> */}
+          </Route> 
           </Switch>
       </Router>
-     </div>
+        </div>
 
-  );
-}
+  )
+}*/}
 
-export default App;
+

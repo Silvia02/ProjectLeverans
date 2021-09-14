@@ -18,8 +18,8 @@ const FrontPage = () => {
           <Link to="/login" style={{ textDecoration: "none", color: "rgb(58, 7, 2)"  }}>Sign In</Link>
         </HeaderLinks>
       </HeaderWrapper>
-    <FrontPageWrapper>
-      <h1>Front page</h1>
+      <br />
+      <FrontPageWrapper>
       <PhotoCard>
         <Photo src={allkinds} alt="formal-shoes" />
         <CategoryButton>
