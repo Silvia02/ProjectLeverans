@@ -23,13 +23,13 @@ function App() {
   const [shoppingList, setShoppingList] = useState([]);
   
   //check is user is store in local storage
-  useEffect(() => {
-   setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
-  },[])
-  const stayLogedin = (user) => {
-    localStorage.setItem("MyUser", JSON.stringify(user))
-    setUserLogin(user)
-  }
+  // useEffect(() => {
+  //  setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
+  // },[])
+  // const stayLogedin = (user) => {
+  //   localStorage.setItem("MyUser", JSON.stringify(user))
+  //   setUserLogin(user)
+  // }
 
   const onAdd = (product) => {
     const exist = favourites.find(favourite => favourite._id === product._id);
@@ -100,10 +100,13 @@ const removeFromShoppingList = (product) => {
           <Switch>
             <Route exact path="/">
               <FrontPage />
-            </Route>
-            <Route path="/login">
-              <Login stayLogedin={stayLogedin}/>
-            </Route>
+          </Route>
+          <Router path="/home">
+              <Home onAdd={onAdd}/>
+          </Router>
+             <Route path="/login">
+              <Login/>
+            </Route> 
             <Route path="/register">
               <RegisterPage />
             </Route>
@@ -135,14 +138,15 @@ const removeFromShoppingList = (product) => {
               <MyCart/>
 
           </Route>
-          <Route>{
+          {/* <Route>
+          {
             user && user._id ? <Header stayLogedin={stayLogedin}
               userName={user.name.charAt(0).toUpperCase()+user.name.slice(1)} /> : <Login stayLogedin={stayLogedin} />
           }
             <Home onAdd={onAdd}/>
-          </Route>
+          </Route> */}
           </Switch>
-        </Router>
+      </Router>
      </div>
   );
 }
