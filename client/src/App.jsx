@@ -26,13 +26,13 @@ function App() {
   const [shoppingList, setShoppingList] = useState([]);
   
   //check is user is store in local storage
-  useEffect(() => {
-   setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
-  },[])
-  const stayLogedin = (user) => {
-    localStorage.setItem("MyUser", JSON.stringify(user))
-    setUserLogin(user)
-  }
+  // useEffect(() => {
+  //  setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
+  // },[])
+  // const stayLogedin = (user) => {
+  //   localStorage.setItem("MyUser", JSON.stringify(user))
+  //   setUserLogin(user)
+  // }
 
   const onAdd = (product) => {
     const exist = favourites.find(favourite => favourite._id === product._id);
@@ -98,6 +98,7 @@ const removeFromShoppingList = (product) => {
   }
 }
   return (
+
     <div className="App">
       <Router>
         <Switch>
@@ -159,6 +160,61 @@ const removeFromShoppingList = (product) => {
         </Switch>
       </Router>
     </div>
+
+     <div className="App">
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <FrontPage />
+          </Route>
+          <Router path="/home">
+              <Home onAdd={onAdd}/>
+          </Router>
+             <Route path="/login">
+              <Login/>
+            </Route> 
+            <Route path="/register">
+              <RegisterPage />
+            </Route>
+            <Route exact path="/products">
+              <Home
+                favourites={favourites}
+                onAdd={onAdd}
+              />
+            </Route>
+            <Route path="/products/:id">
+              <Product
+                favourites={favourites}
+                shoppingList={shoppingList}
+                onAdd={onAdd}
+                addToShoppingList={addToShoppingList}
+                />
+            </Route>
+            <Route path="/products/favourites">
+              <Favourites 
+                  favourites={favourites}
+                  onAdd={onAdd}
+                  onRemove={onRemove}
+              />
+            </Route>
+            <Route path = "/checkout">
+              <ShippingDetails/>
+            </Route>
+            <Route path = "/mycart">
+              <MyCart/>
+
+          </Route>
+          {/* <Route>
+          {
+            user && user._id ? <Header stayLogedin={stayLogedin}
+              userName={user.name.charAt(0).toUpperCase()+user.name.slice(1)} /> : <Login stayLogedin={stayLogedin} />
+          }
+            <Home onAdd={onAdd}/>
+          </Route> */}
+          </Switch>
+      </Router>
+     </div>
+
   );
 }
 
