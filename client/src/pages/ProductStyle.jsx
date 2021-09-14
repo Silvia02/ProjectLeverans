@@ -11,7 +11,7 @@ export const ProductLabel = styled.div`
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
-  font-size: 1.2em;
+  font-size: 1em;
   justify-content: space-around;
   margin-bottom: 10px;
 `
@@ -57,7 +57,15 @@ export const AddtoCartButton = styled.button`
   width:88%;
   height: 50px;
   border-radius: 0px;
-  background-color: black;
+  background-color: rgb(38, 39, 39);
   color:whitesmoke;
   margin-left: 3px;
+`
+export const BackButton = styled.button`
+  width:100%;
+  height: 50px;
+  border-radius: 0px;
+  background-color: whitesmoke;
+  color:black;
+  margin-left: 0%;
 `

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllProducts } from '../../../server/controllers/products';
-import { ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper } from './HomeStyle';
+import { ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper, BackArrow } from './HomeStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Header from '../components/Header/Header';
+import Footer from '../components/footer/Footer';
 
 
 const Home = ({onAdd, setUserLogin}) => {
@@ -23,13 +24,12 @@ const Home = ({onAdd, setUserLogin}) => {
     console.log(products);
   }
 
-  
-
   return (
     <>
       <h1>The Shoe Shop</h1>
       <Header setUserLogin={setUserLogin}/>
       <hr />
+      <BackArrow><Link to="/" style={{textDecoration:'none'}}>&#8592;</Link></BackArrow>
       <ProductWrapper>
         {products.map(product =>
           <ProductCard key={product._id}>
@@ -53,6 +53,7 @@ const Home = ({onAdd, setUserLogin}) => {
           
         )}
       </ProductWrapper>
+      <Footer />
     </>
   )
 }
