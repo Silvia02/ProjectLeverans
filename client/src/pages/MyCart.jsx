@@ -15,6 +15,7 @@ import {
   Table,
   TableRow,
   Box,
+  Container,
 } from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
@@ -29,22 +30,21 @@ const MyCart = () => {
   const [cart, setCart] = useState([]);
   const [cartPrice, setCartPrice] = useState(0);
 
-  const fetchCart = async () => {
-    const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
-    const response = await fetch(`http://localhost:4000/cart/${TEMP_CART_ID}`);
-    const data = await response.json();
+  // Updates all cart information it changes
+  const cartUpdater = (newCart) => {
+    // Removes duplicates and sets quantity
+    const reducedCart = cartReducer(newCart)
+    setCart(reducedCart);
 
-    // Return nothing if cart is empty
-    // if (data.products === []) return;
+    // Calculate price for entire cart
+    const price = cartPriceCalculator(reducedCart);
+    setCartPrice(price);
+  }
 
-    // Set total price
-    // const cartPrice = data.products.reduce((total, product) => total.price + product.price);
-
-    console.log(data)
-
-    // Add quantity and remove duplicate products
+  // Remove duplicates and add quanitty of products
+  const cartReducer = (products) => {
     let reducedCart = {};
-    data.products.forEach(product => {
+    products.forEach(product => {
       if (!reducedCart[product._id]) {
         reducedCart[product._id] = {
           ...product,
@@ -55,30 +55,54 @@ const MyCart = () => {
       }
     })
 
-    // Set Cart without duplicates
-    setCart(Object.values(reducedCart));
+    // return cart obj as array
+    return Object.values(reducedCart);
+  }
 
+  // Takes in a reduced cart and returns the total value
+  const cartPriceCalculator = (cart) => {
+    if (!cart.length) { // if cart is empty return 0
+      return 0;
+    } else if (cart.length === 1) { // if cart contains only one item, return its price
+      return cart[0].price;
+    } else {
+      // else return total cart price
+      // Explanation: total, is a product object with price and quantity
+      // therefore the reducer function needs to return a similar object
+      return cart.reduce((total, current) => ({
+        price: (total.price * total.quantity) + (current.price * current.quantity),
+        quantity: 1
+      })).price;
+    }
+  }
 
-    if (!Object.values(reducedCart).length) return;
+  const fetchCart = async () => {
+    const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
+    const response = await fetch(`http://localhost:4000/cart/${TEMP_CART_ID}`);
+    const data = await response.json();
 
+    // Update cart information
+    cartUpdater(data.products);
+  }
 
-    console.log(Object.values(reducedCart)
-      .reduce((total, current) => (
-        total.price + (current.price * current.quantity)
-      ))
-    );
+  const changeQuantity = async (productId, operation) => {
+    const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
+    const addOrRemove = operation === 'increment' ? 'add' : 'remove';
+    const response = await fetch(`http://localhost:4000/cart/${addOrRemove}/${TEMP_CART_ID}`, {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "productId": productId
+      })
+    });
 
-    // Set Total price
-    reducedCart = Object.values(reducedCart);
+    const data = await response.json();
 
-    console.log(reducedCart);
-
-    let price = reducedCart.reduce((total, current) => (
-      total.price + (current.price * current.quantity)
-    ))
-    console.log(price);
-
-    setCartPrice(price);
+    // Update cart information
+    cartUpdater(data.products);
   }
 
   const removeProduct = async (productId) => {
@@ -95,7 +119,9 @@ const MyCart = () => {
     });
 
     const data = await response.json();
-    console.log(data);
+
+    // Update cart information
+    cartUpdater(data.products);
   }
 
   useEffect(() => {
@@ -109,11 +135,16 @@ const MyCart = () => {
         <Paper elevation={10} style={paperStyle}>
           {
             cart.map(product => (
-              <Box key={product._id} display="flex" paddingY="5px" justifyContent="spaced-between" alignItems="center">
+              <Box key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
                 <img src={product.image} alt={product.name} />
                 <div>
                   <Typography variant="h6">{product.name}</Typography>
-                  <Typography align="center">${product.price} | x{product.quantity}</Typography>
+                  <Typography align="center">${product.price}</Typography>
+                  <div>
+                    <button style={{width: "40px"}} onClick={() => changeQuantity(product._id, 'increment')}>+</button>
+                    <span> {product.quantity} </span>
+                    <button style={{width: "40px"}} onClick={() => changeQuantity(product._id, 'decrement')}>-</button>
+                  </div>
                 </div>
                 <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(product._id)} />
               </Box>
