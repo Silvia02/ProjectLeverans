@@ -28,6 +28,7 @@ const Home = ({onAdd}) => {
   return (
     <>
       <h1>The Shoe Shop</h1>
+      <Header/>
       <hr />
       <ProductWrapper>
         {products.map(product =>

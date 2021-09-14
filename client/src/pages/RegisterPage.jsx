@@ -27,7 +27,8 @@ const Register = () => {
     })
   }
 
-  const register = () => {
+  const register = (e) => {
+    e.preventDefault();
     const { name, email, password, confirmPassword } = user;
     if (name && email && password && (password === confirmPassword)) {
       axios.post('http://localhost:4000/users', user)
