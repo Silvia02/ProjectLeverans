@@ -1,5 +1,25 @@
 import styled from "styled-components";
 
+export const HeaderWrapper = styled.header`
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+`
+
+export const HeaderLinks = styled.div`
+  width:50%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+  padding-top: 22px;
+  padding-right: 10px;
+  font-size:0.95em;
+  font-family: Arial, Helvetica, sans-serif;
+`
+
 export const FrontPageWrapper = styled.div`
   display:flex;
   flex-direction: column;

@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const BackErrow = styled.p`
+  width:40px;
+  height:40px;
+  font-size:2.5em;
+  margin-top:5px;
+  margin-left:15px;
+`
 export const ProductWrapper = styled.div`
   display:flex;
   flex-direction: row;
@@ -16,7 +23,7 @@ export const ProductCard = styled.div`
   margin: 5px;
   padding: 5px;
   background-color: whitesmoke;
-  width:40%;
+  width:45%;
  
 `
 export const ImageWrapper = styled.div`
