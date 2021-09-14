@@ -16,7 +16,7 @@ export const ProductCard = styled.div`
   margin: 5px;
   padding: 5px;
   background-color: whitesmoke;
-  width:40%;
+  width:45%;
  
 `
 export const ImageWrapper = styled.div`

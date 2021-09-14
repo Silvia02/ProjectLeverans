@@ -28,7 +28,7 @@ const Home = ({onAdd}) => {
   return (
     <>
       <h1>The Shoe Shop</h1>
-      <hr />
+      <br/>
       <ProductWrapper>
         {products.map(product =>
           <ProductCard key={product._id}>
