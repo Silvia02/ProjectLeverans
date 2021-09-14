@@ -8,9 +8,10 @@ import {
   StlyedInput,
   Button,
 } from "./FrontPageStyle";
+import Header from "../components/Header/Header";
 
 
-const Register = () => {
+const Register = ({setUserLogin}) => {
   const history = useHistory();
   const [user, setUser] = useState({
     name: "",
@@ -27,16 +28,16 @@ const Register = () => {
     })
   }
 
-  const register = () => {
+  const register = (e) => {
+    e.preventDefault();
     const { name, email, password, confirmPassword } = user;
     if (name && email && password && (password === confirmPassword)) {
       axios.post('http://localhost:4000/users', user)
         .then(res => {
           alert(res.data.message)
-          history.push('/home')
+          setUserLogin(res.data.user)
+          history.push("/home")
         })
-          
-      
     
     } else if (password !== confirmPassword) {
       alert("password did not match")
@@ -75,6 +76,8 @@ const Register = () => {
           <Button onClick={() => history.push('/login')}>Login</Button>
         </StlyedForm>
       </StlyedFormWrappper>
+      <Header/>
+      
     </>
   );
 };

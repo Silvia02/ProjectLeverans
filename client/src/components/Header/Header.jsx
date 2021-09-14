@@ -3,8 +3,10 @@ import { Avatar , Button, Menu, MenuItem} from '@material-ui/core';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import '../Header/header.css'
+import { useHistory } from "react-router";
 
-const Header = ({ stayLogedin, userName }) => {
+const Header = ({ setUserLogin }) => {
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenu = (e) => {
@@ -13,6 +15,11 @@ const Header = ({ stayLogedin, userName }) => {
   const handleClose = () => {
     setAnchorEl(null);
   }
+  const handleLogout = () => {
+    history.push("/login")
+     setUserLogin({})
+
+  }
    
    return (
      <>
@@ -20,7 +27,7 @@ const Header = ({ stayLogedin, userName }) => {
     <div className="header">
          <Avatar area-aria-controls="menu" style={iconStyle} onClick={handleMenu}/>
       <div className="userStyle">
-        <h3>{userName}</h3>
+           <h3>userName</h3>
          </div>
          <ShoppingCartOutlinedIcon fontSize="large" style={{marginRight:"30px",marginTop:"20px",marginLeft:"30px"}}/>
         </div>
@@ -34,7 +41,7 @@ const Header = ({ stayLogedin, userName }) => {
             <FavoriteBorderOutlinedIcon fontSize="large" style={iconStyle}/>
          </MenuItem>
          <MenuItem onClick={handleClose}>
-            <h4 onClick={()=>stayLogedin({})}>Logout</h4>
+            <h4 onClick={handleLogout}>Logout</h4>
          </MenuItem>
        </Menu>
    </>    
