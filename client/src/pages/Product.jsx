@@ -7,6 +7,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ToggleDisplay from 'react-toggle-display';
 import logo from '../images/shop.png'
 import { HeaderWrapper } from './FrontPageStyle';
+import { BackErrow } from './HomeStyle';
 
 const Product = ({ addToShoppingList,onAdd}) => {
   const {id} = useParams()
@@ -26,7 +27,7 @@ const Product = ({ addToShoppingList,onAdd}) => {
   }
   return (
     <div>
-      <br/>
+      <BackErrow><Link to="/products" style={{ textDecoration: 'none' }}>&#8592;</Link></BackErrow>
       <ProductDetailCard>
         <img src={product.image} alt="" style={{ width: "100%", marginTop: "10px", marginBottom: "10px" }} />
         <ProductLabel>
@@ -42,13 +43,16 @@ const Product = ({ addToShoppingList,onAdd}) => {
           <SizeButton>41</SizeButton>
           <SizeButton>42</SizeButton>
           <SizeButton>43</SizeButton>
+          <SizeButton>44</SizeButton>
+          <SizeButton>45</SizeButton>
+          <SizeButton>46</SizeButton>
         </SizeButtonWrapper>
         
         <div>
           <ProductDetailButton onClick={() => handleClick()}>Product information</ProductDetailButton>
           <ToggleDisplay show={show}>{product.description}</ToggleDisplay>
         </div>
-        <BackButton><Link to="/products" style={{textDecoration:"none"}}>Back to check more</Link></BackButton>
+        {/*<BackButton><Link to="/products" style={{textDecoration:"none"}}>Back to check more</Link></BackButton>*/}
         <AddtoCartWrapper>
           <AddtoCartButton
             onClick={() => addToShoppingList(product)}>Add to cart</AddtoCartButton>
