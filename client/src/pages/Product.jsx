@@ -8,6 +8,7 @@ import ToggleDisplay from 'react-toggle-display';
 import logo from '../images/shop.png'
 import { HeaderWrapper } from './FrontPageStyle';
 import { BackArrow } from './HomeStyle';
+import Footer from '../components/footer/Footer';
 
 const Product = ({ addToShoppingList,onAdd}) => {
   const {id} = useParams()
@@ -62,6 +63,9 @@ const Product = ({ addToShoppingList,onAdd}) => {
             />
         </AddtoCartWrapper>
       </ProductDetailCard>
+      <br />
+      <br />
+      <Footer />
     </div>
   )
 }

@@ -6,6 +6,8 @@ export const HeaderWrapper = styled.header`
   flex-wrap: wrap;
   justify-content: space-between;
   text-align: center;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 5px;
 `
 
 export const HeaderLinks = styled.div`
@@ -17,12 +19,12 @@ export const HeaderLinks = styled.div`
   padding-top: 22px;
   padding-right: 10px;
   font-size:0.95em;
-  font-family: Arial, Helvetica, sans-serif;
 `
 
 export const FrontPageWrapper = styled.div`
   display:flex;
   flex-direction: column;
+  margin-bottom: 20px;
 `;
 export const PhotoCard = styled.div`
   position: relative;

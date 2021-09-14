@@ -131,7 +131,7 @@ function App() {
               addToShoppingList={addToShoppingList}
             />
           </Route>
-          <Route path="/products/favourites">
+          <Route path="/favourites">
             <Favourites
               favourites={favourites}
               onAdd={onAdd}
