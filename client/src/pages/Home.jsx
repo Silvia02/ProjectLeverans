@@ -4,6 +4,7 @@ import { getAllProducts } from '../../../server/controllers/products';
 import { ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper, BackArrow } from './HomeStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Header from '../components/Header/Header';
+import Footer from '../components/footer/Footer';
 
 
 const Home = ({onAdd}) => {
@@ -49,6 +50,7 @@ const Home = ({onAdd}) => {
           
         )}
       </ProductWrapper>
+      <Footer />
     </>
   )
 }

@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
 export const BackArrow = styled.p`
-  width:40px;
+  width:60px;
   height:40px;
   font-size:2.5em;
   margin-top:5px;
-  margin-left:15px;
+  margin-left: 0px;
+  padding-left: 10px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  border-bottom:1px solid grey;
+  border-right: 1px solid grey;
 `
 export const ProductWrapper = styled.div`
   display:flex;

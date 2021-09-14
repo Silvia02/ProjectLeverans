@@ -57,7 +57,7 @@ export const AddtoCartButton = styled.button`
   width:88%;
   height: 50px;
   border-radius: 0px;
-  background-color: black;
+  background-color: rgb(38, 39, 39);
   color:whitesmoke;
   margin-left: 3px;
 `
