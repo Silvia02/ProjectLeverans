@@ -14,6 +14,9 @@ import RegisterPage from './pages/RegisterPage';
 import ShippingDetails from './pages/ShippingDetails';
 import Header from './components/Header/Header';
 import Favourites from './pages/Favourites';
+import Casual from './pages/Casual';
+import Sport from "./pages/Sport";
+import Formal from "./pages/Formal";
 
 
 function App() {
@@ -95,55 +98,67 @@ const removeFromShoppingList = (product) => {
   }
 }
   return (
-     <div className="App">
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <FrontPage />
-            </Route>
-            <Route path="/login">
-              <Login stayLogedin={stayLogedin}/>
-            </Route>
-            <Route path="/register">
-              <RegisterPage />
-            </Route>
-            <Route exact path="/products">
-              <Home
-                favourites={favourites}
-                onAdd={onAdd}
-              />
-            </Route>
-            <Route path="/products/:id">
-              <Product
-                favourites={favourites}
-                shoppingList={shoppingList}
-                onAdd={onAdd}
-                addToShoppingList={addToShoppingList}
-                />
-            </Route>
-            <Route path="/products/favourites">
-              <Favourites 
-                  favourites={favourites}
-                  onAdd={onAdd}
-                  onRemove={onRemove}
-              />
-            </Route>
-            <Route path = "/checkout">
-              <ShippingDetails/>
-            </Route>
-            <Route path = "/mycart">
-              <MyCart/>
-
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <FrontPage />
           </Route>
-          <Route>{
-            user && user._id ? <Header stayLogedin={stayLogedin}
-              userName={user.name.charAt(0).toUpperCase()+user.name.slice(1)} /> : <Login stayLogedin={stayLogedin} />
-          }
-            <Home onAdd={onAdd}/>
+          <Route  path="/casual">
+            <Casual />
           </Route>
-          </Switch>
-        </Router>
-     </div>
+          <Route path="/sport">
+            <Sport />
+          </Route>
+          <Route path="/formal">
+            <Formal />
+          </Route>
+          <Route path="/login">
+            <Login stayLogedin={stayLogedin} />
+          </Route>
+          <Route path="/register">
+            <RegisterPage />
+          </Route>
+          <Route exact path="/products">
+            <Home favourites={favourites} onAdd={onAdd} />
+          </Route>
+          <Route path="/products/:id">
+            <Product
+              favourites={favourites}
+              shoppingList={shoppingList}
+              onAdd={onAdd}
+              addToShoppingList={addToShoppingList}
+            />
+          </Route>
+          <Route path="/products/favourites">
+            <Favourites
+              favourites={favourites}
+              onAdd={onAdd}
+              onRemove={onRemove}
+            />
+          </Route>
+          <Route path="/checkout">
+            <ShippingDetails />
+          </Route>
+          <Route path="/mycart">
+            <MyCart />
+          </Route>
+          <Route>
+            {user && user._id ? (
+              <Header
+                stayLogedin={stayLogedin}
+                userName={
+                  user.name.charAt(0).toUpperCase() + user.name.slice(1)
+                }
+              />
+            ) : (
+              <Login stayLogedin={stayLogedin} />
+            )}
+            <Home onAdd={onAdd} />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
 }
 

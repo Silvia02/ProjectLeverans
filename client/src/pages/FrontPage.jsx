@@ -12,24 +12,36 @@ const FrontPage = () => {
       <h1>Front page</h1>
       <PhotoCard>
         <Photo src={allkinds} alt="formal-shoes" />
-        <CategoryButton><Link to="/products" style={{textDecoration:"none"}}>All</Link></CategoryButton>
+        <CategoryButton>
+          <Link to="/products" style={{ textDecoration: "none" }}>
+            All
+          </Link>
+        </CategoryButton>
       </PhotoCard>
       <PhotoCard>
-        <Photo src={sportPhoto} alt="sport-shoes" />
-        <CategoryButton>Sport</CategoryButton>
+        <Photo src={casualPhoto} alt="sport-shoes" />
+        <CategoryButton>
+          <Link to="/casual" style={{ textDecoration: "none" }}>
+            Casual
+          </Link>
+        </CategoryButton>
       </PhotoCard>
       <PhotoCard>
-        <Photo src={casualPhoto} alt="casual-shoes" />
-        <CategoryButton>Casual</CategoryButton>
+        <Photo src={sportPhoto} alt="casual-shoes" />
+        <CategoryButton>
+          <Link to="/sport" style={{ textDecoration: "none" }}>
+            Sport
+          </Link>
+        </CategoryButton>
       </PhotoCard>
       <PhotoCard>
         <Photo src={formalPhoto} alt="formal-shoes" />
-        <CategoryButton>Formal</CategoryButton>
+        <CategoryButton><Link to="/formal" style={{ textDecoration: "none" }}>
+            Formal
+          </Link></CategoryButton>
       </PhotoCard>
-      
-      
     </FrontPageWrapper>
-  )
+  );
 }
 
 export default FrontPage
