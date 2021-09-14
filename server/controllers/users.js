@@ -12,29 +12,13 @@ export const getAllUsers = async (req, res) => {
 
 export const getOneUser = async (req, res) => {
   try {
-    const {userId} = req.body;
+    const userId = req.params.id;
     const user = await User.findById(userId);
 
     res.status(200).json(user);
   } catch (error) {
     res.status(404).json({message: error.message});
   }
-}
-
-export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-  User.findOne({ email}, (err, user) => {
-    if (user) {
-      if (password === user.password) {
-        res.send({message: "Loged in successfully", user:user})
-          
-      } else {
-        res.send({message:"Invalid password!try again"})
-        }
-    } else {
-      res.send({message:"user not registered"});
-    }
-  })
 }
 
 export const createUser = async (req, res) => {
