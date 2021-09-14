@@ -7,7 +7,7 @@ import Header from '../components/Header/Header';
 import Footer from '../components/footer/Footer';
 
 
-const Home = ({onAdd}) => {
+const Home = ({onAdd, setUserLogin}) => {
 
   const [products, setProducts] = useState([]);
   const [users, setUsers] = [];
@@ -26,6 +26,9 @@ const Home = ({onAdd}) => {
 
   return (
     <>
+      <h1>The Shoe Shop</h1>
+      <Header setUserLogin={setUserLogin}/>
+      <hr />
       <BackArrow><Link to="/" style={{textDecoration:'none'}}>&#8592;</Link></BackArrow>
       <ProductWrapper>
         {products.map(product =>

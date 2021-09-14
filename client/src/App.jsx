@@ -25,6 +25,7 @@ function App() {
   const [favourites, setFavourites] = useState([])
   const [shoppingList, setShoppingList] = useState([]);
   
+  console.log(user)
   //check is user is store in local storage
   // useEffect(() => {
   //  setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
@@ -170,13 +171,18 @@ export default App;
               <FrontPage />
           </Route>
           <Router path="/home">
-              <Home onAdd={onAdd}/>
+            {
+              user && user._id
+                ? <Home onAdd={onAdd} setUserLogin={setUserLogin}/>
+                : < RegisterPage setUserLogin={setUserLogin}/ >
+            }
+             
           </Router>
              <Route path="/login">
-              <Login/>
+              <Login setUserLogin={setUserLogin}/>
             </Route> 
             <Route path="/register">
-              <RegisterPage />
+              <RegisterPage setUserLogin={setUserLogin} />
             </Route>
             <Route exact path="/products">
               <Home
@@ -214,6 +220,11 @@ export default App;
             <Home onAdd={onAdd}/>
           </Route> 
           </Switch>
+        </Router>
+        
+     </div>
+  );
+}
       </Router>
         </div>
 
