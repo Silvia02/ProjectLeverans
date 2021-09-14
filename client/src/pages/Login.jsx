@@ -12,11 +12,22 @@ import {
 
 const Login = ({stayLogedin}) => {
 
+
+
+  //testing some things
+
+  const history = useHistory();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
   // const history = useHistory();
   // const [user, setUser] = useState({
   //   email: "",
   //   password: "",
   // });
+
 
   const handleChange = (e) => {
     const {
