@@ -1,7 +1,7 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
-import { AddtoCartButton,AddtoCartWrapper,ProductDetailButton, ProductDetailCard, ProductDescription, SizeButton, SizeButtonWrapper, ProductLabel } from './ProductStyle';
+import {useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom'
+import {AddtoCartButton, AddtoCartWrapper, ProductDetailButton, ProductDetailCard, ProductDescription, SizeButton, SizeButtonWrapper, ProductLabel} from './ProductStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ToggleDisplay from 'react-toggle-display';
 
@@ -9,23 +9,48 @@ const Product = () => {
   const {id} = useParams()
   const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
+
   useEffect(() => {
     fetchProduct();
   }, []);
-  const fetchProduct = async () => { 
+
+  const fetchProduct = async () => {
     const response = await fetch(`http://localhost:4000/products/${id}`);
     const data = await response.json();
     console.log(data)
     setProduct(data)
   }
-  const handleClick = () => { 
+
+  const addToCartRequest = async () => {
+    const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
+    const response = await fetch(`http://localhost:4000/cart/add/${TEMP_CART_ID}`, {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "productId": product._id
+      })
+    });
+
+    // body: JSON.stringify({
+    //   "productId": "61374ca3be8cfbcd2d450da8"
+    // })
+
+    const data = await response.json();
+    console.log(data);
+  }
+
+  const handleClick = () => {
     setShow(!show)
   }
+
   return (
     <div>
       <h1>Product details</h1>
       <ProductDetailCard>
-        <img src={product.image} alt="" style={{ width: "100%", marginTop: "10px", marginBottom: "10px" }} />
+        <img src={product.image} alt="" style={{width: "100%", marginTop: "10px", marginBottom: "10px"}} />
         <ProductLabel>
           <span>{product.name}</span>
           <span>{product.price}</span>
@@ -43,14 +68,14 @@ const Product = () => {
           <SizeButton>44</SizeButton>
           <SizeButton>45</SizeButton>
         </SizeButtonWrapper>
-        
+
         <div>
           <ProductDetailButton onClick={() => handleClick()}>Product information</ProductDetailButton>
           <ToggleDisplay show={show}>{product.description}</ToggleDisplay>
         </div>
         <AddtoCartWrapper>
-          <AddtoCartButton>Add to cart</AddtoCartButton>
-          <FavoriteBorderIcon style={{width:"40px", height:"40px", marginLeft:"10px", border:"1px solid black"}}/>
+          <AddtoCartButton onClick={addToCartRequest}>Add to cart</AddtoCartButton>
+          <FavoriteBorderIcon style={{width: "40px", height: "40px", marginLeft: "10px", border: "1px solid black"}} />
         </AddtoCartWrapper>
       </ProductDetailCard>
     </div>
