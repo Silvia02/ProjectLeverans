@@ -102,7 +102,6 @@ transition-duration: 0.4s;
         sans-serif;
  
 &:hover {
-   {
     background-color: pink;
     color: black;
     }
