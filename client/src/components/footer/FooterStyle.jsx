@@ -5,11 +5,14 @@ export const FooterWrapper = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  height:50px;
-  margin-top: 15px;
-  margin-bottom: 0px;
-  background-color: whiteGray;
+  background-color: white;
   border-top: black 1px solid;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 50px;
+  z-index:99;
+  width:100%;
 `
 export const ItemsNumber = styled.button`
   width:10px;

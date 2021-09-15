@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Link } from "react-router-dom";
+import Footer from '../components/footer/Footer'
 import {
   BackArrow
 } from "./HomeStyle";
@@ -67,6 +68,7 @@ const Casual = () => {
             </ProductCard>
           ))}
         </ProductWrapper>
+        <Footer />
       </div>
     );
 
