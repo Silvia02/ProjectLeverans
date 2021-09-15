@@ -108,7 +108,7 @@ function App() {
           <Route path="/home">
             
               {
-              user && user._id ? <Home stayLogedin={stayLogedin} /> : <Login stayLogedin={stayLogedin}/>
+              user && user._id ? <Home stayLogedin={stayLogedin} userName={user.name} favourites={favourites} onAdd={onAdd}  /> : <Login stayLogedin={stayLogedin}/>
             }
           </Route>
           <Route path="/login">
@@ -130,7 +130,10 @@ function App() {
             <RegisterPage/>
           </Route>
           <Route exact path="/products">
-            <Home favourites={favourites} onAdd={onAdd} />
+             {
+              user && user._id ? <Home stayLogedin={stayLogedin} userName={user.name} favourites={favourites} onAdd={onAdd}  /> : <Login stayLogedin={stayLogedin}/>
+            }
+            {/* <Home favourites={favourites} onAdd={onAdd} /> */}
           </Route>
           <Route path="/products/:id">
             <Product
@@ -155,8 +158,8 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </div>)
-}
+    </div>
+  )}
 
 export default App;
     

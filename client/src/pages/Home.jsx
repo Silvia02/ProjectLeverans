@@ -7,7 +7,8 @@ import Header from '../components/Header/Header';
 import Footer from '../components/footer/Footer';
 
 
-const Home = ({onAdd, stayLogedin}) => {
+
+const Home = ({onAdd, stayLogedin, userName}) => {
 
   const [products, setProducts] = useState([]);
   const [users, setUsers] = [];
@@ -26,9 +27,7 @@ const Home = ({onAdd, stayLogedin}) => {
 
   return (
     <>
-      <Header stayLogedin={stayLogedin}/>
-      <hr />
-      <BackArrow><Link to="/" style={{textDecoration:'none'}}>&#8592;</Link></BackArrow>
+      <Header stayLogedin={stayLogedin} userName={userName}/>
       <ProductWrapper>
         {products.map(product =>
           <ProductCard key={product._id}>
