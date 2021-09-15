@@ -25,7 +25,6 @@ function App() {
   const [favourites, setFavourites] = useState([])
   const [shoppingList, setShoppingList] = useState([]);
   
-  console.log(user)
   //check is user is store in local storage
   // useEffect(() => {
   //  setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
@@ -106,6 +105,18 @@ function App() {
           <Route exact path="/">
             <FrontPage />
           </Route>
+          <Route path="/home">
+            
+              {
+              user && user._id ? <Home setUserLogin={setUserLogin} /> : <Login setUserLogin={setUserLogin}/>
+            }
+          </Route>
+          <Route path="/login">
+              <Login setUserLogin={setUserLogin}/>
+            </Route> 
+            <Route path="/register">
+              <RegisterPage/>
+            </Route>
           <Route path="/casual">
             <Casual />
           </Route>
@@ -115,11 +126,8 @@ function App() {
           <Route path="/formal">
             <Formal />
           </Route>
-          {/*<Route path="/login">
-            <Login stayLogedin={stayLogedin} />
-          </Route>*/}
           <Route path="/register">
-            <RegisterPage />
+            <RegisterPage/>
           </Route>
           <Route exact path="/products">
             <Home favourites={favourites} onAdd={onAdd} />
@@ -145,90 +153,12 @@ function App() {
           <Route path="/mycart">
             <MyCart />
           </Route>
-          {/*<Route>
-            {user && user._id ? (
-              <Header
-                stayLogedin={stayLogedin}
-                userName={
-                  user.name.charAt(0).toUpperCase() + user.name.slice(1)
-                }
-              />
-            ) : (
-                <Login stayLogedin={stayLogedin} />
-              )}
-            <Home onAdd={onAdd} />
-          </Route>*/}
         </Switch>
       </Router>
     </div>)
 }
 
 export default App;
-    {/* <div className="App">
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <FrontPage />
-          </Route>
-          <Router path="/home">
-            {
-              user && user._id
-                ? <Home onAdd={onAdd} setUserLogin={setUserLogin}/>
-                : < RegisterPage setUserLogin={setUserLogin}/ >
-            }
-             
-          </Router>
-             <Route path="/login">
-              <Login setUserLogin={setUserLogin}/>
-            </Route> 
-            <Route path="/register">
-              <RegisterPage setUserLogin={setUserLogin} />
-            </Route>
-            <Route exact path="/products">
-              <Home
-                favourites={favourites}
-                onAdd={onAdd}
-              />
-            </Route>
-            <Route path="/products/:id">
-              <Product
-                favourites={favourites}
-                shoppingList={shoppingList}
-                onAdd={onAdd}
-                addToShoppingList={addToShoppingList}
-                />
-            </Route>
-            <Route path="/products/favourites">
-              <Favourites 
-                  favourites={favourites}
-                  onAdd={onAdd}
-                  onRemove={onRemove}
-              />
-            </Route>
-            <Route path = "/checkout">
-              <ShippingDetails/>
-            </Route>
-            <Route path = "/mycart">
-              <MyCart/>
-
-          </Route>
-         <Route>
-          {
-            user && user._id ? <Header stayLogedin={stayLogedin}
-              userName={user.name.charAt(0).toUpperCase()+user.name.slice(1)} /> : <Login stayLogedin={stayLogedin} />
-          }
-            <Home onAdd={onAdd}/>
-          </Route> 
-          </Switch>
-        </Router>
-        
-     </div>
-  );
-}
-      </Router>
-        </div>
-
-  )
-}*/}
+    
 
 

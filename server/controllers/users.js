@@ -21,57 +21,49 @@ export const getOneUser = async (req, res) => {
   }
 }
 export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-  User.findOne({ email: email }, (err, user) => {
-    if (user) {
-      if (password === user.password) {
-            res.send({message:"Login Scucessfull", user})
-      } else {
-            res.send({message:"Password didn't match"})
-          }
+  const {email,password} = req.body
+  User.findOne({email: email}, (err, user) => {
+    if (!user) {
+                 res.send({ message: "User not registered"})
+      
     } else {
-            res.send({message:"User not registered!"})
+      if (password === user.password) {
+        res.send({
+          message: "Login Successfull",
+          user: user
+        })
+      } else {
+        res.send({
+          message: "Password didn't match"
+        })
+      }
     }
   })
 }
 
 export const createUser = async (req, res) => {
-  const { name, email, password } = req.body;
-  User.findOne({ email:email }, (err, user) => {
+  const { name, email, password } = req.body
+
+  User.findOne({ email: email }, (err, user) => {
     
     if (user) {
-      res.send({message:"User Already Exists!Please try again"});
+      res.send({ message: "User Already Exists!Please try again" })
+        
     } else {
-      const user = new User ({
-        name,
-        email,
-        password
-      })
-      user.save(err => {
-        if (err) {
-          res.send(err)
-        } else {
-          res.send({message:'Registered Successfully',user: user})
-        }
-      })
+        const user = new User({
+            name,
+            email,
+            password
+          })
+            user.save(err => {
+              if (err) {
+                res.send(err)
+              } else {
+                res.send({ message: 'Registered Successfully', user })
+              }
+          })
     }
-  })
   
-//   const user = await User.create({
-//     name,
-//     email,
-//     password
-//   });
-//   if (user) {
-//     res.status(201).json({
-//       _id:user._id,
-//       name:user.name,
-//       email:user.email
-//     })
-//   }else {
-//     res.status(404).json({
-//       message: error.message
-//     });
-//   }
+  })
 }
 
