@@ -6,17 +6,17 @@ import {
 } from "react-router-dom";
 import './App.css'
 import FrontPage from './pages/FrontPage';
-import Products from './pages/Home';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Product from './pages/Product';
 import MyCart from './pages/MyCart';
 import RegisterPage from './pages/RegisterPage';
 import ShippingDetails from './pages/ShippingDetails';
-import Home from './pages/Home';
-
 import Header from './components/Header/Header';
-
 import Favourites from './pages/Favourites';
+import Casual from './pages/Casual';
+import Sport from "./pages/Sport";
+import Formal from "./pages/Formal";
 
 
 function App() {
@@ -25,28 +25,29 @@ function App() {
   const [favourites, setFavourites] = useState([])
   const [shoppingList, setShoppingList] = useState([]);
   
+  console.log(user)
   //check is user is store in local storage
-  useEffect(() => {
-   setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
-  },[])
-  const stayLogedin = (user) => {
-    localStorage.setItem("MyUser", JSON.stringify(user))
-    setUserLogin(user)
-  }
+  // useEffect(() => {
+  //  setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
+  // },[])
+  // const stayLogedin = (user) => {
+  //   localStorage.setItem("MyUser", JSON.stringify(user))
+  //   setUserLogin(user)
+  // }
 
   const onAdd = (product) => {
     const exist = favourites.find(favourite => favourite._id === product._id);
     setFavourites([...favourites, { ...product }])
-      if (exist) {
-        setFavourites(
-          favourites.map(favourite =>
-            favourite._id === product._id ? { ...exist, quantity: exist.quantity + 1 }
-              : favourite
-          )
+    if (exist) {
+      setFavourites(
+        favourites.map(favourite =>
+          favourite._id === product._id ? { ...exist, quantity: exist.quantity + 1 }
+            : favourite
         )
-      } else {
-        setFavourites([...favourites, product])
-      }
+      )
+    } else {
+      setFavourites([...favourites, product])
+    }
     console.log('favourite button is onclick')
     console.log(product)
     console.log(favourites)
@@ -66,7 +67,7 @@ function App() {
     }
   }
 
-  const addToShoppingList = (product) => { 
+  const addToShoppingList = (product) => {
     const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
     setShoppingList([...shoppingList, { ...product }])
     if (exist) {
@@ -83,46 +84,119 @@ function App() {
     console.log(product)
     console.log(shoppingList)
   }
-const removeFromShoppingList = (product) => {
-  const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
-  if (exist.quantity === 1) {
-    setShoppingList(shoppingList.filter(shoppingItem => shoppingItem._id !== product._id))
-  } else {
-    setShoppingList(
-      shoppingList.map(shoppingItem =>
-        shoppingItem._id === product._id
-          ? { ...exist, quantity: exist.quantity - 1 }
-          : shoppingItem
+  const removeFromShoppingList = (product) => {
+    const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
+    if (exist.quantity === 1) {
+      setShoppingList(shoppingList.filter(shoppingItem => shoppingItem._id !== product._id))
+    } else {
+      setShoppingList(
+        shoppingList.map(shoppingItem =>
+          shoppingItem._id === product._id
+            ? { ...exist, quantity: exist.quantity - 1 }
+            : shoppingItem
+        )
       )
-    )
+    }
   }
-}
   return (
-     <div className="App">
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <FrontPage />
-            </Route>
-            <Route path="/login">
-              <Login stayLogedin={stayLogedin}/>
-            </Route>
-            <Route path="/register">
-              <RegisterPage />
-            </Route>
-            <Route exact path="/products">
-              <Products 
-                favourites={favourites}
-                onAdd={onAdd}
-              />
-            </Route>
-            <Route path="/products/:id">
+
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <FrontPage />
+          </Route>
+          <Route path="/casual">
+            <Casual />
+          </Route>
+          <Route path="/sport">
+            <Sport />
+          </Route>
+          <Route path="/formal">
+            <Formal />
+          </Route>
+          {/*<Route path="/login">
+            <Login stayLogedin={stayLogedin} />
+          </Route>*/}
+          <Route path="/register">
+            <RegisterPage />
+          </Route>
+          <Route exact path="/products">
+            <Home favourites={favourites} onAdd={onAdd} />
+          </Route>
+          <Route path="/products/:id">
             <Product
               favourites={favourites}
               shoppingList={shoppingList}
               onAdd={onAdd}
               addToShoppingList={addToShoppingList}
+            />
+          </Route>
+          <Route path="/favourites">
+            <Favourites
+              favourites={favourites}
+              onAdd={onAdd}
+              onRemove={onRemove}
+            />
+          </Route>
+          <Route path="/checkout">
+            <ShippingDetails />
+          </Route>
+          <Route path="/mycart">
+            <MyCart />
+          </Route>
+          {/*<Route>
+            {user && user._id ? (
+              <Header
+                stayLogedin={stayLogedin}
+                userName={
+                  user.name.charAt(0).toUpperCase() + user.name.slice(1)
+                }
               />
+            ) : (
+                <Login stayLogedin={stayLogedin} />
+              )}
+            <Home onAdd={onAdd} />
+          </Route>*/}
+        </Switch>
+      </Router>
+    </div>)
+}
+
+export default App;
+    {/* <div className="App">
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <FrontPage />
+          </Route>
+          <Router path="/home">
+            {
+              user && user._id
+                ? <Home onAdd={onAdd} setUserLogin={setUserLogin}/>
+                : < RegisterPage setUserLogin={setUserLogin}/ >
+            }
+             
+          </Router>
+             <Route path="/login">
+              <Login setUserLogin={setUserLogin}/>
+            </Route> 
+            <Route path="/register">
+              <RegisterPage setUserLogin={setUserLogin} />
+            </Route>
+            <Route exact path="/products">
+              <Home
+                favourites={favourites}
+                onAdd={onAdd}
+              />
+            </Route>
+            <Route path="/products/:id">
+              <Product
+                favourites={favourites}
+                shoppingList={shoppingList}
+                onAdd={onAdd}
+                addToShoppingList={addToShoppingList}
+                />
             </Route>
             <Route path="/products/favourites">
               <Favourites 
@@ -138,15 +212,23 @@ const removeFromShoppingList = (product) => {
               <MyCart/>
 
           </Route>
-          <Route>{
-            user && user._id ? <Header stayLogedin={stayLogedin} userName={user.name}/> : <Login stayLogedin={stayLogedin}/>
+         <Route>
+          {
+            user && user._id ? <Header stayLogedin={stayLogedin}
+              userName={user.name.charAt(0).toUpperCase()+user.name.slice(1)} /> : <Login stayLogedin={stayLogedin} />
           }
-            <Home/>
-          </Route>
+            <Home onAdd={onAdd}/>
+          </Route> 
           </Switch>
         </Router>
+        
      </div>
   );
 }
+      </Router>
+        </div>
 
-export default App;
+  )
+}*/}
+
+

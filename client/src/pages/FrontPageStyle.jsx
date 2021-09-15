@@ -1,8 +1,30 @@
 import styled from "styled-components";
 
+export const HeaderWrapper = styled.header`
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 5px;
+`
+
+export const HeaderLinks = styled.div`
+  width:50%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+  padding-top: 22px;
+  padding-right: 10px;
+  font-size:0.95em;
+`
+
 export const FrontPageWrapper = styled.div`
   display:flex;
   flex-direction: column;
+  margin-bottom: 20px;
 `;
 export const PhotoCard = styled.div`
   position: relative;
@@ -82,7 +104,6 @@ transition-duration: 0.4s;
         sans-serif;
  
 &:hover {
-   {
     background-color: pink;
     color: black;
     }
