@@ -16,9 +16,11 @@ const Favourites = () => {
   }
 
   const [wishlist, setWishlist] = useState([]);
+  const [showAddToCartMessage, setShowAddToCartMessage] = useState(false);
 
   useEffect(() => {
     fetchWishlist();
+    setShowAddToCartMessage(false);
   }, [])
 
 
@@ -49,6 +51,23 @@ const Favourites = () => {
     setWishlist(data.products);
   }
 
+  const addWishlistToCart = async () => {
+    const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
+    await fetch('http://localhost:4000/wishlist/addToCart', {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "wishlist": wishlist,
+        "cartId": TEMP_CART_ID
+      })
+    });
+
+    setShowAddToCartMessage(true);
+  }
+
   return (
     <div>
       <h1>Favourites page</h1>
@@ -64,7 +83,10 @@ const Favourites = () => {
             ))
           }
         </Paper>
-        <button style={{whiteSpace: "nowrap"}}>Add all to cart</button>
+        <button style={{whiteSpace: "nowrap"}} onClick={addWishlistToCart}>Add all to cart</button>
+        {
+          showAddToCartMessage ? <p style={{margin: 0, color: '#555'}}>Added {wishlist.length} item(s) to your cart</p> : null
+        }
       </Grid>
     </div>
   )

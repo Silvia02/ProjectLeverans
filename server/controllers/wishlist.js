@@ -1,4 +1,5 @@
 import Wishlist from '../models/wishlist.js'
+import Cart from '../models/cart.js'
 import Product from '../models/product.js'
 
 export const createWishlist = async (req, res) => {
@@ -55,3 +56,16 @@ export const removeFromWishlist = async (req, res) => {
   }
 }
 
+export const addWishlistToCart = async (req, res) => {
+  try {
+    const {cartId, wishlist} = req.body;
+
+    const cart = await Cart.findById(cartId);
+    cart.products = [...cart.products, ...wishlist];
+    cart.save();
+
+    res.status(200).send(cart);
+  } catch (error) {
+    res.status(400).json({message: error.message});
+  }
+}
