@@ -10,7 +10,7 @@ import {
 } from "./FrontPageStyle";
 
 
-const Login = ({setUserLogin}) => {
+const Login = ({stayLogedin}) => {
 
   const history = useHistory();
    
@@ -33,7 +33,7 @@ console.log(user)
       .then(res => {
         
         alert(res.data.message)
-        setUserLogin(res.data.user);
+        stayLogedin(res.data.user);
         history.push("/home")
       })
   }
