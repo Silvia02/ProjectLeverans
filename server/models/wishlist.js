@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 import Product from './product.js';
 
-const CartSchema = new mongoose.Schema({
+const WishlistSchema = new mongoose.Schema({
   products: {
     type: [Product.schema],
     default: [],
   },
 })
 
-const Cart = mongoose.model('Cart', CartSchema);
-export default Cart;
+const Wishlist = mongoose.model('Wishlist', WishlistSchema);
+export default Wishlist;
