@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import '../css/mycart.css'
 import { AddtoCartButton } from '../pages/ProductStyle'
 import { Link } from 'react-router-dom'
-
 import {
   Button,
   Grid,
@@ -150,7 +149,6 @@ const MyCart = () => {
           <hr style= {{width:"100%"}}/>
           <Typography variant="h5" style={{textAlign:"end", marginTop:"25px", fontWeight:"bold"}}>Total: ${cartPrice.toFixed(2)}</Typography>
           <Link to="/checkout"><AddtoCartButton style={{ width: '100%', marginTop: '25px', border: "none" }}>Check out</AddtoCartButton></Link>
-          
         </Paper>
       </Grid>
     </div>
