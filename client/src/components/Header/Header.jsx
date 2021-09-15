@@ -20,6 +20,7 @@ const Header = ({stayLogedin, userName }) => {
   }
   const handleLogout = () => {
     stayLogedin({});
+    history.push("/")
 
   }
    
