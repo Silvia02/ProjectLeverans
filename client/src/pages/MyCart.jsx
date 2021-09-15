@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import '../css/mycart.css'
+import { AddtoCartButton} from '../pages/ProductStyle'
 
 import {
   Button,
@@ -13,9 +14,9 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 const MyCart = () => {
   const paperStyle = {
     padding: 20,
-    width: 320,
+    width: '100%',
     height: 'auto',
-    margin: '25px'
+    margin: '5%'
   }
 
   const [cart, setCart] = useState([]);
@@ -132,17 +133,23 @@ const MyCart = () => {
                   <Typography variant="h6">{product.name}</Typography>
                   <Typography align="center">${product.price}</Typography>
                   <div>
-                    <button style={{width: "40px", cursor: "hover"}} onClick={() => changeQuantity(product._id, 'increment')}>+</button>
+                    <button style={{width: "20px", backgroundColor:"white", cursor: "hover"}} onClick={() => changeQuantity(product._id, 'increment')}>+</button>
                     <span> {product.quantity} </span>
                     {/* decrement currently does not work, therefore button is disabled */}
-                    <button disabled={true} style={{width: "40px", cursor: "not-allowed"}} onClick={() => changeQuantity(product._id, 'decrement')}>-</button>
+                    <button disabled={true} style={{ width: "20px", backgroundColor: "white", cursor: "not-allowed"}} onClick={() => changeQuantity(product._id, 'decrement')}>-</button>
                   </div>
                 </div>
                 <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(product._id)} />
+              
               </Box>
+              
             ))
           }
+          <br />
+          <hr style= {{width:"100%"}}/>
           <Typography variant="h5">Total: ${cartPrice.toFixed(2)}</Typography>
+          <AddtoCartButton>Check out</AddtoCartButton>
+          
         </Paper>
       </Grid>
     </div>

@@ -11,6 +11,7 @@ export const BackArrow = styled.p`
   padding-bottom: 5px;
   border-bottom:1px solid grey;
   border-right: 1px solid grey;
+  cursor: pointer;
 `
 export const ProductWrapper = styled.div`
   display:flex;
@@ -33,7 +34,7 @@ export const ProductCard = styled.div`
 export const ImageWrapper = styled.div`
   height: 100%;
   margin-bottom: 5%;
-
+  cursor: pointer;
 `
 
 export const ProductInformationWrapper = styled.div`
