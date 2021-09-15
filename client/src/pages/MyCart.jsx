@@ -132,9 +132,10 @@ const MyCart = () => {
                   <Typography variant="h6">{product.name}</Typography>
                   <Typography align="center">${product.price}</Typography>
                   <div>
-                    <button style={{width: "40px"}} onClick={() => changeQuantity(product._id, 'increment')}>+</button>
+                    <button style={{width: "40px", cursor: "hover"}} onClick={() => changeQuantity(product._id, 'increment')}>+</button>
                     <span> {product.quantity} </span>
-                    <button style={{width: "40px"}} onClick={() => changeQuantity(product._id, 'decrement')}>-</button>
+                    {/* decrement currently does not work, therefore button is disabled */}
+                    <button disabled={true} style={{width: "40px", cursor: "not-allowed"}} onClick={() => changeQuantity(product._id, 'decrement')}>-</button>
                   </div>
                 </div>
                 <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(product._id)} />
