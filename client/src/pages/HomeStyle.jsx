@@ -20,6 +20,7 @@ export const ProductWrapper = styled.div`
   width:100%;
   margin-left: 5%;
   margin-top:10px;
+  margin-bottom:60px;
   `
 export const ProductCard = styled.div`
   display: flex;
