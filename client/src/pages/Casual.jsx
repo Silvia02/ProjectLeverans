@@ -14,6 +14,7 @@ import {
   ProductInformationWrapper,
 
 } from "./HomeStyle";
+import DefaultHeader from '../components/DefaultHeader/DefaultHeader';
 
 const fetchURL = 'http://localhost:4000/products/category/casual';
 const getItems = () => fetch(fetchURL).then((res) => res.json());
@@ -31,11 +32,7 @@ const Casual = () => {
     return (
       <div>
         {/* <h1>Hello from casual</h1> */}
-        <BackArrow>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            &#8592;
-          </Link>
-        </BackArrow>
+        <DefaultHeader/>
         <ProductWrapper>
           {categories.map((categorie) => (
             <ProductCard key={categorie._id}>

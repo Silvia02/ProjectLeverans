@@ -4,8 +4,11 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import '../Header/header.css'
 import { useHistory } from "react-router";
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { Link } from 'react-router-dom';
 
-const Header = ({stayLogedin }) => {
+
+const Header = ({stayLogedin, userName }) => {
   const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -16,20 +19,21 @@ const Header = ({stayLogedin }) => {
     setAnchorEl(null);
   }
   const handleLogout = () => {
-    history.push("/login")
-     stayLogedin({})
+    stayLogedin({});
 
   }
    
    return (
      <>
-       {/*Add logo*/}
-    <div className="header">
+       
+       <div className="header">
+        <Link to="/"><ArrowBackIosIcon style={{marginTop:45,marginRight:20,color: 'red',fontSize:35}}></ArrowBackIosIcon></Link>
+        <h2 style={{marginTop:45,fontFamily:'fantasy', marginRight:255}}> The Shoe Store</h2>
          <Avatar area-aria-controls="menu" style={iconStyle} onClick={handleMenu}/>
       <div className="userStyle">
-           <h3>userName</h3>
+           <h4>{userName}</h4>
          </div>
-         <ShoppingCartOutlinedIcon fontSize="large" style={{marginRight:"30px",marginTop:"20px",marginLeft:"30px"}}/>
+         <ShoppingCartOutlinedIcon fontSize="large" style={{marginRight:"30px",marginTop:"40px",marginLeft:"30px"}}/>
         </div>
        <Menu
          style={{marginTop:"40px",marginLeft:"-10px"}}
@@ -48,7 +52,7 @@ const Header = ({stayLogedin }) => {
   )
  }
 const iconStyle = {
-  marginTop: 10,
+  marginTop: 30,
   
 }
 export default Header;

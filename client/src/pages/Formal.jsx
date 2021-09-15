@@ -11,6 +11,7 @@ import {
   ImageWrapper,
   ProductInformationWrapper,
 } from "./HomeStyle";
+import DefaultHeader from "../components/DefaultHeader/DefaultHeader";
 
 const fetchURL = "http://localhost:4000/products/category/formal";
 const getItems = () => fetch(fetchURL).then((res) => res.json());
@@ -26,11 +27,7 @@ const Formal = () => {
 
   return (
     <div>
-      <BackArrow>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          &#8592;
-        </Link>
-      </BackArrow>
+      
       <ProductWrapper>
         {formals.map((formalCate) => (
           <ProductCard key={formalCate._id}>
