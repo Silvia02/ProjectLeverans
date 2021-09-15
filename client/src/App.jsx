@@ -22,17 +22,17 @@ import Formal from "./pages/Formal";
 function App() {
   
   const [user, setUserLogin] = useState({})
+
+  // check is user is store in local storage
+  useEffect(() => {
+    setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
+  }, [])
+  const stayLogedin = (user) => {
+    localStorage.setItem("MyUser", JSON.stringify(user))
+    setUserLogin(user)
+  }
   const [favourites, setFavourites] = useState([])
   const [shoppingList, setShoppingList] = useState([]);
-  
-  //check is user is store in local storage
-  // useEffect(() => {
-  //  setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
-  // },[])
-  // const stayLogedin = (user) => {
-  //   localStorage.setItem("MyUser", JSON.stringify(user))
-  //   setUserLogin(user)
-  // }
 
   const onAdd = (product) => {
     const exist = favourites.find(favourite => favourite._id === product._id);
@@ -108,11 +108,11 @@ function App() {
           <Route path="/home">
             
               {
-              user && user._id ? <Home setUserLogin={setUserLogin} /> : <Login setUserLogin={setUserLogin}/>
+              user && user._id ? <Home stayLogedin={stayLogedin} /> : <Login stayLogedin={stayLogedin}/>
             }
           </Route>
           <Route path="/login">
-              <Login setUserLogin={setUserLogin}/>
+              <Login stayLogedin={stayLogedin}/>
             </Route> 
             <Route path="/register">
               <RegisterPage/>
