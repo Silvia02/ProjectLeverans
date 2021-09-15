@@ -47,9 +47,6 @@ const Register = () => {
   return (
     <>
       <h1>Register Page</h1>
-      {
-        console.log(user)
-      }
       <StlyedFormWrappper>
         <StlyedForm>
           <label htmlFor="UserName">User Name</label>
