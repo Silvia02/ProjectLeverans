@@ -1,21 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import '../css/mycart.css'
-import shoeimage from '../images/highheel.jpeg'
-import shoeimage2 from '../images/sportblack.png'
 
 import {
   Button,
   Grid,
   Typography,
-  makeStyles,
-  TextField,
   Paper,
-  TableHead,
-  TableCell,
-  Table,
-  TableRow,
   Box,
-  Container,
 } from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
