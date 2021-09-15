@@ -29,16 +29,11 @@ export const addToCart = async (req, res) => {
 
     const product = await Product.findById(productId);
 
-    await Cart.findByIdAndUpdate(cartId,
-      {
-        $push: {products: product},
-        // $inc: {
-        //   totalPrice: product.price,
-        //   totalQuantity: 1,
-        // },
-      }
-    );
-    res.status(200).json({message: 'Successfully added item to cart'});
+    const cart = await Cart.findByIdAndUpdate(cartId, {
+      $push: {products: product},
+    }, {new: true}).exec();
+
+    res.status(200).json(cart);
   } catch (error) {
     res.status(400).json({message: error.message});
   }
@@ -46,22 +41,13 @@ export const addToCart = async (req, res) => {
 
 export const removeFromCart = async (req, res) => {
   try {
-    // const {productId} = req.body;
+    const {productId} = req.body;
     const cartId = req.params.id;
 
-    // const cartId = await User.findById(userId).cart.id;
-    // const product = await Product.findById(productId);
+    // Do nothing right now because removing a single item is a lot harder than it seems
+    const cart = await Cart.findById(cartId);
 
-    await Cart.findByIdAndUpdate(cartId,
-      {
-        $pop: {products: 1},
-        // $inc: {
-        //   totalPrice: -product.price,
-        //   totalQuantity: -1,
-        // },
-      }
-    );
-    res.status(200).send('Successfully removed product from cart');
+    res.status(200).json(cart);
   } catch (error) {
     res.status(404).json({message: error.message});
   }
@@ -72,17 +58,13 @@ export const removeAllFromCart = async (req, res) => {
     const {productId} = req.body;
     const cartId = req.params.id;
 
-    // const product = await Product.findById(productId);
-
     const cart = await Cart.findByIdAndUpdate(cartId, {
       $pull: {
         products: {_id: productId}
       }
     }, {new: true}).exec();
 
-    // await cart.save();
-
-    res.status(200).send(cart);
+    res.status(200).json(cart);
   } catch (error) {
     res.status(404).json({message: error.message});
   }
