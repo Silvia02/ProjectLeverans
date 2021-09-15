@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-// import cartRoutes from './routes/cart.js';
+import cartRoutes from './routes/cart.js';
 import productsRoutes from './routes/products.js';
 import loginUser from './routes/users.js';
 import userRoutes from './routes/users.js'
@@ -14,10 +14,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// app.use('/cart', cartRoutes);
+app.use('/cart', cartRoutes);
 app.use('/products', productsRoutes);
 app.use('/login', loginUser)
 app.use('/users', userRoutes);
+
+app.use('/login', loginUser)
 
 
 // Move these variables to seperate .env file

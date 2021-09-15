@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Link } from "react-router-dom";
 import { BackArrow } from "./HomeStyle";
+import Footer from '../components/footer/Footer'
 import {
   ProductCard,
   ProductPrice,
@@ -62,6 +63,7 @@ const Formal = () => {
           </ProductCard>
         ))}
       </ProductWrapper>
+      <Footer />
     </div>
   );
 };

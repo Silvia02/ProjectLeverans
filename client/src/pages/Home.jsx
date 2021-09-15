@@ -26,7 +26,6 @@ const Home = ({onAdd, setUserLogin}) => {
 
   return (
     <>
-      <h1>The Shoe Shop</h1>
       <Header setUserLogin={setUserLogin}/>
       <hr />
       <BackArrow><Link to="/" style={{textDecoration:'none'}}>&#8592;</Link></BackArrow>
