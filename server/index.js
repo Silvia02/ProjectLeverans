@@ -5,7 +5,8 @@ import cors from 'cors';
 import cartRoutes from './routes/cart.js';
 import productsRoutes from './routes/products.js';
 import userRoutes from './routes/users.js'
-import loginUser from './routes/users.js';
+import { getOneUser } from './controllers/users.js';
+import  loginUser from './routes/users.js';
 
 const app = express();
 

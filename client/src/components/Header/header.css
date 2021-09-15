@@ -1,0 +1,14 @@
+.header{
+          display: flex;
+          flex-direction:row;
+          justify-content:flex-end;
+          background-color: rgb(38, 39, 39);  
+          color: azure;  
+          width: auto;
+          padding: 0px;
+          margin: 0px;
+}
+.userStyle{
+  margin-top: 30px;
+  
+}
