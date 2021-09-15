@@ -1,4 +1,5 @@
 import React from 'react'
+import DefaultHeader from '../components/DefaultHeader/DefaultHeader';
 
 const Favourites = ({favourites}) => {
   return (

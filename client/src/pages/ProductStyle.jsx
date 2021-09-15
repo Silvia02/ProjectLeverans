@@ -54,6 +54,7 @@ export const AddtoCartWrapper = styled.div`
   flex-wrap: nowrap;
 `
 export const AddtoCartButton = styled.button`
+  cursor: pointer;
   width:88%;
   height: 50px;
   border-radius: 0px;

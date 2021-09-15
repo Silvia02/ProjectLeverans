@@ -53,6 +53,7 @@ export const CategoryButton = styled.button`
   font-size: 1.3em;
   text-align: center;
   justify-content: center;
+  cursor: pointer;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
   `;
 
