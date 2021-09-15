@@ -11,27 +11,31 @@ import {
 
 
 const Login = ({setUserLogin}) => {
+
   const history = useHistory();
+   
   const [user, setUser] = useState({
     email: "",
     password: "",
+
+   });
+
   });
 
+
   const handleChange = (e) => {
-    const {
-      name,
-      value
-    } = e.target;
+    const { name,value} = e.target;
     setUser({
       ...user,
       [name]: value
     })
   }
-
+console.log(user)
   const handleLogin = (e) => {
     e.preventDefault();
     axios.post('http://localhost:4000/login', user)
       .then(res => {
+        console.log(res);
         alert(res.data.message)
         setUserLogin(res.data.user);
         history.push("/home")
