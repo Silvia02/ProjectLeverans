@@ -5,7 +5,7 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import '../Header/header.css'
 import { useHistory } from "react-router";
 
-const Header = ({ setUserLogin }) => {
+const Header = ({stayLogedin }) => {
   const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -17,7 +17,7 @@ const Header = ({ setUserLogin }) => {
   }
   const handleLogout = () => {
     history.push("/login")
-     setUserLogin({})
+     stayLogedin({})
 
   }
    

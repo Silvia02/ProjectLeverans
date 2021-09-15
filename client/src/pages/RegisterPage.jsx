@@ -11,7 +11,7 @@ import {
 import Header from "../components/Header/Header";
 
 
-const Register = ({setUserLogin}) => {
+const Register = () => {
   const history = useHistory();
   const [user, setUser] = useState({
     name: "",
@@ -30,21 +30,18 @@ const Register = ({setUserLogin}) => {
 
   const register = (e) => {
     e.preventDefault();
-    const { name, email, password, confirmPassword } = user;
+    const { name, email, password, confirmPassword } = user
+    
     if (name && email && password && (password === confirmPassword)) {
-      axios.post('http://localhost:4000/users', user)
+      axios.post("http://localhost:4000/users", user)
         .then(res => {
           alert(res.data.message)
-          setUserLogin(res.data.user)
-          history.push("/home")
+          history.push("/login")
         })
-    
-    } else if (password !== confirmPassword) {
-      alert("password did not match")
+    } else {
+      alert("invlid input")
     }
-    else {
-      alert("invalid input");
-    }
+
   }
   
   return (
