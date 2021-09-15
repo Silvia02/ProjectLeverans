@@ -29,7 +29,7 @@ export const addToWishlist = async (req, res) => {
     const product = await Product.findById(productId);
 
     const wishlist = await Wishlist.findByIdAndUpdate(wishlistId, {
-      $push: {products: product},
+      $addToSet: {products: product},
     }, {new: true}).exec();
 
     res.status(200).json(wishlist);

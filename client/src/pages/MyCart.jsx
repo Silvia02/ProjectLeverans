@@ -21,6 +21,10 @@ const MyCart = () => {
   const [cart, setCart] = useState([]);
   const [cartPrice, setCartPrice] = useState(0);
 
+  useEffect(() => {
+    fetchCart();
+  }, [])
+
   // Updates all cart information it changes
   const cartUpdater = (newCart) => {
     // Removes duplicates and sets quantity
@@ -115,14 +119,10 @@ const MyCart = () => {
     cartUpdater(data.products);
   }
 
-  useEffect(() => {
-    fetchCart();
-  }, [])
-
   return (
     <div>
       <h1>My Cart</h1>
-      <Grid container>
+      <Grid container direction="column" alignItems="center">
         <Paper elevation={10} style={paperStyle}>
           {
             cart.map(product => (
@@ -144,8 +144,11 @@ const MyCart = () => {
           }
           <Typography variant="h5">Total: ${cartPrice.toFixed(2)}</Typography>
         </Paper>
+
+        <button>Checkout</button>
       </Grid>
     </div>
   )
 }
+
 export default MyCart
