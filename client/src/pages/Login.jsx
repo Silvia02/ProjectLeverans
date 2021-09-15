@@ -19,10 +19,6 @@ const Login = ({setUserLogin}) => {
     password: "",
 
    });
-
-  });
-
-
   const handleChange = (e) => {
     const { name,value} = e.target;
     setUser({
@@ -35,7 +31,7 @@ console.log(user)
     e.preventDefault();
     axios.post('http://localhost:4000/login', user)
       .then(res => {
-        console.log(res);
+        
         alert(res.data.message)
         setUserLogin(res.data.user);
         history.push("/home")
