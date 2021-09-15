@@ -19,5 +19,4 @@ export const ItemsNumber = styled.button`
   height:10px;
   border-radius:50%;
   background-color:gold;
-
 `
