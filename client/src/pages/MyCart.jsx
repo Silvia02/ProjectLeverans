@@ -122,7 +122,6 @@ const MyCart = () => {
 
   return (
     <div>
-      <h2>My Cart</h2>
       <Grid container direction="column" alignItems="center">
         <Paper elevation={10} style={paperStyle}>
           {
