@@ -3,10 +3,10 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 import cartRoutes from './routes/cart.js';
+import favouritesRoutes from './routes/favourites.js';
 import productsRoutes from './routes/products.js';
-import { getOneUser } from './controllers/users.js';
+import {getOneUser} from './controllers/users.js';
 import User from './models/user.js';
-
 
 const app = express();
 
@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/cart', cartRoutes);
+app.use('/favourites', favouritesRoutes);
 app.use('/products', productsRoutes);
 
 
