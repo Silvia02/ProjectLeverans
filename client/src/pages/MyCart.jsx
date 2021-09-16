@@ -14,13 +14,17 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 const MyCart = () => {
   const paperStyle = {
     padding: 20,
-    width: '100%',
+    width: '90%',
     height: 'auto',
     margin: '5%'
   }
 
   const [cart, setCart] = useState([]);
   const [cartPrice, setCartPrice] = useState(0);
+
+  useEffect(() => {
+    fetchCart();
+  }, [])
 
   // Updates all cart information it changes
   const cartUpdater = (newCart) => {
@@ -116,14 +120,9 @@ const MyCart = () => {
     cartUpdater(data.products);
   }
 
-  useEffect(() => {
-    fetchCart();
-  }, [])
-
   return (
     <div>
-      <h1>My Cart</h1>
-      <Grid container>
+      <Grid container direction="column" alignItems="center">
         <Paper elevation={10} style={paperStyle}>
           {
             cart.map(product => (
@@ -154,4 +153,5 @@ const MyCart = () => {
     </div>
   )
 }
+
 export default MyCart

@@ -16,7 +16,7 @@ import DefaultHeader from "../components/DefaultHeader/DefaultHeader";
 const fetchURL = "http://localhost:4000/products/category/formal";
 const getItems = () => fetch(fetchURL).then((res) => res.json());
 
-const Formal = () => {
+const Formal = ({favourites , onAdd}) => {
   const [formals, setFormals] = useState([]);
 
   //console.log(formals);
@@ -31,14 +31,14 @@ const Formal = () => {
       <ProductWrapper>
         {formals.map((formalCate) => (
           <ProductCard key={formalCate._id}>
-            <FavoriteBorderIcon
+            {/* <FavoriteBorderIcon
               style={{
                 marginLeft: "85%",
                 marginBottom: "-15%",
                 zIndex: "5",
               }}
               onClick={() => onAdd(formalCate)}
-            />
+            />*/}
             <Link to={`/products/${formalCate._id}`}>
               <ImageWrapper>
                 <img

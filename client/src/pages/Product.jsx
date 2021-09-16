@@ -6,10 +6,9 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ToggleDisplay from 'react-toggle-display';
 import logo from '../images/shop.png'
 import {HeaderWrapper} from './FrontPageStyle';
-import {BackArrow} from './HomeStyle';
 import Footer from '../components/footer/Footer';
 
-const Product = ({addToShoppingList, onAdd}) => {
+const Product = () => {
   const {id} = useParams()
   const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
@@ -25,9 +24,9 @@ const Product = ({addToShoppingList, onAdd}) => {
     setProduct(data)
   }
 
-  const addToCartRequest = async () => {
+  const addToCart = async () => {
     const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
-    const response = await fetch(`http://localhost:4000/cart/add/${TEMP_CART_ID}`, {
+    await fetch(`http://localhost:4000/cart/add/${TEMP_CART_ID}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -37,9 +36,21 @@ const Product = ({addToShoppingList, onAdd}) => {
         "productId": product._id
       })
     });
+  }
 
-    const data = await response.json();
-    console.log(data);
+
+  const addToFavourites = async () => {
+    const TEMP_WISHLIST_ID = '6142f237423da20abed34513';
+    await fetch(`http://localhost:4000/favourites/add/${TEMP_WISHLIST_ID}`, {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "productId": product._id
+      })
+    });
   }
 
   const handleClick = () => {
@@ -48,7 +59,6 @@ const Product = ({addToShoppingList, onAdd}) => {
 
   return (
     <div>
-      <BackArrow><Link to="/products" style={{textDecoration: 'none'}}>&#8592;</Link></BackArrow>
       <ProductDetailCard>
         <img src={product.image} alt="" style={{width: "100%", marginTop: "10px", marginBottom: "10px"}} />
         <ProductLabel>
@@ -56,6 +66,7 @@ const Product = ({addToShoppingList, onAdd}) => {
           <span><strong>{product.name}</strong></span>
           <span>{product.price}</span>
         </ProductLabel>
+
         <SizeButtonWrapper>
           <SizeButton>37</SizeButton>
           <SizeButton>38</SizeButton>
@@ -75,10 +86,10 @@ const Product = ({addToShoppingList, onAdd}) => {
         </div>
         {/*<BackButton><Link to="/products" style={{textDecoration:"none"}}>Back to check more</Link></BackButton>*/}
         <AddtoCartWrapper>
-          <AddtoCartButton onClick={addToCartRequest}>Add to cart</AddtoCartButton>
+          <AddtoCartButton onClick={addToCart}>Add to cart</AddtoCartButton>
           <FavoriteBorderIcon
             style={{width: "45px", height: "50px", marginLeft: "10px", border: "1px solid black"}}
-            onClick={() => onAdd(product)}
+            onClick={addToFavourites}
           />
         </AddtoCartWrapper>
       </ProductDetailCard>
@@ -89,5 +100,4 @@ const Product = ({addToShoppingList, onAdd}) => {
   )
 }
 
-export default Product
-
+export default Product;
