@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { getAllProducts } from '../../../server/controllers/products';
 import { ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper, BackArrow } from './HomeStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import Header from '../components/Header/Header';
 import Footer from '../components/footer/Footer';
 
 
@@ -27,7 +26,6 @@ const Home = ({onAdd, stayLogedin, userName}) => {
 
   return (
     <>
-      <Header stayLogedin={stayLogedin} userName={userName}/>
       <ProductWrapper>
         {products.map(product =>
           <ProductCard key={product._id}>

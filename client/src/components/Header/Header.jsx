@@ -28,10 +28,10 @@ const Header = ({stayLogedin, userName }) => {
      <>
        
        <div className="header">
-        <Link to="/"><ArrowBackIosIcon style={{marginTop:45,marginRight:20,color: 'red',fontSize:35}}></ArrowBackIosIcon></Link>
-        <h2 style={{marginTop:45,fontFamily:'fantasy', marginRight:255}}> The Shoe Store</h2>
-         <Avatar area-aria-controls="menu" style={iconStyle} onClick={handleMenu}/>
-      <div className="userStyle">
+       <Link to="/home"><ArrowBackIosIcon style={{marginTop:"40px",marginRight:"25px"}}></ArrowBackIosIcon></Link>
+        <h2 style={{marginTop:45,fontFamily:'fantasy', marginRight:25,fontSize:'medium'}}> The Shoe Store</h2>
+         <Avatar area-aria-controls="menu" style={iconStyle} onClick={handleMenu} />
+         <div className="userStyle">
            <h4>{userName}</h4>
          </div>
          <ShoppingCartOutlinedIcon fontSize="large" style={{marginRight:"30px",marginTop:"40px",marginLeft:"30px"}}/>
