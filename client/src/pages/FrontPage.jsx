@@ -8,18 +8,12 @@ import logo from '../images/shop.png'
 import { CategoryButton, FrontPageWrapper, HeaderLinks, HeaderWrapper, Photo, PhotoCard } from './FrontPageStyle';
 import Favourites from './Favourites';
 import Footer from '../components/footer/Footer';
+import DefaultHeader from '../components/DefaultHeader/DefaultHeader';
 
 const FrontPage = () => {
   return (
 <>
-     <HeaderWrapper>
-        <img src={logo} alt="logo" style={{ width: '40px', paddingLeft: '10px', paddingTop: '10px' }} />
-        <HeaderLinks>
-          <Link to="/register" style={{ textDecoration: "none", color:"rgb(58, 7, 2)", fontFamily: 'Roboto',fontSize:'1.1em'}}>Register</Link>
-          <Link to="/login" style={{ textDecoration: "none", color: "rgb(58, 7, 2)", fontFamily: 'Roboto', fontSize: '1.1em'}}>Sign In</Link>
-        </HeaderLinks>
-      </HeaderWrapper>
-      <br />
+     <DefaultHeader/>
       <FrontPageWrapper>
           <PhotoCard>
             <Photo src={allkinds} alt="formal-shoes" />
