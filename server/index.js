@@ -7,7 +7,6 @@ const __dirname = path.resolve();
 import cartRoutes from './routes/cart.js';
 import favouritesRoutes from './routes/favourites.js';
 import productsRoutes from './routes/products.js';
-import {getOneUser} from './controllers/users.js';
 import User from './models/user.js';
 
 const app = express();
@@ -20,12 +19,12 @@ if (process.env.NODE_ENV === 'production') {
 app.use(express.json());
 app.use(cors());
 
-app.use('/cart', cartRoutes);
-app.use('/favourites', favouritesRoutes);
-app.use('/products', productsRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/favourites', favouritesRoutes);
+app.use('/api/products', productsRoutes);
 
 
-app.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
   const {
     email,
     password
@@ -52,7 +51,7 @@ app.post("/login", (req, res) => {
   })
 })
 
-app.post("/users", (req, res) => {
+app.post("/api/users", (req, res) => {
   const {
     name,
     email,

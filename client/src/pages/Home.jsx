@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { getAllProducts } from '../../../server/controllers/products';
-import { ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper, BackArrow } from './HomeStyle';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import React, {useState, useEffect, useContext} from 'react';
+import ApiUrlContext from '../ApiUrlContext.js';
+import {Link} from 'react-router-dom';
+import {ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper, } from './HomeStyle';
 import Footer from '../components/footer/Footer';
 
 
 
-const Home = ({onAdd, stayLogedin, userName}) => {
+const Home = () => {
 
+  const ApiUrl = useContext(ApiUrlContext);
   const [products, setProducts] = useState([]);
-  const [users, setUsers] = [];
-  
+
   useEffect(() => {
     getAllProducts();
   }, [])
 
   const getAllProducts = async () => {
-    const response = await fetch('http://localhost:4000/products');
+    const response = await fetch(`${ApiUrl}/products`);
     const data = await response.json();
     console.log(data);
     setProducts(data);
@@ -35,7 +34,7 @@ const Home = ({onAdd, stayLogedin, userName}) => {
             />*/}
             <Link to={`/products/${product._id}`}>
               <ImageWrapper>
-                <img src={product.image} alt="shoes" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+                <img src={product.image} alt="shoes" style={{width: '100%', height: '200px', objectFit: 'cover'}} />
               </ImageWrapper>
             </Link>
             <ProductInformationWrapper>
@@ -44,13 +43,13 @@ const Home = ({onAdd, stayLogedin, userName}) => {
               <ProductPrice>{product.price}</ProductPrice>
             </ProductInformationWrapper>
             {/*<p>{product.description}</p>*/}
-           
+
           </ProductCard>
-          
+
         )}
       </ProductWrapper>
       <Footer />
     </>
   )
 }
-  export default Home
+export default Home

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import DefaultHeader from '../components/DefaultHeader/DefaultHeader';
+import React, {useState, useEffect, useContext} from 'react';
+import ApiUrlContext from '../ApiUrlContext.js';
 import {
   Grid,
   Typography,
@@ -16,6 +16,7 @@ const Favourites = () => {
     margin: '25px'
   }
 
+  const ApiUrl = useContext(ApiUrlContext);
   const [favourites, setFavourites] = useState([]);
   // const [showAddToCartMessage, setShowAddToCartMessage] = useState(false); // to be added in sprint 2
 
@@ -27,7 +28,7 @@ const Favourites = () => {
 
   const fetchFavourites = async () => {
     const TEMP_WISHLIST_ID = '6142f237423da20abed34513';
-    const response = await fetch(`http://localhost:4000/favourites/${TEMP_WISHLIST_ID}`);
+    const response = await fetch(`${ApiUrl}/favourites/${TEMP_WISHLIST_ID}`);
     const data = await response.json();
 
     setFavourites(data.products);
@@ -35,7 +36,7 @@ const Favourites = () => {
 
   const removeProduct = async (productId) => {
     const TEMP_WISHLIST_ID = '6142f237423da20abed34513';
-    const response = await fetch(`http://localhost:4000/favourites/remove/${TEMP_WISHLIST_ID}`, {
+    const response = await fetch(`${ApiUrl}/favourites/remove/${TEMP_WISHLIST_ID}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -55,7 +56,7 @@ const Favourites = () => {
   // // Not fully working, will fix next sprint
   // const addFavouritesToCart = async () => {
   //   const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
-  //   await fetch('http://localhost:4000/favourites/addToCart', {
+  //   await fetch(`${ApiUrl}/favourites/addToCart`, {
   //     method: 'PATCH',
   //     headers: {
   //       'Accept': 'application/json',
