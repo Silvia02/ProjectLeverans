@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import React, {useState, useContext} from "react";
+import ApiUrlContext from '../ApiUrlContext.js';
 import axios from "axios";
 import {useHistory} from "react-router";
 import {
@@ -12,26 +12,27 @@ import {
 
 const Login = ({stayLogedin}) => {
 
+  const ApiUrl = useContext(ApiUrlContext);
   const history = useHistory();
-   
+
   const [user, setUser] = useState({
     email: "",
     password: "",
 
-   });
+  });
   const handleChange = (e) => {
-    const { name,value} = e.target;
+    const {name, value} = e.target;
     setUser({
       ...user,
       [name]: value
     })
   }
-console.log(user)
+  console.log(user)
   const handleLogin = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:4000/login', user)
+    axios.post(`${ApiUrl}/login`, user)
       .then(res => {
-        
+
         alert(res.data.message)
         stayLogedin(res.data.user);
         history.push("/home")

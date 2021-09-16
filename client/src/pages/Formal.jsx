@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import { Link } from "react-router-dom";
-import { BackArrow } from "./HomeStyle";
+import React, {useState, useEffect, useContext} from 'react';
+import ApiUrlContext from '../ApiUrlContext.js';
+import {Link} from "react-router-dom";
 import Footer from '../components/footer/Footer'
 import {
   ProductCard,
@@ -11,23 +10,26 @@ import {
   ImageWrapper,
   ProductInformationWrapper,
 } from "./HomeStyle";
-import DefaultHeader from "../components/DefaultHeader/DefaultHeader";
 
-const fetchURL = "http://localhost:4000/products/category/formal";
-const getItems = () => fetch(fetchURL).then((res) => res.json());
-
-const Formal = ({favourites , onAdd}) => {
+const Formal = () => {
+  const ApiUrl = useContext(ApiUrlContext);
   const [formals, setFormals] = useState([]);
 
   //console.log(formals);
-
   useEffect(() => {
-    getItems().then((data) => setFormals(data));
-  }, []);
+    const getItems = async () => {
+      const response = await fetch(`${ApiUrl}/products/category/formal`);
+      const data = await response.json();
+
+      setFormals(data)
+    }
+
+    getItems();
+  }, [])
 
   return (
     <div>
-      
+
       <ProductWrapper>
         {formals.map((formalCate) => (
           <ProductCard key={formalCate._id}>
