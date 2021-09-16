@@ -72,9 +72,7 @@ const Register = () => {
             <Button onClick={register}>Register</Button>
           <Button onClick={() => history.push('/login')}>Login</Button>
         </StlyedForm>
-      </StlyedFormWrappper>
-      <Header/>
-      
+      </StlyedFormWrappper>  
     </>
   );
 };
