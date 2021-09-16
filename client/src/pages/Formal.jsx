@@ -31,14 +31,14 @@ const Formal = ({favourites , onAdd}) => {
       <ProductWrapper>
         {formals.map((formalCate) => (
           <ProductCard key={formalCate._id}>
-            <FavoriteBorderIcon
+            {/* <FavoriteBorderIcon
               style={{
                 marginLeft: "85%",
                 marginBottom: "-15%",
                 zIndex: "5",
               }}
               onClick={() => onAdd(formalCate)}
-            />
+            />*/}
             <Link to={`/products/${formalCate._id}`}>
               <ImageWrapper>
                 <img
