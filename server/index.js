@@ -1,6 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import path from 'path';
+const __dirname = path.resolve();
 
 import cartRoutes from './routes/cart.js';
 import favouritesRoutes from './routes/favourites.js';
@@ -9,6 +11,11 @@ import {getOneUser} from './controllers/users.js';
 import User from './models/user.js';
 
 const app = express();
+
+// Serve static files from client folder if in production mode
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+}
 
 app.use(express.json());
 app.use(cors());
