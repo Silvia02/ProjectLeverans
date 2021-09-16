@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import '../css/mycart.css'
-
+import { AddtoCartButton } from '../pages/ProductStyle'
+import { Link } from 'react-router-dom'
 import {
   Button,
   Grid,
@@ -13,9 +14,9 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 const MyCart = () => {
   const paperStyle = {
     padding: 20,
-    width: 320,
+    width: '100%',
     height: 'auto',
-    margin: '25px'
+    margin: '5%'
   }
 
   const [cart, setCart] = useState([]);
@@ -130,22 +131,25 @@ const MyCart = () => {
                 <img src={product.image} alt={product.name} />
                 <div>
                   <Typography variant="h6">{product.name}</Typography>
-                  <Typography align="center">${product.price}</Typography>
+                  <Typography variant="h6" align="center" style={{ marginTop: "10px" }}>${product.price}</Typography>
                   <div>
-                    <button style={{width: "40px", cursor: "hover"}} onClick={() => changeQuantity(product._id, 'increment')}>+</button>
+                    <button style={{width: "15px", backgroundColor:"white", cursor: "hover"}} onClick={() => changeQuantity(product._id, 'increment')}>+</button>
                     <span> {product.quantity} </span>
                     {/* decrement currently does not work, therefore button is disabled */}
-                    <button disabled={true} style={{width: "40px", cursor: "not-allowed"}} onClick={() => changeQuantity(product._id, 'decrement')}>-</button>
+                    <button disabled={true} style={{ width: "15px", backgroundColor: "white", cursor: "not-allowed"}} onClick={() => changeQuantity(product._id, 'decrement')}>-</button>
                   </div>
                 </div>
                 <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(product._id)} />
+              
               </Box>
+              
             ))
           }
-          <Typography variant="h5">Total: ${cartPrice.toFixed(2)}</Typography>
+          <br />
+          <hr style= {{width:"100%"}}/>
+          <Typography variant="h5" style={{textAlign:"end", marginTop:"25px", fontWeight:"bold"}}>Total: ${cartPrice.toFixed(2)}</Typography>
+          <Link to="/checkout"><AddtoCartButton style={{ width: '100%', marginTop: '25px', border: "none" }}>Check out</AddtoCartButton></Link>
         </Paper>
-
-        <button>Checkout</button>
       </Grid>
     </div>
   )

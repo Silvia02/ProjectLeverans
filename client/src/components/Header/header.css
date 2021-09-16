@@ -2,13 +2,21 @@
           display: flex;
           flex-direction:row;
           justify-content:flex-end;
-          background-color: rgb(38, 39, 39);  
-          color: azure;  
-          width: auto;
+          background-color: rgba(126, 224, 175, 0.192);  
           padding: 0px;
           margin: 0px;
+          color: rgb(110, 106, 97);
+          font-size: large;
+          width: 100vw;
+          height: 80px;
+          z-index:99;
+          width:100%;
+          
 }
 .userStyle{
-  margin-top: 30px;
+  margin-top: 50px;
   
+}
+h4{
+  font-family: cursive;
 }
