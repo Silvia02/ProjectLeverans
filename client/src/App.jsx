@@ -17,12 +17,14 @@ import Favourites from './pages/Favourites';
 import Casual from './pages/Casual';
 import Sport from "./pages/Sport";
 import Formal from "./pages/Formal";
+import DefaultHeader from './components/DefaultHeader/DefaultHeader';
+import Footer from './components/footer/Footer';
+
 
 
 function App() {
   
   const [user, setUserLogin] = useState({})
-
   // check is user is store in local storage
   useEffect(() => {
     setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
@@ -100,15 +102,19 @@ function App() {
   return (
 
     <div className="App">
+      
       <Router>
+        {user && user._id ? <Header stayLogedin={stayLogedin} userName={user.name}/>
+          : <DefaultHeader />}
         <Switch>
           <Route exact path="/">
-            <FrontPage />
-          </Route>
+            <FrontPage />   
+           </Route>
           <Route path="/home">
-            
               {
-              user && user._id ? <Home stayLogedin={stayLogedin} userName={user.name} favourites={favourites} onAdd={onAdd}  /> : <Login stayLogedin={stayLogedin}/>
+              user && user._id ?
+                <Home stayLogedin={stayLogedin} userName={user.name} favourites={favourites} onAdd={onAdd} />
+                : <Login stayLogedin={stayLogedin} />
             }
           </Route>
           <Route path="/login">
@@ -118,22 +124,19 @@ function App() {
               <RegisterPage/>
             </Route>
           <Route path="/casual">
-            <Casual />
+            <Casual favourites={favourites} onAdd={onAdd} />
           </Route>
           <Route path="/sport">
-            <Sport />
+            <Sport favourites={favourites} onAdd={onAdd}/>
           </Route>
           <Route path="/formal">
-            <Formal />
+            <Formal favourites={favourites} onAdd={onAdd}/>
           </Route>
           <Route path="/register">
             <RegisterPage/>
           </Route>
           <Route exact path="/products">
-             {
-              user && user._id ? <Home stayLogedin={stayLogedin} userName={user.name} favourites={favourites} onAdd={onAdd}  /> : <Login stayLogedin={stayLogedin}/>
-            }
-            {/* <Home favourites={favourites} onAdd={onAdd} /> */}
+            <Home favourites={favourites} onAdd={onAdd} /> 
           </Route>
           <Route path="/products/:id">
             <Product
@@ -157,6 +160,7 @@ function App() {
             <MyCart />
           </Route>
         </Switch>
+        <Footer/>
       </Router>
     </div>
   )}

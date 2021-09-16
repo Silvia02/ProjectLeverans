@@ -15,7 +15,7 @@ import {
 const fetchURLsport = "http://localhost:4000/products/category/sport";
 const getItemsSport = () => fetch(fetchURLsport).then((res) => res.json());
 
-const Sport = () => {
+const Sport = ({favourites , onAdd}) => {
   const [sports, setSports] = useState([]);
 
   console.log(sports);
@@ -26,11 +26,6 @@ const Sport = () => {
 
   return (
     <div>
-      <BackArrow>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          &#8592;
-        </Link>
-      </BackArrow>
       <ProductWrapper>
         {sports.map((sportCate) => (
           <ProductCard key={sportCate._id}>
