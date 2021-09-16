@@ -16,7 +16,7 @@ import DefaultHeader from "../components/DefaultHeader/DefaultHeader";
 const fetchURL = "http://localhost:4000/products/category/formal";
 const getItems = () => fetch(fetchURL).then((res) => res.json());
 
-const Formal = () => {
+const Formal = ({favourites , onAdd}) => {
   const [formals, setFormals] = useState([]);
 
   //console.log(formals);

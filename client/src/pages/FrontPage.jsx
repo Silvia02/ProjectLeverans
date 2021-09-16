@@ -8,12 +8,12 @@ import logo from '../images/shop.png'
 import { CategoryButton, FrontPageWrapper, HeaderLinks, HeaderWrapper, Photo, PhotoCard } from './FrontPageStyle';
 import Favourites from './Favourites';
 import Footer from '../components/footer/Footer';
-import DefaultHeader from '../components/DefaultHeader/DefaultHeader';
+
 
 const FrontPage = () => {
   return (
 <>
-     <DefaultHeader/>
+     
       <FrontPageWrapper>
           <PhotoCard>
             <Photo src={allkinds} alt="formal-shoes" />

@@ -19,7 +19,7 @@ import DefaultHeader from '../components/DefaultHeader/DefaultHeader';
 const fetchURL = 'http://localhost:4000/products/category/casual';
 const getItems = () => fetch(fetchURL).then((res) => res.json());
 
-const Casual = () => {
+const Casual = ({favourites , onAdd}) => {
     const [categories, setCategories] = useState([])
 
     // console.log(categories);
@@ -32,7 +32,6 @@ const Casual = () => {
     return (
       <div>
         {/* <h1>Hello from casual</h1> */}
-        <DefaultHeader/>
         <ProductWrapper>
           {categories.map((categorie) => (
             <ProductCard key={categorie._id}>
