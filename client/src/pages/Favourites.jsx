@@ -72,7 +72,7 @@ const Favourites = () => {
 
   return (
     <div>
-      <h1>Favourites page</h1>
+      <h2>Favourites</h2>
       <Grid container direction="column" alignItems="center">
         {favourites.length ? (
           <Paper elevation={10} style={paperStyle}>
