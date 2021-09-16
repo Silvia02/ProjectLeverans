@@ -29,14 +29,14 @@ const Sport = ({favourites , onAdd}) => {
       <ProductWrapper>
         {sports.map((sportCate) => (
           <ProductCard key={sportCate._id}>
-            <FavoriteBorderIcon
+            {/* <FavoriteBorderIcon
               style={{
                 marginLeft: "85%",
                 marginBottom: "-15%",
                 zIndex: "5",
               }}
               onClick={() => onAdd(sportCate)}
-            />
+            />*/}
             <Link to={`/products/${sportCate._id}`}>
               <ImageWrapper>
                 <img
