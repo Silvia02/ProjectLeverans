@@ -29,10 +29,10 @@ const Home = ({onAdd, stayLogedin, userName}) => {
       <ProductWrapper>
         {products.map(product =>
           <ProductCard key={product._id}>
-            <FavoriteBorderIcon
+            {/* <FavoriteBorderIcon
               style={{ marginLeft: '85%', marginBottom: '-15%', zIndex: '5' }}
               onClick={() => onAdd(product)}
-            />
+            />*/}
             <Link to={`/products/${product._id}`}>
               <ImageWrapper>
                 <img src={product.image} alt="shoes" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />

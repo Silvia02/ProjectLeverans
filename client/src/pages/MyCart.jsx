@@ -14,7 +14,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 const MyCart = () => {
   const paperStyle = {
     padding: 20,
-    width: '100%',
+    width: '90%',
     height: 'auto',
     margin: '5%'
   }
@@ -122,7 +122,6 @@ const MyCart = () => {
 
   return (
     <div>
-      <h1>My Cart</h1>
       <Grid container direction="column" alignItems="center">
         <Paper elevation={10} style={paperStyle}>
           {
