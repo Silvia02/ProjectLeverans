@@ -40,9 +40,9 @@ const Product = () => {
   }
 
 
-  const addToWishlist = async () => {
-    const TEMP_WISHLIST_ID = '6141e4728806a06ba7bfc49d';
-    const response = await fetch(`http://localhost:4000/wishlist/add/${TEMP_WISHLIST_ID}`, {
+  const addToFavourites = async () => {
+    const TEMP_WISHLIST_ID = '6142f237423da20abed34513';
+    await fetch(`http://localhost:4000/favourites/add/${TEMP_WISHLIST_ID}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -52,9 +52,6 @@ const Product = () => {
         "productId": product._id
       })
     });
-
-    const data = await response.json();
-    console.log(data);
   }
 
   const handleClick = () => {
@@ -94,7 +91,7 @@ const Product = () => {
           <AddtoCartButton onClick={addToCart}>Add to cart</AddtoCartButton>
           <FavoriteBorderIcon
             style={{width: "45px", height: "50px", marginLeft: "10px", border: "1px solid black"}}
-            onClick={addToWishlist}
+            onClick={addToFavourites}
           />
         </AddtoCartWrapper>
       </ProductDetailCard>
