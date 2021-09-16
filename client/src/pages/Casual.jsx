@@ -35,14 +35,14 @@ const Casual = ({favourites , onAdd}) => {
         <ProductWrapper>
           {categories.map((categorie) => (
             <ProductCard key={categorie._id}>
-              <FavoriteBorderIcon
+              {/*<FavoriteBorderIcon
                 style={{
                   marginLeft: "85%",
                   marginBottom: "-15%",
                   zIndex: "5",
                 }}
                 onClick={() => onAdd(categorie)}
-              />
+              />*/}
               <Link to={`/products/${categorie._id}`}>
                 <ImageWrapper>
                   <img
