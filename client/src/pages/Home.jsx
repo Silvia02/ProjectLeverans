@@ -35,7 +35,7 @@ const Home = ({onAdd, stayLogedin, userName}) => {
             />*/}
             <Link to={`/products/${product._id}`}>
               <ImageWrapper>
-                <img src={product.image} alt="shoes" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+                <img src={product.image} alt="shoes" style={{ width: '100%', height: '90%', objectFit: 'cover' }} />
               </ImageWrapper>
             </Link>
             <ProductInformationWrapper>
