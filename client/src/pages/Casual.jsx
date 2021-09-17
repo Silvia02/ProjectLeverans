@@ -50,7 +50,7 @@ const Casual = ({favourites , onAdd}) => {
                     alt="shoes"
                     style={{
                       width: "100%",
-                      height: "200px",
+                      height: "90%",
                       objectFit: "cover",
                     }}
                   />
@@ -59,7 +59,7 @@ const Casual = ({favourites , onAdd}) => {
               <ProductInformationWrapper>
                 <ProductName>{categorie.name}</ProductName>
                 <br />
-                <ProductPrice>{categorie.price}</ProductPrice>
+                <ProductPrice>${categorie.price}</ProductPrice>
               </ProductInformationWrapper>
             </ProductCard>
           ))}

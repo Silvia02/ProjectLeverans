@@ -44,7 +44,7 @@ const Sport = ({favourites , onAdd}) => {
                   alt="shoes"
                   style={{
                     width: "100%",
-                    height: "200px",
+                    height: "90%",
                     objectFit: "cover",
                   }}
                 />
@@ -53,7 +53,7 @@ const Sport = ({favourites , onAdd}) => {
             <ProductInformationWrapper>
               <ProductName>{sportCate.name}</ProductName>
               <br />
-              <ProductPrice>{sportCate.price}</ProductPrice>
+              <ProductPrice>${sportCate.price}</ProductPrice>
             </ProductInformationWrapper>
           </ProductCard>
         ))}
