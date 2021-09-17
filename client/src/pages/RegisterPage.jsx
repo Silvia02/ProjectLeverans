@@ -1,5 +1,5 @@
 import React, {useState, useContext} from "react";
-import {Link} from "react-router-dom";
+import ApiUrlContext from '../ApiUrlContext.js';
 import axios from 'axios';
 import {useHistory} from "react-router";
 import {
@@ -35,7 +35,7 @@ const Register = () => {
     const {name, email, password, confirmPassword} = user
 
     if (name && email && password && (password === confirmPassword)) {
-      axios.post(`${apiUrl}/users`, user)
+      axios.post(`${ApiUrl}/users`, user)
         .then(res => {
           alert(res.data.message)
           history.push("/login")
@@ -53,7 +53,7 @@ const Register = () => {
         <StlyedForm>
           <label htmlFor="UserName">User Name</label>
           <StlyedInput type="text" name="name" value={user.name}
-            placeholder="UserName" onChange={handleChange} />
+            placeholder="Email" onChange={handleChange} />
           <label htmlFor="Email">Email</label>
 
           <StlyedInput type="email" name="email" value={user.email}
