@@ -41,7 +41,7 @@ const Home = ({onAdd, stayLogedin, userName}) => {
             <ProductInformationWrapper>
               <ProductName>{product.name}</ProductName>
               <br />
-              <ProductPrice>{product.price}</ProductPrice>
+              <ProductPrice>${product.price}</ProductPrice>
             </ProductInformationWrapper>
             {/*<p>{product.description}</p>*/}
            
