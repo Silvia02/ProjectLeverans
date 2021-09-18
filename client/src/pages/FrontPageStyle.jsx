@@ -25,20 +25,35 @@ export const FrontPageWrapper = styled.div`
   display:flex;
   flex-direction: column;
   margin-bottom: 20px;
+  @media (min-width: 1023px) {
+    width:80%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 13%; 
+    margin-bottom: 80px;
+  }
 `;
 export const PhotoCard = styled.div`
   position: relative;
+  @media (min-width: 1023px) {
+    width:45%;
+    margin:10px;
+  }
 
 `;
 export const Photo = styled.img`
   width:100%;
-  height:180px;
+  height:200px;
   object-fit: cover;
   position: relative;
   margin-left: auto;
   margin-right: auto;
   margin-top: 8px;
-  display: block;    
+  display: block; 
+  @media (min-width: 1023px) {
+    width:100%;
+    height:300px;
+  }   
 `;
 export const CategoryButton = styled.button`
   position: absolute;
@@ -54,7 +69,14 @@ export const CategoryButton = styled.button`
   text-align: center;
   justify-content: center;
   cursor: pointer;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    @media (min-width: 1023px) {
+    width:80px;
+    height:50px;
+    left:45%;
+    top:40%;
+    font-size: 1.5em;
+  } 
   `;
 
 /*
@@ -68,6 +90,7 @@ export const CategoryButton = styled.button`
     align-items: center;
     height: 100vh;
     padding: 0 20px;
+    
   `;
 
   export const StlyedForm = styled.form`
