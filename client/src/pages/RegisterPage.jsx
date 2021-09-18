@@ -39,14 +39,14 @@ const Register = () => {
           history.push("/login")
         })
     } else {
-      alert("invlid input")
+      alert("invalid input")
     }
 
   }
   
   return (
     <>
-      <h1>Register Page</h1>
+      <h1>Register</h1>
       <StlyedFormWrappper>
         <StlyedForm>
           <label htmlFor="UserName">User Name</label>

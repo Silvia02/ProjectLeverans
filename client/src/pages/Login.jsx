@@ -39,11 +39,11 @@ console.log(user)
   }
   return (
     <>
-      <h1>Login Page</h1>
+      <h1>Login</h1>
       <StlyedFormWrappper>
         <StlyedForm>
           <label htmlFor="Email">Email</label>
-          <StlyedInput type="email" name="email" value={user.email} placeholder="UserName" onChange={handleChange} />
+          <StlyedInput type="email" name="email" value={user.email} placeholder="Email" onChange={handleChange} />
           <label htmlFor="Password">Password</label>
           <StlyedInput type="password" name="password" value={user.password} placeholder="Password" onChange={handleChange} />
           <Button onClick={handleLogin}>Login</Button>
