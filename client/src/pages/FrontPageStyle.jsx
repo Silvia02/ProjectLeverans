@@ -95,7 +95,7 @@ export const CategoryButton = styled.button`
 
   export const StlyedForm = styled.form`
     width: 100%;
-    max-width: 700px;
+    max-width: 500px;
     padding: 40px;
     background-color: #ffff;
     border-radius: 10px;
@@ -104,6 +104,7 @@ export const CategoryButton = styled.button`
     label {
       font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
         sans-serif;
+   
     }
   `;
 
@@ -113,7 +114,8 @@ export const CategoryButton = styled.button`
     background-color: #eee;
     border-radius: 5px;
     border: 1px solid #ddd;
-    padding: 5px;
+    padding: 10px;
+    margin: 0.6rem auto;
   `;
   export const Button = styled.button`
 background: ${(props) => (props.primary ? "gold" : "gold")};
