@@ -41,8 +41,7 @@ const Register = () => {
         })
     } else {
       setErrorMessage("Invalid input")
-    }
-      
+    } 
   }
   
   return (
