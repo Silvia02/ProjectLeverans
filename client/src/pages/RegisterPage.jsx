@@ -13,6 +13,7 @@ import Header from "../components/Header/Header";
 
 const Register = () => {
   const history = useHistory();
+  const [errorMessage, setErrorMessage] = useState("")
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -35,18 +36,17 @@ const Register = () => {
     if (name && email && password && (password === confirmPassword)) {
       axios.post("http://localhost:4000/users", user)
         .then(res => {
-          alert(res.data.message)
-          history.push("/login")
+          setErrorMessage((res.data.message))
+          
         })
     } else {
-      alert("invlid input")
-    }
-
+      setErrorMessage("Invalid input")
+    } 
   }
   
   return (
     <>
-      <h1>Register Page</h1>
+      <h1>Register</h1>
       <StlyedFormWrappper>
         <StlyedForm>
           <label htmlFor="UserName">User Name</label>
@@ -69,6 +69,9 @@ const Register = () => {
             placeholder="Confirm Password"
             onChange={handleChange}
           />
+          <div style={{marginTop:"15px", padding:"5px",textAlign:"center"}}>
+             <p style={{ color: "orangered",fontSize:"20px" }}>{errorMessage}</p>
+          </div>
             <Button onClick={register}>Register</Button>
           <Button onClick={() => history.push('/login')}>Login</Button>
         </StlyedForm>
