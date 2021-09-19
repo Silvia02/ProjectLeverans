@@ -13,7 +13,7 @@ import {
 const Login = ({stayLogedin}) => {
 
   const history = useHistory();
-   
+   const [messages, setMessages] = useState("")
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -32,7 +32,7 @@ console.log(user)
     axios.post('http://localhost:4000/login', user)
       .then(res => {
         
-        alert(res.data.message)
+        setMessages((res.data.message))
         stayLogedin(res.data.user);
         history.push("/home")
       })
@@ -46,6 +46,9 @@ console.log(user)
           <StlyedInput type="email" name="email" value={user.email} placeholder="UserName" onChange={handleChange} />
           <label htmlFor="Password">Password</label>
           <StlyedInput type="password" name="password" value={user.password} placeholder="Password" onChange={handleChange} />
+          <div style={{marginTop:"15px", padding:"5px",textAlign:"center"}}>
+             <p style={{ color: "orangered",fontSize:"20px" }}>{messages}</p>
+          </div>
           <Button onClick={handleLogin}>Login</Button>
           <Button onClick={() => history.push('/register')}>Register</Button>
 

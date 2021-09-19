@@ -29,17 +29,17 @@ app.post("/login", (req, res) => {
     if (user) {
       if (password === user.password) {
         res.send({
-          message: "Login Successfull",
+          message: "Login Successfull!",
           user: user
         })
       } else {
         res.send({
-          message: "Password didn't match"
+          message: "Password didn't match!"
         })
       }
     } else {
       res.send({
-        message: "User not registered"
+        message: "User not registered!"
       })
     }
   })
@@ -56,7 +56,7 @@ app.post("/users", (req, res) => {
   }, (err, user) => {
     if (user) {
       res.send({
-        message: "User already registerd"
+        message: "User already registerd!"
       })
     } else {
       const user = new User({
@@ -69,7 +69,7 @@ app.post("/users", (req, res) => {
           res.send(err)
         } else {
           res.send({
-            message: "Successfully Registered, Please login now."
+            message: "Successfully Registered, Please login now!"
           })
         }
       })
