@@ -45,10 +45,12 @@ const MyCart = () => {
       if (!reducedCart[product._id]) {
         reducedCart[product._id] = {
           ...product,
-          quantity: 1
+          quantity: 1,
+          price: product.price
         }
       } else {
         reducedCart[product._id].quantity += 1;
+        reducedCart[product._id].price += product.price
       }
     })
 
@@ -64,12 +66,9 @@ const MyCart = () => {
       return cart[0].price;
     } else {
       // else return total cart price
-      // Explanation: total, is a product object with price and quantity
-      // therefore the reducer function needs to return a similar object
-      return cart.reduce((total, current) => ({
-        price: (total.price * total.quantity) + (current.price * current.quantity),
-        quantity: 1
-      })).price;
+      return cart.reduce((total, current) => (
+        total.price + current.price
+      ))
     }
   }
 
