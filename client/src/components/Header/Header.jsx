@@ -28,13 +28,12 @@ const Header = ({stayLogedin, userName }) => {
      <>
        
        <div className="header">
-       <Link to="/home"><ArrowBackIosIcon style={{marginTop:"40px",marginRight:"25px"}}></ArrowBackIosIcon></Link>
-        <h2 style={{marginTop:45,fontFamily:'fantasy', marginRight:25,fontSize:'medium'}}> The Shoe Store</h2>
+       <Link to="/home"><ArrowBackIosIcon style={{marginTop:"40px"}}></ArrowBackIosIcon></Link>
+        <h2 style={{marginTop:45,fontFamily:'fantasy',fontSize:'large'}}> The Shoe Store</h2>
          <Avatar area-aria-controls="menu" style={iconStyle} onClick={handleMenu} />
          <div className="userStyle">
-           <h4>{userName}</h4>
+           <span>{userName}</span>
          </div>
-         <ShoppingCartOutlinedIcon fontSize="large" style={{marginRight:"30px",marginTop:"40px",marginLeft:"30px"}}/>
         </div>
        <Menu
          style={{marginTop:"40px",marginLeft:"-10px"}}

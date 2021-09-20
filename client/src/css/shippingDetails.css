@@ -1,10 +1,18 @@
+.billItems{
+   display:flex;
+   flex-direction:row;
+   margin-top: 40px;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+}
 .shippingDetails{
 
-  margin-top: 80px;
+  margin-top: 10px;
 }
 hr{
-  width: 170px;
+  width: 100%;
   border-style: dotted; 
+  margin-top: 5px;
 }
 p{
   margin-left: 50px;
@@ -17,6 +25,55 @@ button{
   border-style: none;
   border-radius: 15px;
   padding:12px;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
   width: 150px;
 }
+.itemsImg img{
+  height: 60px;
+  width:60px;
+  margin-left: -20px;
+}
+.itemsImg p{
+margin-left: -10px;
+font-size: x-small;
+margin-top: -20px;
+}
+.fa,
+.fas {
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+
+}
+.minusPlus{
+display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.minusPlus button {
+  cursor: pointer;
+}
+.quantity {
+
+  width: 3rem;
+  height: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 7px;
+  border-radius: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+.minusPlus input:focus {
+  outline: none;
+}
+.fa-trash-alt {
+  color: #ed4848;
+  margin-top: 20px;
+}
+.price h5{
+        margin-top: 18px;
+        margin-right:10px;
+}
+
+
