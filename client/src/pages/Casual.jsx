@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect, useContext} from 'react';
+import ApiUrlContext from '../ApiUrlContext.js';
+import {Link} from "react-router-dom";
 import Footer from '../components/footer/Footer'
-import {
-  BackArrow
-} from "./HomeStyle";
 import {
   ProductCard,
   ProductPrice,
@@ -14,28 +11,29 @@ import {
   ProductInformationWrapper,
 
 } from "./HomeStyle";
-import DefaultHeader from '../components/DefaultHeader/DefaultHeader';
 
-const fetchURL = 'http://localhost:4000/products/category/casual';
-const getItems = () => fetch(fetchURL).then((res) => res.json());
+const Casual = () => {
+  const ApiUrl = useContext(ApiUrlContext);
+  const [categories, setCategories] = useState([])
 
-const Casual = ({favourites , onAdd}) => {
-    const [categories, setCategories] = useState([])
+  useEffect(() => {
+    const getItems = async () => {
+      const response = await fetch(`${ApiUrl}/products/category/casual`);
+      const data = await response.json();
 
-    // console.log(categories);
-    useEffect(() => {
-        getItems().then((data) => setCategories(data));
-      
-     
-    }, [])
-   
-    return (
-      <div>
-        {/* <h1>Hello from casual</h1> */}
-        <ProductWrapper>
-          {categories.map((categorie) => (
-            <ProductCard key={categorie._id}>
-              {/*<FavoriteBorderIcon
+      setCategories(data)
+    }
+
+    getItems();
+  }, [])
+
+  return (
+    <div>
+      {/* <h1>Hello from casual</h1> */}
+      <ProductWrapper>
+        {categories.map((categorie) => (
+          <ProductCard key={categorie._id}>
+            {/*<FavoriteBorderIcon
                 style={{
                   marginLeft: "85%",
                   marginBottom: "-15%",
@@ -43,31 +41,30 @@ const Casual = ({favourites , onAdd}) => {
                 }}
                 onClick={() => onAdd(categorie)}
               />*/}
-              <Link to={`/products/${categorie._id}`}>
-                <ImageWrapper>
-                  <img
-                    src={categorie.image}
-                    alt="shoes"
-                    style={{
-                      width: "100%",
-                      height: "90%",
-                      objectFit: "cover",
-                    }}
-                  />
-                </ImageWrapper>
-              </Link>
-              <ProductInformationWrapper>
-                <ProductName>{categorie.name}</ProductName>
-                <br />
-                <ProductPrice>${categorie.price}</ProductPrice>
-              </ProductInformationWrapper>
-            </ProductCard>
-          ))}
-        </ProductWrapper>
-        <Footer />
-      </div>
-    );
-
+            <Link to={`/products/${categorie._id}`}>
+              <ImageWrapper>
+                <img
+                  src={categorie.image}
+                  alt="shoes"
+                  style={{
+                    width: "100%",
+                    height: "90%",
+                    objectFit: "cover",
+                  }}
+                />
+              </ImageWrapper>
+            </Link>
+            <ProductInformationWrapper>
+              <ProductName>{categorie.name}</ProductName>
+              <br />
+              <ProductPrice>${categorie.price}</ProductPrice>
+            </ProductInformationWrapper>
+          </ProductCard>
+        ))}
+      </ProductWrapper>
+      <Footer />
+    </div>
+  );
 }
 
 export default Casual;
