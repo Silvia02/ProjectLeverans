@@ -154,7 +154,9 @@ function App() {
             />
           </Route>
           <Route path="/checkout">
-            <ShippingDetails />
+            {
+              user && user._id ? <ShippingDetails/> : <RegisterPage/>
+            }    
           </Route>
           <Route path="/mycart">
             <MyCart />
