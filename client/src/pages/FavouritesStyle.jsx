@@ -18,8 +18,8 @@ export const FavouritesLists = styled.div`
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
-  width:90%;
-  margin-left: 5%;
+  width:80%;
+  margin-left: 10%;
 
    @media (min-width: 1023px) {
     flex-direction: row;
@@ -27,6 +27,8 @@ export const FavouritesLists = styled.div`
     flex-wrap: wrap;
     background-color:none;
     box-shadow: none;
+    width:80%;
+    margin-left: 5%;
   }
 
 `
@@ -34,16 +36,15 @@ export const FavouritesLists = styled.div`
 export const FavouriteCard = styled.div`
   display:flex;
   flex-direction: row;
-  height:15%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   text-align: center;
   justify-content:space-around;
-  height:20%;
-  background-color: whitesmoke;
-  box-shadow: 5px 5px 5px lightgray;
+  height:15%;
+  background-color: white;
+  box-shadow: 2px 2px 2px whitesmoke;
    @media (min-width: 1023px){
      flex-direction: column;
-     width:15%;
+     width:18%;
      margin-right: 20px;
      box-shadow: none;
    }
@@ -58,5 +59,4 @@ export const FavouriteImg = styled.img`
       margin-right: 10px;
 
   }
-
 `
