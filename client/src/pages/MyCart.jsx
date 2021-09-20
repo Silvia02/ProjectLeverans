@@ -130,7 +130,7 @@ const MyCart = () => {
                 <img src={product.image} alt={product.name} />
                 <div>
                   <Typography variant="h6">{product.name}</Typography>
-                  <Typography variant="h6" align="center" style={{marginTop: "10px"}}>${product.price}</Typography>
+                  <Typography variant="h6" align="center" style={{marginTop: "10px"}}>${product.price.toFixed(2)}</Typography>
                   <div>
                     <button style={{width: "15px", backgroundColor: "white", cursor: "hover"}} onClick={() => changeQuantity(product._id, 'increment')}>+</button>
                     <span> {product.quantity} </span>
