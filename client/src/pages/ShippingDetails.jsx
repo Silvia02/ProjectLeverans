@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import '../css/shippingDetails.css'
 import {
-  Button,
   Grid,
   makeStyles,
   TextField,
@@ -11,13 +10,13 @@ import {
   Table,
   TableRow,
 } from '@material-ui/core'
-import { red } from '@material-ui/core/colors'
+import { Scrollbars } from 'react-custom-scrollbars-2';
 
 
 const useStyle = makeStyles(theme => ({
   root: {
     '& .MuiFormControl-root': {
-      width: '80%',
+      width: '90%',
       margin: theme.spacing(2),
     }
   }
@@ -34,9 +33,9 @@ export const ShippingDetails = () => {
   const classes = useStyle();
   const paperStyle = {
     padding: 20,
-    width: 320,
+    width: 370,
     height: '60vh',
-    margin: '25px'
+    margin: '20px',
   }
   
   const [values, setValues] = useState(initialInputValues);
@@ -78,7 +77,7 @@ export const ShippingDetails = () => {
               <form className = {classes.root} >
                 <Grid container >
                 <div className = 'formdetails' >
-                <Grid item xs = {6} >
+                <Grid item xs = {6}>
         <Paper elevation = {10} style = {paperStyle} >
                 <TextField label='Full Name'
                   variant='outlined'
@@ -125,22 +124,50 @@ export const ShippingDetails = () => {
             </Grid>
           </div>
           <div className = 'priceDetails'>
-    <Grid item xs = {6}align = 'center'>
+    <Grid item xs = {6} align = 'center'>
     <Paper elevation = {10} style = {paperStyle}>
-    priceDetails <Table >
-    <TableHead>
-    <TableRow>
-    <TableCell> Items </TableCell> 
-    <TableCell align = 'right' > Quantity </TableCell> 
-    <TableCell align = 'right' > Price </TableCell> 
-    </TableRow> 
-    <TableRow>
-    <TableCell rowSpan = {3}/> 
-    <TableCell colSpan = {1}> Total Amount </TableCell> 
-    <TableCell align = 'right'> xxxkr </TableCell> 
-    </TableRow> 
-    </TableHead> 
-    </Table>  
+                PriceDetails
+                <div>
+                <div className="billItems">
+                  <div className="itemsImg">
+                    <img src="http://clipartmag.com/images/cartoon-pictures-of-shoes-42.png" alt="itemImage"></img>
+                      <p>Sport Shoe 2</p>
+                  </div>
+                  <div className="minusPlus">
+                    <i className="fas fa-minus minus"></i>
+                     <input className = "quantity" type="text" placeholder="2"></input>
+                    <i className="fas fa-plus add"></i>
+                  </div>
+                  <div className="price">
+                      <h5>$2000</h5>
+                  </div>
+                  <div>
+                    <i className="fas fa-trash-alt"></i>
+                    </div>
+                  </div>
+                  <hr></hr>
+                  <div className="billItems">
+                  <div className="itemsImg">
+                    <img src="http://clipartmag.com/images/cartoon-pictures-of-shoes-42.png" alt="itemImage"></img>
+                      <p>Sport Shoe 2</p>
+                  </div>
+                  <div className="minusPlus">
+                    <i className="fas fa-minus minus"></i>
+                     <input className = "quantity" type="text" placeholder="2"></input>
+                    <i className="fas fa-plus add"></i>
+                  </div>
+                  <div className="price">
+                      <h5>$2000</h5>
+                  </div>
+                  <div>
+                    <i className="fas fa-trash-alt"></i>
+                    </div>
+                  </div>
+                       <hr></hr>
+                </div>
+             
+
+                  
     </Paper> 
     </Grid> 
     </div> 
@@ -153,3 +180,18 @@ export const ShippingDetails = () => {
   )
 }
 export default ShippingDetails
+
+//  <Table >
+//     <TableHead>
+//     <TableRow>
+//     <TableCell> Items </TableCell> 
+//     <TableCell align = 'right' > Quantity </TableCell> 
+//     <TableCell align = 'right' > Price </TableCell> 
+//     </TableRow> 
+//     <TableRow>
+//     <TableCell rowSpan = {3}/> 
+//     <TableCell colSpan = {1}> Total Amount </TableCell> 
+//     <TableCell align = 'right'> xxxkr </TableCell> 
+//     </TableRow> 
+//     </TableHead> 
+//     </Table>  
