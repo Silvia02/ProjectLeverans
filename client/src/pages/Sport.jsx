@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import { Link } from "react-router-dom";
-import { BackArrow } from "./HomeStyle";
+import React, {useState, useEffect, useContext} from 'react';
+import ApiUrlContext from '../ApiUrlContext.js';
+import {Link} from "react-router-dom";
 import Footer from '../components/footer/Footer'
 import {
   ProductCard,
@@ -12,16 +11,21 @@ import {
   ProductInformationWrapper,
 } from "./HomeStyle";
 
-const fetchURLsport = "http://localhost:4000/products/category/sport";
-const getItemsSport = () => fetch(fetchURLsport).then((res) => res.json());
-
-const Sport = ({favourites , onAdd}) => {
+const Sport = () => {
+  const ApiUrl = useContext(ApiUrlContext);
   const [sports, setSports] = useState([]);
 
   console.log(sports);
 
   useEffect(() => {
-    getItemsSport().then((data) => setSports(data));
+    const getItems = async () => {
+      const response = await fetch(`${ApiUrl}/products/category/sport`);
+      const data = await response.json();
+
+      setSports(data)
+    }
+
+    getItems();
   }, []);
 
   return (
