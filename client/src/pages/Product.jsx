@@ -1,9 +1,12 @@
 import React, {useState, useEffect, useContext} from 'react';
 import ApiUrlContext from '../ApiUrlContext.js';
 import {useParams} from 'react-router-dom'
-import {AddtoCartButton, AddtoCartWrapper, ProductDetailButton, ProductDetailCard, ProductDescription, SizeButton, SizeButtonWrapper, ProductLabel, BackButton} from './ProductStyle';
+import {Link} from 'react-router-dom';
+import {AddtoCartButton, AddtoCartWrapper, ProductDetailButton, ProductDetailCard, ProductDescription, SizeButton, SizeButtonWrapper, ProductLabel, BackButton, ProductImgDetail, ProductTextWrapper} from './ProductStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ToggleDisplay from 'react-toggle-display';
+import logo from '../images/shop.png'
+import { HeaderWrapper } from './FrontPageStyle';
 import Footer from '../components/footer/Footer';
 
 const Product = () => {
@@ -57,13 +60,15 @@ const Product = () => {
   }
 
   return (
-    <div>
+    <>
       <ProductDetailCard>
-        <img src={product.image} alt="" style={{width: "100%", marginTop: "10px", marginBottom: "10px"}} />
+        <ProductImgDetail src={product.image} alt="" />
+        
+      <ProductTextWrapper>
         <ProductLabel>
           <span>{product.category}</span>
           <span><strong>{product.name}</strong></span>
-          <span>{product.price}</span>
+          <span>${product.price}</span>
         </ProductLabel>
 
         <SizeButtonWrapper>
@@ -81,21 +86,22 @@ const Product = () => {
 
         <div>
           <ProductDetailButton onClick={() => handleClick()}>Product information</ProductDetailButton>
-          <ToggleDisplay show={show}>{product.description}</ToggleDisplay>
+            <ToggleDisplay show={show}>{product.description}</ToggleDisplay>
         </div>
         {/*<BackButton><Link to="/products" style={{textDecoration:"none"}}>Back to check more</Link></BackButton>*/}
         <AddtoCartWrapper>
           <AddtoCartButton onClick={addToCart}>Add to cart</AddtoCartButton>
           <FavoriteBorderIcon
-            style={{width: "45px", height: "50px", marginLeft: "10px", border: "1px solid black"}}
+            style={{width: "45px", height: "50px", marginLeft: "10px", border: "1px solid black", cursor:"pointer"}}
             onClick={addToFavourites}
           />
-        </AddtoCartWrapper>
+          </AddtoCartWrapper>
+      </ProductTextWrapper>
       </ProductDetailCard>
       <br />
       <br />
       <Footer />
-    </div>
+    </>
   )
 }
 

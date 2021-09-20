@@ -7,6 +7,7 @@ import {
   Box,
 } from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import { FavouritesWraper, FavouritesLists, FavouriteCard, FavouriteImg } from './FavouritesStyle';
 
 const Favourites = () => {
   const paperStyle = {
@@ -74,25 +75,30 @@ const Favourites = () => {
   return (
     <div>
       <h2>Favourites</h2>
-      <Grid container direction="column" alignItems="center">
+      <FavouritesWraper>
         {favourites.length ? (
-          <Paper elevation={10} style={paperStyle}>
+          <FavouritesLists>
             {
               favourites.map(product => (
-                <Box key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
-                  <img src={product.image} alt={product.name} />
-                  <Typography variant="h6">{product.name}</Typography>
+                <FavouriteCard key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
+                  <FavouriteImg src={product.image} alt={product.name} />
+                  <div style={{ paddingTop: '20%' }}>
+                    <Typography variant="h7" >{product.name}</Typography>
+                    <br />
+                    <br />
+                    <Typography variant="h7" style={{ marginTop: '20%' }}>${product.price}</Typography>
+                  </div>
                   <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(product._id)} />
-                </Box>
+                </FavouriteCard>
               ))
             }
-          </Paper>
+          </FavouritesLists>
         ) : null}
         {/* To be added next sprint
         {<button style={{whiteSpace: "nowrap"}} onClick={addFavouritesToCart}>Add all to cart</button>
           showAddToCartMessage ? <p style={{margin: 0, color: '#555'}}>Added {favourites.length} item(s) to your cart</p> : null
         } */}
-      </Grid>
+      </FavouritesWraper>
     </div>
   )
 }
