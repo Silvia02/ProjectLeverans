@@ -61,9 +61,8 @@ const Product = () => {
 
   return (
     <>
-      <ProductDetailCard>
-        <ProductImgDetail src={product.image} alt="" />
-        
+    <ProductDetailCard>
+      <ProductImgDetail src={product.image} alt="" />
       <ProductTextWrapper>
         <ProductLabel>
           <span>{product.category}</span>
@@ -97,7 +96,7 @@ const Product = () => {
           />
           </AddtoCartWrapper>
       </ProductTextWrapper>
-      </ProductDetailCard>
+    </ProductDetailCard>
       <br />
       <br />
       <Footer />
