@@ -1,5 +1,7 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import ApiUrlContext from '../ApiUrlContext.js';
+import favouriteImg from '../images/heart.png';
 import {
   Grid,
   Typography,
@@ -7,7 +9,7 @@ import {
   Box,
 } from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import { FavouritesWraper, FavouritesLists, FavouriteCard, FavouriteImg } from './FavouritesStyle';
+import { FavouritesWraper, FavouritesLists, FavouriteCard, FavouriteImg, FavouriteHeader } from './FavouritesStyle';
 
 const Favourites = () => {
   const paperStyle = {
@@ -74,7 +76,10 @@ const Favourites = () => {
 
   return (
     <div>
-      <h2>Favourites</h2>
+      <FavouriteHeader>
+        <img src={favouriteImg} alt="favourite" style={{ width: "55px", marginRight:"10px" }} />
+        <h1 style={{ fontFamily: 'fantancy' }}>Favourites</h1>  
+      </FavouriteHeader>
       <FavouritesWraper>
         {favourites.length ? (
           <FavouritesLists>

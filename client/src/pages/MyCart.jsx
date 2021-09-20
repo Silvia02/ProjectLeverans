@@ -10,14 +10,10 @@ import {
   Box,
 } from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import { CartPageWrapper, CartCard, CartText, CartWrapper, CheckoutWrapper, MyCartHeader } from './MyCartStyle.jsx';
+import mycarticon from '../images/mycart.jpeg';
 
 const MyCart = () => {
-  const paperStyle = {
-    padding: 20,
-    width: '90%',
-    height: 'auto',
-    margin: '5%'
-  }
 
   const ApiUrl = useContext(ApiUrlContext);
   const [cart, setCart] = useState([]);
@@ -121,36 +117,43 @@ const MyCart = () => {
   }
 
   return (
-    <div>
-      <Grid container direction="column" alignItems="center">
-        <Paper elevation={10} style={paperStyle}>
+    <CartPageWrapper container direction="column" alignItems="center">
+        <MyCartHeader>
+          <h2 style={{ fontFamily: 'fantancy' }}>My Cart</h2>
+          <img src={mycarticon} alt="mycart" style={{ width: "35px", marginLeft: "4px" }} />
+        </MyCartHeader>
+        <br />
+        <CartWrapper>
           {
             cart.map(product => (
-              <Box key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
+              <CartCard key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
                 <img src={product.image} alt={product.name} />
-                <div>
-                  <Typography variant="h6">{product.name}</Typography>
-                  <Typography variant="h6" align="center" style={{marginTop: "10px"}}>${product.price.toFixed(2)}</Typography>
+                <CartText>
+                  <Typography variant="h6" style={{ fontFamily:"'Times New Roman', Times, serif"}}>{product.name}</Typography>
+                  <Typography variant="h6" align="center" style={{ marginTop: "10px", fontFamily: "'Times New Roman', Times, serif"}}>${product.price.toFixed(2)}</Typography>
                   <div>
                     <button style={{width: "15px", backgroundColor: "white", cursor: "hover"}} onClick={() => changeQuantity(product._id, 'increment')}>+</button>
-                    <span> {product.quantity} </span>
+                    <span>   {product.quantity} </span>
                     {/* decrement currently does not work, therefore button is disabled */}
                     <button disabled={true} style={{width: "15px", backgroundColor: "white", cursor: "not-allowed"}} onClick={() => changeQuantity(product._id, 'decrement')}>-</button>
                   </div>
-                </div>
+                </CartText>
                 <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(product._id)} />
 
-              </Box>
+              </CartCard>
 
             ))
           }
           <br />
-          <hr style={{width: "100%"}} />
-          <Typography variant="h5" style={{textAlign: "end", marginTop: "25px", fontWeight: "bold"}}>Total: ${cartPrice.toFixed(2)}</Typography>
-          <Link to="/checkout"><AddtoCartButton style={{width: '100%', marginTop: '25px', border: "none"}}>Check out</AddtoCartButton></Link>
-        </Paper>
-      </Grid>
-    </div>
+          
+        </CartWrapper>
+      <CheckoutWrapper>
+        <br />
+        <h2 style={{ textAlign: "left", fontFamily: "'Times New Roman', Times, serif"}}>Total amount</h2>
+        <Typography style={{ textAlign: "end", fontSize: "1.3em", marginTop: "25px", fontFamily: "'Times New Roman', Times, serif" }}>Total (inkl. moms):${cartPrice.toFixed(2)}</Typography>
+          <Link to="/checkout"><AddtoCartButton style={{ width: '100%', marginTop: '25px', border: "none" }}>Check out</AddtoCartButton></Link>
+        </CheckoutWrapper>
+      </CartPageWrapper>
   )
 }
 

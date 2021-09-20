@@ -7,30 +7,55 @@ export const ProductDetailCard = styled.div`
   width:80%;
   margin-left:10%;
    @media (min-width: 1023px) {
+    display:flex;
     flex-direction: row;
-    width:60%;
-    margin-left:20%;
+    width:80%;
+    margin-left:10%;
     margin-top: 5%;
    }
+   @media (min-width: 1024px){
+     flex-direction: row;
+     width:100%;
+     margin-left: 0%;
+     margin-top: 2%;
+   }
+
 `
 
 export const ProductImgDetail = styled.img`
   width:100%;
   margin-top: 10px;
   margin-bottom: 10px;
-  @media (min-width: 1023px) {
-    width:35%;
+  @media (min-width: 768px){
+    width:60%;
+    margin-left: 20%;
   }
+  @media (min-width: 1024.9px){
+    width:23%;
+    margin-left: 20%;
+    margin-right: -15%;
+  }
+ 
 `
 
 export const ProductTextWrapper = styled.div`
   margin-top: 10px;
+  @media (min-width: 768px){
+    width:60%;
+    margin-left: 20%;
+  }
   @media (min-width: 1023px) {
-    width:50%;
-    margin-left:10%;
+    width:60%;
+    margin-left:20%;
+    margin-top: 8%;
     display:flex;
     flex-direction: column;
     justify-content: center;
+  }
+  @media (min-width: 1024.9px){
+    width:32%;
+    margin-top: 2%;
+
   }
 
 `
