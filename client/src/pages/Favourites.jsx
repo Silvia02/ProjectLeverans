@@ -1,5 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import DefaultHeader from '../components/DefaultHeader/DefaultHeader';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import ApiUrlContext from '../ApiUrlContext.js';
+import favouriteImg from '../images/heart.png';
 import {
   Grid,
   Typography,
@@ -7,6 +9,7 @@ import {
   Box,
 } from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import { FavouritesWraper, FavouritesLists, FavouriteCard, FavouriteImg, FavouriteHeader } from './FavouritesStyle';
 
 const Favourites = () => {
   const paperStyle = {
@@ -16,6 +19,7 @@ const Favourites = () => {
     margin: '25px'
   }
 
+  const ApiUrl = useContext(ApiUrlContext);
   const [favourites, setFavourites] = useState([]);
   // const [showAddToCartMessage, setShowAddToCartMessage] = useState(false); // to be added in sprint 2
 
@@ -27,7 +31,7 @@ const Favourites = () => {
 
   const fetchFavourites = async () => {
     const TEMP_WISHLIST_ID = '6142f237423da20abed34513';
-    const response = await fetch(`http://localhost:4000/favourites/${TEMP_WISHLIST_ID}`);
+    const response = await fetch(`${ApiUrl}/favourites/${TEMP_WISHLIST_ID}`);
     const data = await response.json();
 
     setFavourites(data.products);
@@ -35,7 +39,7 @@ const Favourites = () => {
 
   const removeProduct = async (productId) => {
     const TEMP_WISHLIST_ID = '6142f237423da20abed34513';
-    const response = await fetch(`http://localhost:4000/favourites/remove/${TEMP_WISHLIST_ID}`, {
+    const response = await fetch(`${ApiUrl}/favourites/remove/${TEMP_WISHLIST_ID}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -55,7 +59,7 @@ const Favourites = () => {
   // // Not fully working, will fix next sprint
   // const addFavouritesToCart = async () => {
   //   const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
-  //   await fetch('http://localhost:4000/favourites/addToCart', {
+  //   await fetch(`${ApiUrl}/favourites/addToCart`, {
   //     method: 'PATCH',
   //     headers: {
   //       'Accept': 'application/json',
@@ -72,26 +76,34 @@ const Favourites = () => {
 
   return (
     <div>
-      <h2>Favourites</h2>
-      <Grid container direction="column" alignItems="center">
+      <FavouriteHeader>
+        <img src={favouriteImg} alt="favourite" style={{ width: "55px", marginRight:"10px" }} />
+        <h1 style={{ fontFamily: 'fantancy' }}>Favourites</h1>  
+      </FavouriteHeader>
+      <FavouritesWraper>
         {favourites.length ? (
-          <Paper elevation={10} style={paperStyle}>
+          <FavouritesLists>
             {
               favourites.map(product => (
-                <Box key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
-                  <img src={product.image} alt={product.name} />
-                  <Typography variant="h6">{product.name}</Typography>
+                <FavouriteCard key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
+                  <FavouriteImg src={product.image} alt={product.name} />
+                  <div style={{ paddingTop: '20%' }}>
+                    <Typography variant="h7" >{product.name}</Typography>
+                    <br />
+                    <br />
+                    <Typography variant="h7" style={{ marginTop: '20%' }}>${product.price}</Typography>
+                  </div>
                   <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(product._id)} />
-                </Box>
+                </FavouriteCard>
               ))
             }
-          </Paper>
+          </FavouritesLists>
         ) : null}
         {/* To be added next sprint
         {<button style={{whiteSpace: "nowrap"}} onClick={addFavouritesToCart}>Add all to cart</button>
           showAddToCartMessage ? <p style={{margin: 0, color: '#555'}}>Added {favourites.length} item(s) to your cart</p> : null
         } */}
-      </Grid>
+      </FavouritesWraper>
     </div>
   )
 }

@@ -11,6 +11,7 @@ import {
   TableRow,
 } from '@material-ui/core'
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import Mycart from "./MyCart"
 
 
 const useStyle = makeStyles(theme => ({
@@ -34,7 +35,7 @@ export const ShippingDetails = () => {
   const paperStyle = {
     padding: 20,
     width: 370,
-    height: '60vh',
+    height: '65vh',
     margin: '20px',
   }
   

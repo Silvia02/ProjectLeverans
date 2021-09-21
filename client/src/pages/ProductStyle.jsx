@@ -6,6 +6,58 @@ export const ProductDetailCard = styled.div`
   flex-wrap: wrap;
   width:80%;
   margin-left:10%;
+   @media (min-width: 1023px) {
+    display:flex;
+    flex-direction: row;
+    width:80%;
+    margin-left:10%;
+    margin-top: 5%;
+   }
+   @media (min-width: 1024px){
+     flex-direction: row;
+     width:100%;
+     margin-left: 0%;
+     margin-top: 2%;
+   }
+
+`
+
+export const ProductImgDetail = styled.img`
+  width:100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  @media (min-width: 768px){
+    width:60%;
+    margin-left: 20%;
+  }
+  @media (min-width: 1024.9px){
+    width:23%;
+    margin-left: 20%;
+    margin-right: -15%;
+  }
+ 
+`
+
+export const ProductTextWrapper = styled.div`
+  margin-top: 10px;
+  @media (min-width: 768px){
+    width:60%;
+    margin-left: 20%;
+  }
+  @media (min-width: 1023px) {
+    width:60%;
+    margin-left:20%;
+    margin-top: 8%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media (min-width: 1024.9px){
+    width:32%;
+    margin-top: 2%;
+
+  }
+
 `
 export const ProductLabel = styled.div`
   display:flex;
@@ -14,6 +66,9 @@ export const ProductLabel = styled.div`
   font-size: 1em;
   justify-content: space-around;
   margin-bottom: 10px;
+  @media (min-width: 1023px) {
+   font-size: 1.3em;
+  }
 `
 export const ProductDetailButton = styled.button`
   width:100%;
@@ -24,9 +79,16 @@ export const ProductDetailButton = styled.button`
   background-color: whitesmoke;
   text-align: center;
   justify-content: center;
+   @media (min-width: 1023px) {
+   font-size: 1.3em;
+  }
 `
 export const ProductDescription = styled.p`
   display: none;
+  @media (min-width: 1023px) {
+   margin-bottom: 20px;
+   padding-bottom: 20px;
+  }
 `
 
 export const SizeButtonWrapper = styled.div`
@@ -52,6 +114,7 @@ export const AddtoCartWrapper = styled.div`
   display:flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  
 `
 export const AddtoCartButton = styled.button`
   cursor: pointer;
@@ -61,6 +124,9 @@ export const AddtoCartButton = styled.button`
   background-color: rgb(38, 39, 39);
   color:whitesmoke;
   margin-left: 3px;
+   @media (min-width: 1023px) {
+   font-size: 1.3em;
+  }
 `
 export const BackButton = styled.button`
   width:100%;

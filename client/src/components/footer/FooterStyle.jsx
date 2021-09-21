@@ -9,6 +9,7 @@ export const FooterWrapper = styled.div`
   border-top: black 1px solid;
   position: fixed;
   bottom: 0;
+  margin-top: 5%;
   width: 100vw;
   height: 50px;
   z-index:99;

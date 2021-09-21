@@ -1,7 +1,7 @@
-import React,{ useState } from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useContext} from "react";
+import ApiUrlContext from '../ApiUrlContext.js';
 import axios from 'axios';
-import { useHistory } from "react-router";
+import {useHistory} from "react-router";
 import {
   StlyedFormWrappper,
   StlyedForm,
@@ -10,8 +10,9 @@ import {
 } from "./FrontPageStyle";
 import Header from "../components/Header/Header";
 
-
 const Register = () => {
+  const ApiUrl = useContext(ApiUrlContext);
+
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState("")
   const [user, setUser] = useState({
@@ -22,28 +23,27 @@ const Register = () => {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const {name, value} = e.target;
     setUser({
       ...user,
-      [name]:value
+      [name]: value
     })
   }
 
   const register = (e) => {
     e.preventDefault();
-    const { name, email, password, confirmPassword } = user
-    
+    const {name, email, password, confirmPassword} = user
+
     if (name && email && password && (password === confirmPassword)) {
-      axios.post("http://localhost:4000/users", user)
+      axios.post(`${ApiUrl}/users`, user)
         .then(res => {
           setErrorMessage((res.data.message))
-          
         })
     } else {
       setErrorMessage("Invalid input")
-    } 
+    }
   }
-  
+
   return (
     <>
       <h1>Register</h1>
@@ -51,15 +51,15 @@ const Register = () => {
         <StlyedForm>
           <label htmlFor="UserName">User Name</label>
           <StlyedInput type="text" name="name" value={user.name}
-            placeholder="UserName" onChange={handleChange}/>
+            placeholder="Username" onChange={handleChange} />
           <label htmlFor="Email">Email</label>
 
           <StlyedInput type="email" name="email" value={user.email}
-            placeholder="Email" onChange={handleChange}/>
+            placeholder="Email" onChange={handleChange} />
           <label htmlFor="Password">Password</label>
 
           <StlyedInput type="password" name="password" value={user.password}
-            placeholder="Password" onChange={handleChange}/>
+            placeholder="Password" onChange={handleChange} />
 
           <label htmlFor="Password">Confirm Password</label>
           <StlyedInput
@@ -69,13 +69,13 @@ const Register = () => {
             placeholder="Confirm Password"
             onChange={handleChange}
           />
-          <div style={{marginTop:"15px", padding:"5px",textAlign:"center"}}>
-             <p style={{ color: "orangered",fontSize:"20px" }}>{errorMessage}</p>
+          <div style={{marginTop: "15px", padding: "5px", textAlign: "center"}}>
+            <p style={{color: "orangered", fontSize: "20px"}}>{errorMessage}</p>
           </div>
-            <Button onClick={register}>Register</Button>
+          <Button onClick={register}>Register</Button>
           <Button onClick={() => history.push('/login')}>Login</Button>
         </StlyedForm>
-      </StlyedFormWrappper>  
+      </StlyedFormWrappper>
     </>
   );
 };

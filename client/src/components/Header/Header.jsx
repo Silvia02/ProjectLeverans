@@ -29,11 +29,11 @@ const Header = ({stayLogedin, userName }) => {
        
        <div className="header">
        <Link to="/home"><ArrowBackIosIcon style={{marginTop:"40px"}}></ArrowBackIosIcon></Link>
-        <h2 style={{marginTop:45,fontFamily:'fantasy',fontSize:'large'}}> The Shoe Store</h2>
-         <Avatar area-aria-controls="menu" style={iconStyle} onClick={handleMenu} />
+        <h2 style={{marginTop:45,fontFamily:'fantasy'}}> The Shoe Store</h2>
+        <div className="avatar"><Avatar area-aria-controls="menu" style={iconStyle} onClick={handleMenu} /></div> 
          <div className="userStyle">
            <span>{userName}</span>
-         </div>
+           </div>
         </div>
        <Menu
          style={{marginTop:"40px",marginLeft:"-10px"}}
@@ -53,6 +53,7 @@ const Header = ({stayLogedin, userName }) => {
  }
 const iconStyle = {
   marginTop: 30,
+  marginRight: -10,
   
 }
 export default Header;

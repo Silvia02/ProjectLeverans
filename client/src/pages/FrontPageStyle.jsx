@@ -24,20 +24,25 @@ export const HeaderLinks = styled.div`
 export const FrontPageWrapper = styled.div`
   display:flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 80px;
   @media (min-width: 1023px) {
     width:80%;
     flex-direction: row;
     flex-wrap: wrap;
     margin-left: 13%; 
     margin-bottom: 80px;
+    margin-top: 10%;
+  }
+  @media (min-width: 1024.9px){
+    margin-top: 0%;
   }
 `;
 export const PhotoCard = styled.div`
   position: relative;
   @media (min-width: 1023px) {
     width:45%;
-    margin:10px;
+    margin:0px;
+    margin-right: 8px;
   }
 
 `;

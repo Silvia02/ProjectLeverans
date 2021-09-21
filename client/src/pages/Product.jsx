@@ -1,24 +1,26 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react';
+import ApiUrlContext from '../ApiUrlContext.js';
 import {useParams} from 'react-router-dom'
 import {Link} from 'react-router-dom';
-import {AddtoCartButton, AddtoCartWrapper, ProductDetailButton, ProductDetailCard, ProductDescription, SizeButton, SizeButtonWrapper, ProductLabel, BackButton} from './ProductStyle';
+import {AddtoCartButton, AddtoCartWrapper, ProductDetailButton, ProductDetailCard, ProductDescription, SizeButton, SizeButtonWrapper, ProductLabel, BackButton, ProductImgDetail, ProductTextWrapper} from './ProductStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ToggleDisplay from 'react-toggle-display';
 import logo from '../images/shop.png'
-import {HeaderWrapper} from './FrontPageStyle';
+import { HeaderWrapper } from './FrontPageStyle';
 import Footer from '../components/footer/Footer';
 
 const Product = () => {
   const {id} = useParams()
   const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
+  const ApiUrl = useContext(ApiUrlContext);
 
   useEffect(() => {
     fetchProduct();
   }, []);
 
   const fetchProduct = async () => {
-    const response = await fetch(`http://localhost:4000/products/${id}`);
+    const response = await fetch(`${ApiUrl}/products/${id}`);
     const data = await response.json();
     console.log(data)
     setProduct(data)
@@ -26,7 +28,7 @@ const Product = () => {
 
   const addToCart = async () => {
     const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
-    await fetch(`http://localhost:4000/cart/add/${TEMP_CART_ID}`, {
+    await fetch(`${ApiUrl}/cart/add/${TEMP_CART_ID}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -41,7 +43,7 @@ const Product = () => {
 
   const addToFavourites = async () => {
     const TEMP_WISHLIST_ID = '6142f237423da20abed34513';
-    await fetch(`http://localhost:4000/favourites/add/${TEMP_WISHLIST_ID}`, {
+    await fetch(`${ApiUrl}/favourites/add/${TEMP_WISHLIST_ID}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -58,13 +60,14 @@ const Product = () => {
   }
 
   return (
-    <div>
-      <ProductDetailCard>
-        <img src={product.image} alt="" style={{width: "100%", marginTop: "10px", marginBottom: "10px"}} />
+    <>
+    <ProductDetailCard>
+      <ProductImgDetail src={product.image} alt="" />
+      <ProductTextWrapper>
         <ProductLabel>
           <span>{product.category}</span>
           <span><strong>{product.name}</strong></span>
-          <span>{product.price}</span>
+          <span>${product.price}</span>
         </ProductLabel>
 
         <SizeButtonWrapper>
@@ -82,21 +85,22 @@ const Product = () => {
 
         <div>
           <ProductDetailButton onClick={() => handleClick()}>Product information</ProductDetailButton>
-          <ToggleDisplay show={show}>{product.description}</ToggleDisplay>
+            <ToggleDisplay show={show}>{product.description}</ToggleDisplay>
         </div>
         {/*<BackButton><Link to="/products" style={{textDecoration:"none"}}>Back to check more</Link></BackButton>*/}
         <AddtoCartWrapper>
           <AddtoCartButton onClick={addToCart}>Add to cart</AddtoCartButton>
           <FavoriteBorderIcon
-            style={{width: "45px", height: "50px", marginLeft: "10px", border: "1px solid black"}}
+            style={{width: "45px", height: "50px", marginLeft: "10px", border: "1px solid black", cursor:"pointer"}}
             onClick={addToFavourites}
           />
-        </AddtoCartWrapper>
-      </ProductDetailCard>
+          </AddtoCartWrapper>
+      </ProductTextWrapper>
+    </ProductDetailCard>
       <br />
       <br />
       <Footer />
-    </div>
+    </>
   )
 }
 
