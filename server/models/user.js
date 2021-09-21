@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Cart from './cart.js';
+// import Cart from './cart.js';
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -17,12 +17,12 @@ const UserSchema = new mongoose.Schema({
     minlength: [6, 'Minimum password length must be 6 characters']
   },
   cart: {
-    type: Cart.schema,
-    default: () => ({}),
+    type: Array,
+    default: [],
   },
   wishList: {
-    type: Cart.schema,
-    default: () => ({}),
+    type: Array,
+    default: [],
   }
 })
 // UserSchema.pre('save', async function (next) {

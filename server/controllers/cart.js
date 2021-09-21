@@ -33,13 +33,11 @@ export const addToCart = async (req, res) => {
 
     const product = await Product.findById(productId);
 
-    const cart = await User.findByIdAndUpdate(userId, {
-      cart: {
-        $push: {products: product},
-      }
+    const user = await User.findByIdAndUpdate(userId, {
+        $push: { cart: product }
     }, {new: true}).exec();
 
-    res.status(200).json(cart);
+    res.status(200).json(user.cart);
   } catch (error) {
     res.status(400).json({message: error.message});
   }
@@ -47,13 +45,19 @@ export const addToCart = async (req, res) => {
 
 export const removeFromCart = async (req, res) => {
   try {
+    const userId = req.params.id;
     const {productId} = req.body;
-    const cartId = req.params.id;
 
     // Do nothing right now because removing a single item is a lot harder than it seems
-    const cart = await Cart.findById(cartId);
+    const user = await User.findById(userId);
+    const index = user.cart.findIndex(product => product._id === productId);
+    let updatedCart = [...user.cart];
+    updatedCart.splice(index, 1);
 
-    res.status(200).json(cart);
+    user.cart = updatedCart;
+    await user.save();
+
+    res.status(200).json(updatedCart);
   } catch (error) {
     res.status(404).json({message: error.message});
   }
@@ -64,15 +68,13 @@ export const removeAllFromCart = async (req, res) => {
     const userId = req.params.id;
     const {productId} = req.body;
 
-    const cart = await User.findByIdAndUpdate(userId, {
-      cart: {
-        $pull: {
-          products: {_id: productId}
-        }
+    const user = await User.findByIdAndUpdate(userId, {
+      $pull: {
+        cart: {_id: productId}
       }
     }, {new: true}).exec();
 
-    res.status(200).json(cart);
+    res.status(200).json(user.cart);
   } catch (error) {
     res.status(404).json({message: error.message});
   }

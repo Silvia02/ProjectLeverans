@@ -82,13 +82,14 @@ const MyCart = () => {
     console.log(data);
 
     // Update cart information
-    // cartUpdater(data.products);
+    cartUpdater(data);
   }
 
   const changeQuantity = async (productId, operation) => {
-    const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
+    // const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
+    const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
     const addOrRemove = operation === 'increment' ? 'add' : 'remove';
-    const response = await fetch(`${ApiUrl}/cart/${addOrRemove}/${TEMP_CART_ID}`, {
+    const response = await fetch(`${ApiUrl}/cart/${addOrRemove}/${userId}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -102,12 +103,13 @@ const MyCart = () => {
     const data = await response.json();
 
     // Update cart information
-    cartUpdater(data.products);
+    cartUpdater(data);
   }
 
   const removeProduct = async (productId) => {
-    const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
-    const response = await fetch(`${ApiUrl}/cart/delete/${TEMP_CART_ID}`, {
+    // const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
+    const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
+    const response = await fetch(`${ApiUrl}/cart/delete/${userId}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -121,7 +123,7 @@ const MyCart = () => {
     const data = await response.json();
 
     // Update cart information
-    cartUpdater(data.products);
+    cartUpdater(data);
   }
 
   return (
@@ -136,10 +138,10 @@ const MyCart = () => {
                   <Typography variant="h6">{product.name}</Typography>
                   <Typography variant="h6" align="center" style={{marginTop: "10px"}}>${product.price.toFixed(2)}</Typography>
                   <div>
-                    <button style={{width: "15px", backgroundColor: "white", cursor: "hover"}} onClick={() => changeQuantity(product._id, 'increment')}>+</button>
+                    <button style={{width: "15px", backgroundColor: "white", cursor: "pointer"}} onClick={() => changeQuantity(product._id, 'increment')}>+</button>
                     <span> {product.quantity} </span>
                     {/* decrement currently does not work, therefore button is disabled */}
-                    <button disabled={true} style={{width: "15px", backgroundColor: "white", cursor: "not-allowed"}} onClick={() => changeQuantity(product._id, 'decrement')}>-</button>
+                    <button style={{width: "15px", backgroundColor: "white", cursor: "pointer"}} onClick={() => changeQuantity(product._id, 'decrement')}>-</button>
                   </div>
                 </div>
                 <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(product._id)} />
