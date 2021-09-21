@@ -88,10 +88,10 @@ const Favourites = () => {
                 <FavouriteCard key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
                   <FavouriteImg src={product.image} alt={product.name} />
                   <div style={{ paddingTop: '20%' }}>
-                    <Typography variant="h7" >{product.name}</Typography>
+                    <Typography variant="h6" >{product.name}</Typography>
                     <br />
                     <br />
-                    <Typography variant="h7" style={{ marginTop: '20%' }}>${product.price}</Typography>
+                    <Typography variant="h6" style={{ marginTop: '20%' }}>${product.price}</Typography>
                   </div>
                   <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(product._id)} />
                 </FavouriteCard>

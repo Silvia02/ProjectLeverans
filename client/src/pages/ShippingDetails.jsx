@@ -176,7 +176,7 @@ export const ShippingDetails = () => {
     </Grid> 
     </form> 
     <br></br> 
-    <button type='submit' onClick={handleSubmit}>
+    <button id = "checkout" type='submit' onClick={handleSubmit}>
     Checkout </button> 
     </div>
   )
