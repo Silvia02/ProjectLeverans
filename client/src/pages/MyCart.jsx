@@ -110,7 +110,7 @@ const MyCart = () => {
     // const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
     const response = await fetch(`${ApiUrl}/cart/delete/${userId}`, {
-      method: 'DELETE',
+      method: 'PATCH',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -121,9 +121,9 @@ const MyCart = () => {
     });
 
     const data = await response.json();
-
+    console.log(data)
     // Update cart information
-    cartUpdater(data);
+    // cartUpdater(data);
   }
 
   return (

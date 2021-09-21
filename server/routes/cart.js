@@ -13,6 +13,6 @@ router.get('/:id', getCart);
 router.post('/', createCart);
 router.patch('/add/:id', addToCart);
 router.patch('/remove/:id', removeFromCart);
-router.delete('/delete/:id', removeAllFromCart);
+router.patch('/delete/:id', removeAllFromCart);
 
 export default router;

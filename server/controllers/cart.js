@@ -48,7 +48,6 @@ export const removeFromCart = async (req, res) => {
     const userId = req.params.id;
     const {productId} = req.body;
 
-    // Do nothing right now because removing a single item is a lot harder than it seems
     const user = await User.findById(userId);
     const index = user.cart.findIndex(product => product._id === productId);
     let updatedCart = [...user.cart];
@@ -68,10 +67,13 @@ export const removeAllFromCart = async (req, res) => {
     const userId = req.params.id;
     const {productId} = req.body;
 
+    // const user = await User.findById(userId);
+    // const updatedCart = [...user.cart].filter(product => product._id !== productId);
+    // user.cart = updatedCart;
+    // await user.save();
+
     const user = await User.findByIdAndUpdate(userId, {
-      $pull: {
-        cart: {_id: productId}
-      }
+      $pull: { cart: { _id: productId }  }
     }, {new: true}).exec();
 
     res.status(200).json(user.cart);
