@@ -14,9 +14,11 @@ export const createCart = async (req, res) => {
 
 export const getCart = async (req, res) => {
   try {
-    const cartId = req.params.id;
-    const cart = await Cart.findById(cartId);
-    res.status(200).json(cart);
+    // const cartId = req.params.id;
+    const userId = req.params.id;
+    const user = await User.findById(userId);
+    // const cart = await Cart.findById(cartId);
+    res.status(200).json(user.cart);
   } catch (error) {
     res.status(404).json({message: error.message});
   }
@@ -24,13 +26,17 @@ export const getCart = async (req, res) => {
 
 export const addToCart = async (req, res) => {
   try {
-    const cartId = req.params.id;
+    // const cartId = req.params.id;
+
+    const userId = req.params.id;
     const {productId} = req.body;
 
     const product = await Product.findById(productId);
 
-    const cart = await Cart.findByIdAndUpdate(cartId, {
-      $push: {products: product},
+    const cart = await User.findByIdAndUpdate(userId, {
+      cart: {
+        $push: {products: product},
+      }
     }, {new: true}).exec();
 
     res.status(200).json(cart);
@@ -55,12 +61,14 @@ export const removeFromCart = async (req, res) => {
 
 export const removeAllFromCart = async (req, res) => {
   try {
+    const userId = req.params.id;
     const {productId} = req.body;
-    const cartId = req.params.id;
 
-    const cart = await Cart.findByIdAndUpdate(cartId, {
-      $pull: {
-        products: {_id: productId}
+    const cart = await User.findByIdAndUpdate(userId, {
+      cart: {
+        $pull: {
+          products: {_id: productId}
+        }
       }
     }, {new: true}).exec();
 

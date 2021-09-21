@@ -73,12 +73,16 @@ const MyCart = () => {
   }
 
   const fetchCart = async () => {
-    const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
-    const response = await fetch(`${ApiUrl}/cart/${TEMP_CART_ID}`);
+    // const cartId = JSON.parse(window.localStorage.getItem('MyUser')).cart._id;
+    const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
+    // const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
+    const response = await fetch(`${ApiUrl}/cart/${userId}`);
     const data = await response.json();
 
+    console.log(data);
+
     // Update cart information
-    cartUpdater(data.products);
+    // cartUpdater(data.products);
   }
 
   const changeQuantity = async (productId, operation) => {
