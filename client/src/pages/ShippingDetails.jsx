@@ -74,7 +74,8 @@ export const ShippingDetails = () => {
   
   return ( 
           <div className = 'shippingDetails'>
-              <h1> Shipping Details </h1>
+      <h1> Shipping Details </h1>
+      <img src="http://mistydaydream.com/wp-content/uploads/2017/04/delivery-1.gif" alt="Delivery.gif"/>
               <form className = {classes.root} >
                 <Grid container >
                 <div className = 'formdetails' >
