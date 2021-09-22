@@ -44,28 +44,23 @@ const Favourites = () => {
         "productId": productId
       })
     });
-
     const data = await response.json();
-
-    // Update cart information
     setFavourites(data);
   }
 
-  // Not fully working, will fix next sprint
   const addFavouritesToCart = async () => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    // await fetch(`${ApiUrl}/favourites/addToCart/${userId}`, {
-    //   method: 'PATCH',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     "favourites": favourites,
-    //     "cartId": TEMP_CART_ID
-    //   })
-    // });
-    setShowSizePicker(true);
+    await fetch(`${ApiUrl}/favourites/addToCart/${userId}`, {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "shoeSize": size
+      })
+    });
+    setShowSizePicker(false);
   }
 
   return (
@@ -85,12 +80,15 @@ const Favourites = () => {
                 ))
               }
             </Paper>
-            <AddtoCartButton style={{whiteSpace: "nowrap"}} onClick={addFavouritesToCart}>Add favourites to cart</AddtoCartButton>
+            <AddtoCartButton style={{whiteSpace: "nowrap"}} onClick={() => setShowSizePicker(true)}>Add favourites to cart</AddtoCartButton>
           </>
         ) : null}
         {showSizePicker ? (
           <>
-            <Backdrop onClick={() => setShowSizePicker(false)} />
+            <Backdrop onClick={() => {
+              setShowSizePicker(false);
+              setSize(null); // disables confirm button incase size was selected
+            }} />
             <Modal>
               <ModalHeading>What is your size?</ModalHeading>
               <SizeButtonWrapper> {/* conditional styling will be added when size matches button */}
@@ -105,7 +103,7 @@ const Favourites = () => {
                 <SizeButton selected={size === 45} onClick={() => setSize(45)}>45</SizeButton>
                 <SizeButton selected={size === 46} onClick={() => setSize(46)}>46</SizeButton>
               </SizeButtonWrapper>
-              <InvertedAddtoCartButton>Confirm</InvertedAddtoCartButton>
+              <InvertedAddtoCartButton disabled={!size} onClick={addFavouritesToCart}>Confirm</InvertedAddtoCartButton>
             </Modal>
           </>
         ) : null}
