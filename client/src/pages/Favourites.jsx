@@ -27,16 +27,16 @@ const Favourites = () => {
 
 
   const fetchFavourites = async () => {
-    const TEMP_WISHLIST_ID = '6142f237423da20abed34513';
-    const response = await fetch(`${ApiUrl}/favourites/${TEMP_WISHLIST_ID}`);
+    const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
+    const response = await fetch(`${ApiUrl}/favourites/${userId}`);
     const data = await response.json();
 
-    setFavourites(data.products);
+    setFavourites(data);
   }
 
   const removeProduct = async (productId) => {
-    const TEMP_WISHLIST_ID = '6142f237423da20abed34513';
-    const response = await fetch(`${ApiUrl}/favourites/remove/${TEMP_WISHLIST_ID}`, {
+    const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
+    const response = await fetch(`${ApiUrl}/favourites/remove/${userId}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -50,7 +50,7 @@ const Favourites = () => {
     const data = await response.json();
 
     // Update cart information
-    setFavourites(data.products);
+    setFavourites(data);
   }
 
   // // Not fully working, will fix next sprint

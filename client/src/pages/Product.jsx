@@ -40,8 +40,8 @@ const Product = () => {
 
 
   const addToFavourites = async () => {
-    const TEMP_WISHLIST_ID = '6142f237423da20abed34513';
-    await fetch(`${ApiUrl}/favourites/add/${TEMP_WISHLIST_ID}`, {
+    const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
+    await fetch(`${ApiUrl}/favourites/add/${userId}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',

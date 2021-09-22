@@ -75,7 +75,6 @@ const MyCart = () => {
   const fetchCart = async () => {
     // const cartId = JSON.parse(window.localStorage.getItem('MyUser')).cart._id;
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    // const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
     const response = await fetch(`${ApiUrl}/cart/${userId}`);
     const data = await response.json();
 
@@ -86,7 +85,6 @@ const MyCart = () => {
   }
 
   const changeQuantity = async (productId, operation) => {
-    // const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
     const addOrRemove = operation === 'increment' ? 'add' : 'remove';
     const response = await fetch(`${ApiUrl}/cart/${addOrRemove}/${userId}`, {
@@ -107,7 +105,6 @@ const MyCart = () => {
   }
 
   const removeProduct = async (productId) => {
-    // const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
     const response = await fetch(`${ApiUrl}/cart/delete/${userId}`, {
       method: 'PATCH',
@@ -123,7 +120,7 @@ const MyCart = () => {
     const data = await response.json();
     console.log(data)
     // Update cart information
-    // cartUpdater(data);
+    cartUpdater(data);
   }
 
   return (
