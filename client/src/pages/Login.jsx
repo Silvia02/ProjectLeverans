@@ -8,6 +8,7 @@ import {
   StlyedInput,
   Button
 } from "./FrontPageStyle";
+import Footer from "../components/footer/Footer.jsx";
 
 
 const Login = ({stayLogedin}) => {
@@ -57,6 +58,7 @@ const Login = ({stayLogedin}) => {
 
         </StlyedForm>
       </StlyedFormWrappper>
+      <Footer />
     </>
   );
 };

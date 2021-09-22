@@ -9,6 +9,7 @@ import {
   Button,
 } from "./FrontPageStyle";
 import Header from "../components/Header/Header";
+import Footer from "../components/footer/Footer.jsx";
 
 const Register = () => {
   const ApiUrl = useContext(ApiUrlContext);
@@ -76,6 +77,7 @@ const Register = () => {
           <Button onClick={() => history.push('/login')}>Login</Button>
         </StlyedForm>
       </StlyedFormWrappper>
+      <Footer />
     </>
   );
 };
