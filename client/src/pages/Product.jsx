@@ -14,6 +14,8 @@ const Product = () => {
   const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
   const ApiUrl = useContext(ApiUrlContext);
+  const [favouritesAmount, setFavouritesAmount] = useState(0);
+  const [myCartAmount, setMyCartAmount] = useState(0)
 
   useEffect(() => {
     fetchProduct();
@@ -22,8 +24,7 @@ const Product = () => {
   const fetchProduct = async () => {
     const response = await fetch(`${ApiUrl}/products/${id}`);
     const data = await response.json();
-    console.log(data)
-    setProduct(data)
+    setProduct(data);
   }
 
   const addToCart = async () => {
@@ -38,6 +39,9 @@ const Product = () => {
         "productId": product._id
       })
     });
+    const response = await fetch(`${ApiUrl}/cart/${TEMP_CART_ID}`);
+    const data = await response.json();
+    setMyCartAmount(data.products.length);
   }
 
 
@@ -53,8 +57,11 @@ const Product = () => {
         "productId": product._id
       })
     });
+    const response = await fetch(`${ApiUrl}/favourites/${TEMP_WISHLIST_ID}`);
+    const data = await response.json();
+    setFavouritesAmount(data.products.length)
   }
-
+ 
   const handleClick = () => {
     setShow(!show)
   }
@@ -99,7 +106,10 @@ const Product = () => {
     </ProductDetailCard>
       <br />
       <br />
-      <Footer />
+      <Footer
+        favouritesAmount={favouritesAmount}
+        myCartAmount={myCartAmount}
+        />
     </>
   )
 }

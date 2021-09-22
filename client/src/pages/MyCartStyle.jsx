@@ -43,7 +43,7 @@ export const CartWrapper = styled.div`
 export const CartCard = styled.div`
   display:flex;
   flex-direction: row;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   text-align: center;
   justify-content:space-around;
   background-color: white;

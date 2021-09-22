@@ -12,12 +12,6 @@ export const FooterWrapper = styled.div`
   margin-top: 5%;
   width: 100vw;
   height: 50px;
-  z-index:99;
+  z-index:5;
   width:100%;
-`
-export const ItemsNumber = styled.button`
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background-color:gold;
 `

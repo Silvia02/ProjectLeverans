@@ -49,9 +49,6 @@ function App() {
     } else {
       setFavourites([...favourites, product])
     }
-    console.log('favourite button is onclick')
-    console.log(product)
-    console.log(favourites)
   }
   const onRemove = (product) => {
     const exist = favourites.find(favourite => favourite._id === product._id);
@@ -81,9 +78,7 @@ function App() {
     } else {
       setShoppingList([...shoppingList, product])
     }
-    console.log('Add to cart button is onclick')
-    console.log(product)
-    console.log(shoppingList)
+    
   }
   const removeFromShoppingList = (product) => {
     const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
@@ -162,7 +157,6 @@ function App() {
             <MyCart />
           </Route>
         </Switch>
-        <Footer/>
       </Router>
     </div>
   )}

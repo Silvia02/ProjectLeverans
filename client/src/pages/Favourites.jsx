@@ -10,8 +10,9 @@ import {
 } from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { FavouritesWraper, FavouritesLists, FavouriteCard, FavouriteImg, FavouriteHeader } from './FavouritesStyle';
+import Footer from '../components/footer/Footer.jsx';
 
-const Favourites = () => {
+const Favourites = ({favouritesTest}) => {
   const paperStyle = {
     padding: 20,
     width: 320,
@@ -35,6 +36,7 @@ const Favourites = () => {
     const data = await response.json();
 
     setFavourites(data.products);
+    
   }
 
   const removeProduct = async (productId) => {
@@ -104,6 +106,7 @@ const Favourites = () => {
           showAddToCartMessage ? <p style={{margin: 0, color: '#555'}}>Added {favourites.length} item(s) to your cart</p> : null
         } */}
       </FavouritesWraper>
+      <Footer />
     </div>
   )
 }
