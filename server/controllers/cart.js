@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import User from '../models/user.js'
 import Cart from '../models/cart.js'
 import Product from '../models/product.js'
@@ -34,7 +35,7 @@ export const addToCart = async (req, res) => {
     const product = await Product.findById(productId);
 
     const user = await User.findByIdAndUpdate(userId, {
-        $push: { cart: product }
+      $push: {cart: product}
     }, {new: true}).exec();
 
     res.status(200).json(user.cart);
@@ -67,13 +68,9 @@ export const removeAllFromCart = async (req, res) => {
     const userId = req.params.id;
     const {productId} = req.body;
 
-    // const user = await User.findById(userId);
-    // const updatedCart = [...user.cart].filter(product => product._id !== productId);
-    // user.cart = updatedCart;
-    // await user.save();
-
+    const product = await Product.findById(productId);
     const user = await User.findByIdAndUpdate(userId, {
-      $pull: { cart: { _id: productId }  }
+      $pull: {cart: {_id: product._id}}
     }, {new: true}).exec();
 
     res.status(200).json(user.cart);
