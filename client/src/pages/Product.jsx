@@ -25,7 +25,6 @@ const Product = () => {
   }
 
   const addToCart = async () => {
-    // const TEMP_CART_ID = '613f3abe06c475e0525cee9b';
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
     await fetch(`${ApiUrl}/cart/add/${userId}`, {
       method: 'PATCH',
