@@ -30,45 +30,49 @@ const MyCart = () => {
   // Updates all cart information it changes
   const cartUpdater = (newCart) => {
     // Removes duplicates and sets quantity
-    const reducedCart = cartReducer(newCart)
-    setCart(reducedCart);
-
+    // const reducedCart = cartReducer(newCart)
+    setCart(newCart);
     // Calculate price for entire cart
-    const price = cartPriceCalculator(reducedCart);
+    const price = cartPriceCalculator(newCart);
+    console.log(price);
     setCartPrice(price);
   }
 
-  // Remove duplicates and add quanitty of products
-  const cartReducer = (products) => {
-    let reducedCart = {};
-    products.forEach(product => {
-      if (!reducedCart[product._id]) {
-        reducedCart[product._id] = {
-          ...product,
-          quantity: 1,
-          price: product.price
-        }
-      } else {
-        reducedCart[product._id].quantity += 1;
-        reducedCart[product._id].price += product.price
-      }
-    })
-
-    // return cart obj as array
-    return Object.values(reducedCart);
-  }
+  // // Remove duplicates and add quanitty of products
+  // const cartReducer = (products) => {
+  //   let reducedCart = {};
+  //   products.forEach(product => {
+  //     if (!reducedCart[product._id]) {
+  //       reducedCart[product._id] = {
+  //         ...product,
+  //         quantity: 1,
+  //         price: product.price
+  //       }
+  //     } else {
+  //       reducedCart[product._id].quantity += 1;
+  //       reducedCart[product._id].price += product.price
+  //     }
+  //   })
+  //   // return cart obj as array
+  //   return Object.values(reducedCart);
+  // }
 
   // Takes in a reduced cart and returns the total value
   const cartPriceCalculator = (cart) => {
-    if (!cart.length) { // if cart is empty return 0
+    console.log(cart)
+
+    if (cart.length === 0) {
       return 0;
-    } else if (cart.length === 1) { // if cart contains only one item, return its price
+    } else if (cart.length === 1) {
       return cart[0].price;
     } else {
       // else return total cart price
-      return cart.reduce((total, current) => (
-        total.price + current.price
-      ))
+      return cart.reduce((total, current) => ({
+        price: total.price + current.price,
+      })).price;
+      // return cart.reduce((total, current) => (
+      //   total.price + current.price
+      // ))
     }
   }
 
@@ -77,32 +81,28 @@ const MyCart = () => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
     const response = await fetch(`${ApiUrl}/cart/${userId}`);
     const data = await response.json();
-
     console.log(data);
-
     // Update cart information
     cartUpdater(data);
   }
 
-  const changeQuantity = async (productId, operation) => {
-    const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    const addOrRemove = operation === 'increment' ? 'add' : 'remove';
-    const response = await fetch(`${ApiUrl}/cart/${addOrRemove}/${userId}`, {
-      method: 'PATCH',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        "productId": productId
-      })
-    });
-
-    const data = await response.json();
-
-    // Update cart information
-    cartUpdater(data);
-  }
+  // const changeQuantity = async (productId, operation) => {
+  //   const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
+  //   const addOrRemove = operation === 'increment' ? 'add' : 'remove';
+  //   const response = await fetch(`${ApiUrl}/cart/${addOrRemove}/${userId}`, {
+  //     method: 'PATCH',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       "productId": productId
+  //     })
+  //   });
+  //   const data = await response.json();
+  //   // Update cart information
+  //   cartUpdater(data);
+  // }
 
   const removeProduct = async (productId) => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
@@ -116,9 +116,7 @@ const MyCart = () => {
         "productId": productId
       })
     });
-
     const data = await response.json();
-    console.log(data)
     // Update cart information
     cartUpdater(data);
   }
@@ -135,16 +133,16 @@ const MyCart = () => {
                   <Typography variant="h6">{product.name}</Typography>
                   <Typography variant="h6" align="center" style={{marginTop: "10px"}}>${product.price.toFixed(2)}</Typography>
                   <div>
+                    {/* decrement currently does not work, therefore button is disabled 
                     <button style={{width: "15px", backgroundColor: "white", cursor: "pointer"}} onClick={() => changeQuantity(product._id, 'increment')}>+</button>
                     <span> {product.quantity} </span>
-                    {/* decrement currently does not work, therefore button is disabled */}
                     <button style={{width: "15px", backgroundColor: "white", cursor: "pointer"}} onClick={() => changeQuantity(product._id, 'decrement')}>-</button>
+                    */}
+                    <span>EU {product.size}</span>
                   </div>
                 </div>
                 <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(product._id)} />
-
               </Box>
-
             ))
           }
           <br />

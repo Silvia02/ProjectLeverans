@@ -10,6 +10,7 @@ const Product = () => {
   const {id} = useParams()
   const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
+  const [size, setSize] = useState(null);
   const ApiUrl = useContext(ApiUrlContext);
 
   useEffect(() => {
@@ -33,7 +34,8 @@ const Product = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "productId": product._id
+        "productId": product._id,
+        "shoeSize": size,
       })
     });
   }
@@ -67,17 +69,17 @@ const Product = () => {
           <span>{product.price}</span>
         </ProductLabel>
 
-        <SizeButtonWrapper>
-          <SizeButton>37</SizeButton>
-          <SizeButton>38</SizeButton>
-          <SizeButton>39</SizeButton>
-          <SizeButton>40</SizeButton>
-          <SizeButton>41</SizeButton>
-          <SizeButton>42</SizeButton>
-          <SizeButton>43</SizeButton>
-          <SizeButton>44</SizeButton>
-          <SizeButton>45</SizeButton>
-          <SizeButton>46</SizeButton>
+        <SizeButtonWrapper> {/* conditional styling will be added when size matches button */}
+          <SizeButton selected={size === 37} onClick={() => setSize(37)}>37</SizeButton>
+          <SizeButton selected={size === 38} onClick={() => setSize(38)}>38</SizeButton>
+          <SizeButton selected={size === 39} onClick={() => setSize(39)}>39</SizeButton>
+          <SizeButton selected={size === 40} onClick={() => setSize(40)}>40</SizeButton>
+          <SizeButton selected={size === 41} onClick={() => setSize(41)}>41</SizeButton>
+          <SizeButton selected={size === 42} onClick={() => setSize(42)}>42</SizeButton>
+          <SizeButton selected={size === 43} onClick={() => setSize(43)}>43</SizeButton>
+          <SizeButton selected={size === 44} onClick={() => setSize(44)}>44</SizeButton>
+          <SizeButton selected={size === 45} onClick={() => setSize(45)}>45</SizeButton>
+          <SizeButton selected={size === 46} onClick={() => setSize(46)}>46</SizeButton>
         </SizeButtonWrapper>
 
         <div>
@@ -86,7 +88,7 @@ const Product = () => {
         </div>
         {/*<BackButton><Link to="/products" style={{textDecoration:"none"}}>Back to check more</Link></BackButton>*/}
         <AddtoCartWrapper>
-          <AddtoCartButton onClick={addToCart}>Add to cart</AddtoCartButton>
+          <AddtoCartButton disabled={!size} onClick={addToCart}>Add to cart</AddtoCartButton>
           <FavoriteBorderIcon
             style={{width: "45px", height: "50px", marginLeft: "10px", border: "1px solid black"}}
             onClick={addToFavourites}
