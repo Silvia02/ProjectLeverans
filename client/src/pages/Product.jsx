@@ -76,7 +76,6 @@ const Product = () => {
           <span><strong>{product.name}</strong></span>
           <span>${product.price}</span>
         </ProductLabel>
-
         <SizeButtonWrapper>
           <SizeButton>37</SizeButton>
           <SizeButton>38</SizeButton>
@@ -89,7 +88,6 @@ const Product = () => {
           <SizeButton>45</SizeButton>
           <SizeButton>46</SizeButton>
         </SizeButtonWrapper>
-
         <div>
           <ProductDetailButton onClick={() => handleClick()}>Product information</ProductDetailButton>
             <ToggleDisplay show={show}>{product.description}</ToggleDisplay>
