@@ -1,24 +1,10 @@
-import mongoose from 'mongoose';
 import User from '../models/user.js'
-import Cart from '../models/cart.js'
 import Product from '../models/product.js'
-
-export const createCart = async (req, res) => {
-  try {
-    const cart = new Cart();
-    await cart.save();
-    res.status(200).json(cart);
-  } catch (error) {
-    res.status(404).json({message: error.message});
-  }
-}
 
 export const getCart = async (req, res) => {
   try {
-    // const cartId = req.params.id;
     const userId = req.params.id;
     const user = await User.findById(userId);
-    // const cart = await Cart.findById(cartId);
     res.status(200).json(user.cart);
   } catch (error) {
     res.status(404).json({message: error.message});
@@ -27,12 +13,16 @@ export const getCart = async (req, res) => {
 
 export const addToCart = async (req, res) => {
   try {
-    // const cartId = req.params.id;
-
     const userId = req.params.id;
-    const {productId} = req.body;
+    // const {productId, shoeSize} = req.body;
+    const {product, size} = req.body;
 
-    const product = await Product.findById(productId);
+    // Add size to product
+    product.size = size;
+
+    // const product = await Product.findByIdAndUpdate(productId, {
+    //   $set: {size: shoeSize},
+    // }, {new: true}).exec();
 
     const user = await User.findByIdAndUpdate(userId, {
       $push: {cart: product}
@@ -44,24 +34,24 @@ export const addToCart = async (req, res) => {
   }
 }
 
-export const removeFromCart = async (req, res) => {
-  try {
-    const userId = req.params.id;
-    const {productId} = req.body;
+// export const removeFromCart = async (req, res) => {
+//   try {
+//     const userId = req.params.id;
+//     const {productId} = req.body;
 
-    const user = await User.findById(userId);
-    const index = user.cart.findIndex(product => product._id === productId);
-    let updatedCart = [...user.cart];
-    updatedCart.splice(index, 1);
+//     const user = await User.findById(userId);
+//     const index = user.cart.findIndex(product => product._id === productId);
+//     let updatedCart = [...user.cart];
+//     updatedCart.splice(index, 1);
 
-    user.cart = updatedCart;
-    await user.save();
+//     user.cart = updatedCart;
+//     await user.save();
 
-    res.status(200).json(updatedCart);
-  } catch (error) {
-    res.status(404).json({message: error.message});
-  }
-}
+//     res.status(200).json(updatedCart);
+//   } catch (error) {
+//     res.status(404).json({message: error.message});
+//   }
+// }
 
 export const removeAllFromCart = async (req, res) => {
   try {
