@@ -12,7 +12,6 @@ export const getFavourites = async (req, res) => {
   }
 }
 
-// In addToCart in cart controller you are editing shoe size on dataset in atlas!!!!!!!
 export const addToFavourites = async (req, res) => {
   try {
     const userId = req.params.id;
@@ -55,27 +54,8 @@ export const addFavouritesToCart = async (req, res) => {
       return product;
     });
     user.cart = user.cart.concat(updatedFavourites);
-    const newUser = await user.save();
-    // const user = await User.findByIdAndUpdate(userId, {
-    //   favourites: {
-    //     $set: {
-    //       size: size
-    //     }
-    //   }
-    // }, {new: true}).exec();
-
-    // }
-    // const user = await User.findByIdAndUpdate(cartId, {
-    // $set: {
-    //   cart: {
-    //     $concatArrays: [$$cart, $$]
-    //   }
-    // }
-    // });
-    // cart.products = [...cart.products, ...favourites];
-    // cart.save();
-
-    res.status(200).json(newUser);
+    const updatedUser = await user.save();
+    res.status(200).json(updatedUser);
   } catch (error) {
     res.status(400).json({message: error.message});
   }

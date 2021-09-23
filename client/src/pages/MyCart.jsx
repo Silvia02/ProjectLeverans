@@ -56,17 +56,15 @@ const MyCart = () => {
     cartUpdater(data);
   }
 
-  const removeProduct = async (productId) => {
+  const removeProduct = async (index) => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    const response = await fetch(`${ApiUrl}/cart/delete/${userId}`, {
+    const response = await fetch(`${ApiUrl}/cart/remove/${userId}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        "productId": productId
-      })
+      body: JSON.stringify({index})
     });
     const data = await response.json();
     cartUpdater(data);
@@ -77,8 +75,8 @@ const MyCart = () => {
       <Grid container direction="column" alignItems="center">
         <Paper elevation={10} style={paperStyle}>
           {
-            cart.map(product => (
-              <Box key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
+            cart.map((product, index) => (
+              <Box key={product._id + Math.random()} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
                 <img src={product.image} alt={product.name} />
                 <div>
                   <Typography variant="h6">{product.name}</Typography>
@@ -87,7 +85,7 @@ const MyCart = () => {
                     <span>EU {product.size}</span>
                   </div>
                 </div>
-                <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(product._id)} />
+                <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(index)} />
               </Box>
             ))
           }

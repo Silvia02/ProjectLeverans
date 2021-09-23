@@ -34,34 +34,18 @@ export const addToCart = async (req, res) => {
   }
 }
 
-// export const removeFromCart = async (req, res) => {
-//   try {
-//     const userId = req.params.id;
-//     const {productId} = req.body;
-
-//     const user = await User.findById(userId);
-//     const index = user.cart.findIndex(product => product._id === productId);
-//     let updatedCart = [...user.cart];
-//     updatedCart.splice(index, 1);
-
-//     user.cart = updatedCart;
-//     await user.save();
-
-//     res.status(200).json(updatedCart);
-//   } catch (error) {
-//     res.status(404).json({message: error.message});
-//   }
-// }
-
-export const removeAllFromCart = async (req, res) => {
+export const removeFromCart = async (req, res) => {
   try {
     const userId = req.params.id;
-    const {productId} = req.body;
+    const {index} = req.body;
 
-    const product = await Product.findById(productId);
-    const user = await User.findByIdAndUpdate(userId, {
-      $pull: {cart: {_id: product._id}}
-    }, {new: true}).exec();
+    const user = await User.findById(userId);
+
+    let newCart = [...user.cart];
+    newCart.splice(index, 1);
+
+    user.cart = newCart;
+    await user.save();
 
     res.status(200).json(user.cart);
   } catch (error) {
