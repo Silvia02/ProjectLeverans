@@ -3,12 +3,7 @@ import ApiUrlContext from '../ApiUrlContext.js';
 import '../css/mycart.css'
 import {AddtoCartButton} from '../pages/ProductStyle'
 import {Link} from 'react-router-dom'
-import {
-  Grid,
-  Typography,
-  Paper,
-  Box,
-} from '@material-ui/core'
+import {Typography} from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import {CartPageWrapper, CartCard, CartText, CartWrapper, CheckoutWrapper, MyCartHeader} from './MyCartStyle.jsx';
 import mycarticon from '../images/mycart.jpeg';
@@ -69,33 +64,6 @@ const MyCart = () => {
 
   return (
     <>
-      {/*
-    <div>
-      <Grid container direction="column" alignItems="center">
-        <Paper elevation={10} style={paperStyle}>
-          {
-            cart.map((product, index) => (
-              <Box key={product._id + Math.random()} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
-                <img src={product.image} alt={product.name} />
-                <div>
-                  <Typography variant="h6">{product.name}</Typography>
-                  <Typography variant="h6" align="center" style={{marginTop: "10px"}}>${product.price.toFixed(2)}</Typography>
-                  <div>
-                    <span>EU {product.size}</span>
-                  </div>
-                </div>
-                <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(index)} />
-              </Box>
-            ))
-          }
-          <br />
-          <hr style={{width: "100%"}} />
-          <Typography variant="h5" style={{textAlign: "end", marginTop: "25px", fontWeight: "bold"}}>Total: ${cartPrice.toFixed(2)}</Typography>
-          <Link to="/checkout"><AddtoCartButton style={{width: '100%', marginTop: '25px', border: "none"}}>Check out</AddtoCartButton></Link>
-        </Paper>
-      </Grid>
-    </div>
-    */}
       <CartPageWrapper container direction="column" alignItems="center">
         <MyCartHeader>
           <h2 style={{fontFamily: 'fantancy'}}>My Cart</h2>
