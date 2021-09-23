@@ -32,10 +32,7 @@ const Product = () => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        "productId": product._id,
-        "shoeSize": size,
-      })
+      body: JSON.stringify({product, size})
     });
   }
 
@@ -48,9 +45,7 @@ const Product = () => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        "productId": product._id
-      })
+      body: JSON.stringify({product})
     });
   }
 

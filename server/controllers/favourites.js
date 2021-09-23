@@ -50,7 +50,10 @@ export const addFavouritesToCart = async (req, res) => {
     const {size} = req.body;
 
     const user = await User.findById(userId);
-    const updatedFavourites = user.favourites.map(product => product.size = size);
+    const updatedFavourites = user.favourites.map(product => {
+      product.size = size;
+      return product;
+    });
     user.cart = user.cart.concat(updatedFavourites);
     const newUser = await user.save();
     // const user = await User.findByIdAndUpdate(userId, {

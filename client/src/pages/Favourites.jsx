@@ -56,9 +56,7 @@ const Favourites = () => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        "shoeSize": size
-      })
+      body: JSON.stringify({size})
     });
     setShowSizePicker(false);
   }
