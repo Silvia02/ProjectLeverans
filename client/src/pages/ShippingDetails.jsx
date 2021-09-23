@@ -29,7 +29,7 @@ const initialInputValues = {
   city: "",
   zipcode: ""
 }
-export const ShippingDetails = () => {
+export const ShippingDetails = ({ addToShoppingList, removeFromShoppingList,shoppingList }) => {
 
   const classes = useStyle();
   const paperStyle = {
@@ -136,9 +136,9 @@ export const ShippingDetails = () => {
                       <p>Sport Shoe 2</p>
                   </div>
                   <div className="minusPlus">
-                    <i className="fas fa-minus minus"></i>
+                    <i className="fas fa-minus minus" onClick={removeFromShoppingList}></i>
                      <input className = "quantity" type="text" placeholder="2"></input>
-                    <i className="fas fa-plus add"></i>
+                    <i className="fas fa-plus add" onClick={addToShoppingList}></i>
                   </div>
                   <div className="price">
                       <h5>$2000</h5>
@@ -147,25 +147,8 @@ export const ShippingDetails = () => {
                     <i className="fas fa-trash-alt"></i>
                     </div>
                   </div>
+                  {console.log({ shoppingList })}
                   <hr></hr>
-                  <div className="billItems">
-                  <div className="itemsImg">
-                    <img src="http://clipartmag.com/images/cartoon-pictures-of-shoes-42.png" alt="itemImage"></img>
-                      <p>Sport Shoe 2</p>
-                  </div>
-                  <div className="minusPlus">
-                    <i className="fas fa-minus minus"></i>
-                     <input className = "quantity" type="text" placeholder="2"></input>
-                    <i className="fas fa-plus add"></i>
-                  </div>
-                  <div className="price">
-                      <h5>$2000</h5>
-                  </div>
-                  <div>
-                    <i className="fas fa-trash-alt"></i>
-                    </div>
-                  </div>
-                       <hr></hr>
                 </div>
              
 
