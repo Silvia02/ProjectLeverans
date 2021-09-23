@@ -142,11 +142,13 @@ function App() {
             />
           </Route>
           <Route path="/favourites">
-            <Favourites
+             {
+               user && user._id ? <Favourites
               favourites={favourites}
               onAdd={onAdd}
               onRemove={onRemove}
-            />
+            /> : <Login stayLogedin={stayLogedin}/>
+             }
           </Route>
           <Route path="/checkout">
             {
@@ -154,7 +156,9 @@ function App() {
             }    
           </Route>
           <Route path="/mycart">
-            <MyCart />
+            {
+              user && user._id ? <MyCart/> : <Login stayLogedin={stayLogedin}/>
+            }
           </Route>
         </Switch>
       </Router>
