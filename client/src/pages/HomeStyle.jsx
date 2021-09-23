@@ -22,7 +22,7 @@ export const ProductWrapper = styled.div`
   margin-top:10px;
   margin-bottom:60px;
   @media (min-width: 1023px) {
-    margin-left: 10%;
+    margin-left: 4%;
   }
   `
 export const ProductCard = styled.div`
@@ -33,10 +33,11 @@ export const ProductCard = styled.div`
   padding: 5px;
   background-color: whitesmoke;
   width:45%;
-   @media (min-width: 1023px) {
+   @media (min-width: 1024.9px) {
     display:flex;
     flex-direction: column;
-    width:20%;
+    width:18%;
+
   }
  
 `
@@ -57,12 +58,18 @@ export const ProductInformationWrapper = styled.div`
   display:flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  font-size: 1em;
+  font-size: 1.1em;
   text-align: center;
   justify-content: center;
-  padding-bottom: 10px;
-  @media (min-width: 1023px) {
+  padding-bottom: 20px;
+  @media (min-width: 768px){
+    font-size: 1.2em;
+    padding-bottom: 20px;
+  }
+  @media (min-width: 1024.9px) {
     margin-bottom: 10px;
+    font-size: 1.1em;
+    padding-bottom: 20px;
   }
 `
 

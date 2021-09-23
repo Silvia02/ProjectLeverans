@@ -12,9 +12,8 @@ import Footer from '../components/footer/Footer';
 
 const FrontPage = () => {
   return (
-<>
-     
-      <FrontPageWrapper>
+      <>
+        <FrontPageWrapper>
           <PhotoCard>
             <Photo src={allkinds} alt="formal-shoes" />
             <CategoryButton>
@@ -46,7 +45,8 @@ const FrontPage = () => {
               </Link></CategoryButton>
           </PhotoCard>
         </FrontPageWrapper>
-      </>
+        <Footer />
+      </> 
       
     )
   

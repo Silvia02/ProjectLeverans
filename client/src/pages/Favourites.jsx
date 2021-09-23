@@ -3,15 +3,21 @@ import ApiUrlContext from '../ApiUrlContext.js';
 import {Grid, Typography, Paper, Box, } from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import {AddtoCartButton, SizeButtonWrapper, SizeButton} from './ProductStyle.jsx';
-import {FavouritesWrapper, Backdrop, Modal, ModalHeading, InvertedAddtoCartButton} from './FavouritesStyle.jsx';
+import {
+  FavouritesWrapper,
+  FavouritesLists,
+  FavouriteCard,
+  FavouriteImg,
+  FavouriteHeader,
+  Backdrop,
+  Modal,
+  ModalHeading,
+  InvertedAddtoCartButton
+} from './FavouritesStyle.jsx';
+import favouriteImg from '../images/heart.png';
+import Footer from '../components/footer/Footer.jsx';
 
 const Favourites = () => {
-  const paperStyle = {
-    padding: 20,
-    width: 320,
-    height: 'auto',
-    margin: '25px'
-  }
 
   const ApiUrl = useContext(ApiUrlContext);
   const [favourites, setFavourites] = useState([]);
@@ -28,7 +34,6 @@ const Favourites = () => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
     const response = await fetch(`${ApiUrl}/favourites/${userId}`);
     const data = await response.json();
-
     setFavourites(data);
   }
 
@@ -60,22 +65,28 @@ const Favourites = () => {
   }
 
   return (
-    <FavouritesWrapper>
-      <h2>Favourites</h2>
-      <Grid container direction="column" alignItems="center">
+    <div>
+      <FavouriteHeader>
+        <img src={favouriteImg} alt="favourite" style={{width: "55px", marginRight: "10px"}} />
+        <h1 style={{fontFamily: 'fantancy'}}>Favourites</h1>
+      </FavouriteHeader>
+      <FavouritesWrapper>
         {favourites.length ? (
           <>
-            <Paper elevation={10} style={paperStyle}>
+            <FavouritesLists>
               {
                 favourites.map((product, index) => (
-                  <Box key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
-                    <img src={product.image} alt={product.name} />
-                    <Typography variant="h6">{product.name}</Typography>
+                  <FavouriteCard key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
+                    <FavouriteImg src={product.image} alt={product.name} />
+                    <div style={{paddingTop: '12%'}}>
+                      <Typography variant="h6" >{product.name}</Typography>
+                      <Typography variant="h6" style={{marginTop: '10%'}}>${product.price}</Typography>
+                    </div>
                     <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(index)} />
-                  </Box>
+                  </FavouriteCard>
                 ))
               }
-            </Paper>
+            </FavouritesLists>
             <AddtoCartButton style={{whiteSpace: "nowrap"}} onClick={() => setShowSizePicker(true)}>Add favourites to cart</AddtoCartButton>
           </>
         ) : null}
@@ -103,8 +114,9 @@ const Favourites = () => {
             </Modal>
           </>
         ) : null}
-      </Grid>
-    </FavouritesWrapper>
+      </FavouritesWrapper>
+      <Footer />
+    </div>
   )
 }
 

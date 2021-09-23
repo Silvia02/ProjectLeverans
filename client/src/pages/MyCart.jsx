@@ -10,14 +10,11 @@ import {
   Box,
 } from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import {CartPageWrapper, CartCard, CartText, CartWrapper, CheckoutWrapper, MyCartHeader} from './MyCartStyle.jsx';
+import mycarticon from '../images/mycart.jpeg';
+import Footer from '../components/footer/Footer.jsx';
 
 const MyCart = () => {
-  const paperStyle = {
-    padding: 20,
-    width: '90%',
-    height: 'auto',
-    margin: '5%'
-  }
 
   const ApiUrl = useContext(ApiUrlContext);
   const [cart, setCart] = useState([]);
@@ -71,6 +68,8 @@ const MyCart = () => {
   }
 
   return (
+    <>
+      {/*
     <div>
       <Grid container direction="column" alignItems="center">
         <Paper elevation={10} style={paperStyle}>
@@ -96,6 +95,40 @@ const MyCart = () => {
         </Paper>
       </Grid>
     </div>
+    */}
+      <CartPageWrapper container direction="column" alignItems="center">
+        <MyCartHeader>
+          <h2 style={{fontFamily: 'fantancy'}}>My Cart</h2>
+          <img src={mycarticon} alt="mycart" style={{width: "35px", marginLeft: "4px"}} />
+        </MyCartHeader>
+        <br />
+        <CartWrapper>
+          {
+            cart.map((product, index) => (
+              <CartCard key={product._id + Math.random()} display="flex" alignItems="center" style={{justifyContent: 'space-between'}}>
+                <img src={product.image} alt={product.name} />
+                <CartText>
+                  <Typography variant="h6">{product.name}</Typography>
+                  <Typography variant="h6" align="center" style={{marginTop: "10px"}}>${product.price.toFixed(2)}</Typography>
+                  <div>
+                    <span>EU {product.size}</span>
+                  </div>
+                </CartText>
+                <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(index)} />
+              </CartCard>
+            ))
+          }
+          <br />
+        </CartWrapper>
+        <CheckoutWrapper>
+          <br />
+          <h2 style={{textAlign: "left", fontFamily: "'Times New Roman', Times, serif"}}>Total amount</h2>
+          <Typography style={{textAlign: "end", fontSize: "1.3em", marginTop: "25px", fontFamily: "'Times New Roman', Times, serif"}}>Total (inkl. moms):${cartPrice.toFixed(2)}</Typography>
+          <Link to="/checkout"><AddtoCartButton style={{width: '100%', marginTop: '25px', border: "none"}}>Check out</AddtoCartButton></Link>
+        </CheckoutWrapper>
+      </CartPageWrapper>
+      <Footer />
+    </>
   )
 }
 

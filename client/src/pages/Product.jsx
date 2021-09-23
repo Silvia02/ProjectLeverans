@@ -1,9 +1,12 @@
 import React, {useState, useEffect, useContext} from 'react';
 import ApiUrlContext from '../ApiUrlContext.js';
 import {useParams} from 'react-router-dom'
-import {AddtoCartButton, AddtoCartWrapper, ProductDetailButton, ProductDetailCard, ProductDescription, SizeButton, SizeButtonWrapper, ProductLabel, BackButton} from './ProductStyle';
+import {Link} from 'react-router-dom';
+import {AddtoCartButton, AddtoCartWrapper, ProductDetailButton, ProductDetailCard, ProductDescription, SizeButton, SizeButtonWrapper, ProductLabel, BackButton, ProductImgDetail, ProductTextWrapper} from './ProductStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ToggleDisplay from 'react-toggle-display';
+import logo from '../images/shop.png'
+import { HeaderWrapper } from './FrontPageStyle';
 import Footer from '../components/footer/Footer';
 
 const Product = () => {
@@ -12,6 +15,8 @@ const Product = () => {
   const [show, setShow] = useState(false);
   const [size, setSize] = useState(null);
   const ApiUrl = useContext(ApiUrlContext);
+  const [favouritesAmount, setFavouritesAmount] = useState(0);
+  const [myCartAmount, setMyCartAmount] = useState(0)
 
   useEffect(() => {
     fetchProduct();
@@ -20,8 +25,7 @@ const Product = () => {
   const fetchProduct = async () => {
     const response = await fetch(`${ApiUrl}/products/${id}`);
     const data = await response.json();
-    console.log(data)
-    setProduct(data)
+    setProduct(data);
   }
 
   const addToCart = async () => {
@@ -34,6 +38,9 @@ const Product = () => {
       },
       body: JSON.stringify({product, size})
     });
+    const response = await fetch(`${ApiUrl}/cart/${TEMP_CART_ID}`);
+    const data = await response.json();
+    setMyCartAmount(data.products.length);
   }
 
 
@@ -47,20 +54,24 @@ const Product = () => {
       },
       body: JSON.stringify({product})
     });
+    const response = await fetch(`${ApiUrl}/favourites/${TEMP_WISHLIST_ID}`);
+    const data = await response.json();
+    setFavouritesAmount(data.products.length)
   }
-
+ 
   const handleClick = () => {
     setShow(!show)
   }
 
   return (
-    <div>
-      <ProductDetailCard>
-        <img src={product.image} alt="" style={{width: "100%", marginTop: "10px", marginBottom: "10px"}} />
+    <>
+    <ProductDetailCard>
+      <ProductImgDetail src={product.image} alt="" />
+      <ProductTextWrapper>
         <ProductLabel>
           <span>{product.category}</span>
           <span><strong>{product.name}</strong></span>
-          <span>{product.price}</span>
+          <span>${product.price}</span>
         </ProductLabel>
 
         <SizeButtonWrapper> {/* conditional styling will be added when size matches button */}
@@ -78,21 +89,25 @@ const Product = () => {
 
         <div>
           <ProductDetailButton onClick={() => handleClick()}>Product information</ProductDetailButton>
-          <ToggleDisplay show={show}>{product.description}</ToggleDisplay>
+            <ToggleDisplay show={show}>{product.description}</ToggleDisplay>
         </div>
         {/*<BackButton><Link to="/products" style={{textDecoration:"none"}}>Back to check more</Link></BackButton>*/}
         <AddtoCartWrapper>
           <AddtoCartButton disabled={!size} onClick={addToCart}>Add to cart</AddtoCartButton>
           <FavoriteBorderIcon
-            style={{width: "45px", height: "50px", marginLeft: "10px", border: "1px solid black"}}
+            style={{width: "45px", height: "50px", marginLeft: "10px", border: "1px solid black", cursor:"pointer"}}
             onClick={addToFavourites}
           />
-        </AddtoCartWrapper>
-      </ProductDetailCard>
+          </AddtoCartWrapper>
+      </ProductTextWrapper>
+    </ProductDetailCard>
       <br />
       <br />
-      <Footer />
-    </div>
+      <Footer
+        favouritesAmount={favouritesAmount}
+        myCartAmount={myCartAmount}
+        />
+    </>
   )
 }
 

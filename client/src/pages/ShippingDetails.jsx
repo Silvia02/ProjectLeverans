@@ -11,6 +11,7 @@ import {
   TableRow,
 } from '@material-ui/core'
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import Mycart from "./MyCart"
 
 
 const useStyle = makeStyles(theme => ({
@@ -34,7 +35,7 @@ export const ShippingDetails = () => {
   const paperStyle = {
     padding: 20,
     width: 370,
-    height: '60vh',
+    height: '65vh',
     margin: '20px',
   }
   
@@ -73,7 +74,8 @@ export const ShippingDetails = () => {
   
   return ( 
           <div className = 'shippingDetails'>
-              <h1> Shipping Details </h1>
+      <h1> Shipping Details </h1>
+      <img src="http://mistydaydream.com/wp-content/uploads/2017/04/delivery-1.gif" alt="Delivery.gif"/>
               <form className = {classes.root} >
                 <Grid container >
                 <div className = 'formdetails' >
@@ -174,7 +176,7 @@ export const ShippingDetails = () => {
     </Grid> 
     </form> 
     <br></br> 
-    <button type='submit' onClick={handleSubmit}>
+    <button id = "checkout" type='submit' onClick={handleSubmit}>
     Checkout </button> 
     </div>
   )

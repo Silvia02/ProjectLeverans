@@ -4,8 +4,26 @@ import {AddtoCartButton} from './ProductStyle.jsx';
 export const FavouritesWrapper = styled.div`
   position: relative;
   padding-top: 20px;
-  height: calc(100vh - 130px);
+  height: calc(100vh-130px);
   overflow: auto;
+
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-top: 5%;
+  margin-bottom: 15%;
+  @media (min-width: 1023px) {
+    flex-direction: row;
+    width:100%;
+    margin-top: 2%;
+    margin-bottom: 15%;
+  }
+  @media (min-width: 1024.9px) {
+    margin-bottom: 5%;
+  }
+
+
 `
 
 export const Backdrop = styled.div`
@@ -17,8 +35,8 @@ export const Backdrop = styled.div`
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 50;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 `
 
 export const Modal = styled(Backdrop)`
@@ -29,8 +47,8 @@ export const Modal = styled(Backdrop)`
 `
 
 export const ModalHeading = styled.h3`
-  color: whitesmoke;
-  font-size: 24px;
+color: whitesmoke;
+font-size: 24px;
 `
 
 export const InvertedAddtoCartButton = styled(AddtoCartButton)`
@@ -38,4 +56,78 @@ export const InvertedAddtoCartButton = styled(AddtoCartButton)`
   color: rgb(38, 39, 39);
   margin: 0 25px;
   margin-top: 80px;
+  `
+
+  export const FavouriteHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 5px;
+`
+
+export const FavouritesLists = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 90 %;
+  margin-left: 5 %;
+
+  @media(min-width: 1023px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    background-color: none;
+    box-shadow: none;
+    width: 80 %;
+    margin-left: 5 %;
+  }
+`
+
+export const FavouriteCard = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0px;
+  padding-top: 5px;
+  text-align: center;
+  justify-content: space-around;
+  background-color: white;
+  border-bottom: 1px darkgrey solid;
+
+  @media only screen and(min-width: 768px) {
+    flex-direction: row;
+    margin-right: 20px;
+    box-shadow: none;
+    margin-bottom: 0 %;
+    border-bottom: 1px darkgrey solid;
+  }
+
+  @media only screen and(min-width: 1023px) {
+    flex-direction: column;
+    border-bottom: none;
+  }
+
+  @media(min-width: 1024.9px) {
+    flex-direction: column;
+    width: 18 %;
+    margin-right: 20px;
+    box-shadow: none;
+    margin-bottom: 5 %;
+  }
+`
+
+export const FavouriteImg = styled.img`
+  width: 40 %;
+  height: 10 %;
+  margin-right: 5px;
+
+  @media only screen and(min-width: 768px) {
+    width: 35 %;
+  }
+
+  @media(min-width: 1023px) {
+    width: 100 %;
+    height: 300px;
+    margin-right: 10px;
+  }
 `
