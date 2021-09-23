@@ -1,5 +1,4 @@
 import User from '../models/user.js'
-import Product from '../models/product.js'
 
 export const getCart = async (req, res) => {
   try {
@@ -14,15 +13,10 @@ export const getCart = async (req, res) => {
 export const addToCart = async (req, res) => {
   try {
     const userId = req.params.id;
-    // const {productId, shoeSize} = req.body;
     const {product, size} = req.body;
 
     // Add size to product
     product.size = size;
-
-    // const product = await Product.findByIdAndUpdate(productId, {
-    //   $set: {size: shoeSize},
-    // }, {new: true}).exec();
 
     const user = await User.findByIdAndUpdate(userId, {
       $push: {cart: product}
@@ -41,10 +35,10 @@ export const removeFromCart = async (req, res) => {
 
     const user = await User.findById(userId);
 
-    let newCart = [...user.cart];
-    newCart.splice(index, 1);
+    let updatedCart = [...user.cart];
+    updatedCart.splice(index, 1);
 
-    user.cart = newCart;
+    user.cart = updatedCart;
     await user.save();
 
     res.status(200).json(user.cart);

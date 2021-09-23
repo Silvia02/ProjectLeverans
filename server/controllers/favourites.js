@@ -30,14 +30,24 @@ export const addToFavourites = async (req, res) => {
 export const removeFromFavourites = async (req, res) => {
   try {
     const userId = req.params.id;
-    const {productId} = req.body;
+    const {index} = req.body;
 
-    const product = await Product.findById(productId);
-    const user = await User.findByIdAndUpdate(userId, {
-      $pull: {favourites: {_id: product._id}}
-    }, {new: true}).exec();
+    const user = await User.findById(userId);
+
+    let updatedFavourites = [...user.favourites];
+    updatedFavourites.splice(index, 1);
+
+    user.favourites = updatedFavourites;
+    await user.save();
 
     res.status(200).json(user.favourites);
+
+    // const product = await Product.findById(productId);
+    // const user = await User.findByIdAndUpdate(userId, {
+    //   $pull: {favourites: {_id: product._id}}
+    // }, {new: true}).exec();
+
+    // res.status(200).json(user.favourites);
   } catch (error) {
     res.status(400).json({message: error.message});
   }

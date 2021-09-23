@@ -32,7 +32,7 @@ const Favourites = () => {
     setFavourites(data);
   }
 
-  const removeProduct = async (productId) => {
+  const removeProduct = async (index) => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
     const response = await fetch(`${ApiUrl}/favourites/remove/${userId}`, {
       method: 'PATCH',
@@ -40,9 +40,7 @@ const Favourites = () => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        "productId": productId
-      })
+      body: JSON.stringify({index})
     });
     const data = await response.json();
     setFavourites(data);
@@ -69,11 +67,11 @@ const Favourites = () => {
           <>
             <Paper elevation={10} style={paperStyle}>
               {
-                favourites.map(product => (
+                favourites.map((product, index) => (
                   <Box key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
                     <img src={product.image} alt={product.name} />
                     <Typography variant="h6">{product.name}</Typography>
-                    <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(product._id)} />
+                    <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(index)} />
                   </Box>
                 ))
               }
