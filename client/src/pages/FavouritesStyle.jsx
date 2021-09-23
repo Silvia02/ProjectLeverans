@@ -3,13 +3,13 @@ import {AddtoCartButton} from './ProductStyle.jsx';
 
 export const FavouritesWrapper = styled.div`
   position: relative;
-  padding-top: 20px;
-  height: calc(100vh-130px);
+  height: calc(100vh - 130px);
   overflow: auto;
 
   display:flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 
   margin-top: 5%;
   margin-bottom: 15%;
@@ -22,8 +22,6 @@ export const FavouritesWrapper = styled.div`
   @media (min-width: 1024.9px) {
     margin-bottom: 5%;
   }
-
-
 `
 
 export const Backdrop = styled.div`
@@ -39,26 +37,36 @@ export const Backdrop = styled.div`
   justify-content: center;
 `
 
-export const Modal = styled(Backdrop)`
-  margin: 0 32px;
-  background-color: transparent;
+export const Modal = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  height: 40vh;
+  width: 80vw;
+  margin-top: 5vh;
+
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   z-index: 100;
 `
 
 export const ModalHeading = styled.h3`
-color: whitesmoke;
-font-size: 24px;
+  color: whitesmoke;
+  font-size: 24px;
 `
 
 export const InvertedAddtoCartButton = styled(AddtoCartButton)`
   background-color: whitesmoke;
   color: rgb(38, 39, 39);
   margin: 0 25px;
-  margin-top: 80px;
+  margin-top: 5vh;
   `
 
-  export const FavouriteHeader = styled.div`
+export const FavouriteHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -70,8 +78,8 @@ export const FavouritesLists = styled.div`
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
-  width: 90 %;
-  margin-left: 5 %;
+  width: 90%;
+  margin-left: 5%;
 
   @media(min-width: 1023px) {
     flex-direction: row;
@@ -79,8 +87,8 @@ export const FavouritesLists = styled.div`
     flex-wrap: wrap;
     background-color: none;
     box-shadow: none;
-    width: 80 %;
-    margin-left: 5 %;
+    width: 80%;
+    margin-left: 5%;
   }
 `
 
@@ -98,7 +106,7 @@ export const FavouriteCard = styled.div`
     flex-direction: row;
     margin-right: 20px;
     box-shadow: none;
-    margin-bottom: 0 %;
+    margin-bottom: 0%;
     border-bottom: 1px darkgrey solid;
   }
 
@@ -109,16 +117,16 @@ export const FavouriteCard = styled.div`
 
   @media(min-width: 1024.9px) {
     flex-direction: column;
-    width: 18 %;
+    width: 18%;
     margin-right: 20px;
     box-shadow: none;
-    margin-bottom: 5 %;
+    margin-bottom: 5%;
   }
 `
 
 export const FavouriteImg = styled.img`
-  width: 40 %;
-  height: 10 %;
+  width: 40%;
+  height: 100%;
   margin-right: 5px;
 
   @media only screen and(min-width: 768px) {

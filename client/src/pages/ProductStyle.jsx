@@ -110,7 +110,7 @@ export const SizeButton = styled.button`
   padding: 0;
 
   ${({selected}) => selected && `
-    border: 2px solid #444;
+    border: 5px solid #222;
     border-radius: 2px;
   `} 
 `
@@ -133,6 +133,8 @@ export const AddtoCartButton = styled.button`
 
   ${({disabled}) => disabled && `
     cursor: not-allowed;
+    background-color: rgb(100, 100, 100);
+    color: grey;
   `} 
 
    @media (min-width: 1023px) {

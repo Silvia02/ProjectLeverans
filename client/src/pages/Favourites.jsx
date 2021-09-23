@@ -66,11 +66,11 @@ const Favourites = () => {
 
   return (
     <div>
-      <FavouriteHeader>
-        <img src={favouriteImg} alt="favourite" style={{width: "55px", marginRight: "10px"}} />
-        <h1 style={{fontFamily: 'fantancy'}}>Favourites</h1>
-      </FavouriteHeader>
       <FavouritesWrapper>
+        <FavouriteHeader>
+          <img src={favouriteImg} alt="favourite" style={{width: "55px", height: 'auto', marginRight: "10px"}} />
+          <h1 style={{fontFamily: 'fantancy'}}>Favourites</h1>
+        </FavouriteHeader>
         {favourites.length ? (
           <>
             <FavouritesLists>

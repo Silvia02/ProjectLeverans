@@ -41,13 +41,6 @@ export const removeFromFavourites = async (req, res) => {
     await user.save();
 
     res.status(200).json(user.favourites);
-
-    // const product = await Product.findById(productId);
-    // const user = await User.findByIdAndUpdate(userId, {
-    //   $pull: {favourites: {_id: product._id}}
-    // }, {new: true}).exec();
-
-    // res.status(200).json(user.favourites);
   } catch (error) {
     res.status(400).json({message: error.message});
   }
