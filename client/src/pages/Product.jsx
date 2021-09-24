@@ -7,10 +7,10 @@ import ToggleDisplay from 'react-toggle-display';
 // import logo from '../images/shop.png'
 // import {HeaderWrapper} from './FrontPageStyle';
 import Footer from '../components/footer/Footer';
-import { useHistory } from 'react-router';
+import {useHistory} from 'react-router';
 
 const Product = () => {
-   const history = useHistory();
+  const history = useHistory();
   const {id} = useParams()
   const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
@@ -30,24 +30,22 @@ const Product = () => {
   }
 
   const addToCart = async () => {
-    
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    if(userId){
-    const response = await fetch(`${ApiUrl}/cart/add/${userId}`, {
-      method: 'PATCH',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({product, size})
-    });
-    const data = await response.json();
-    setMyCartAmount(data.length);
-    
-  }else {
+    if (userId) {
+      const response = await fetch(`${ApiUrl}/cart/add/${userId}`, {
+        method: 'PATCH',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({product, size})
+      });
+      const data = await response.json();
+      setMyCartAmount(data.length);
+    } else {
       history.push("/login");
     }
-}
+  }
 
   const addToFavourites = async () => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
@@ -58,7 +56,7 @@ const Product = () => {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ product })
+        body: JSON.stringify({product})
       });
       const data = await response.json();
       setFavouritesAmount(data.length)
@@ -66,10 +64,10 @@ const Product = () => {
       history.push("/login");
     }
   }
-    const handleClick = () => {
-      setShow(!show)
-    }
-  
+  const handleClick = () => {
+    setShow(!show)
+  }
+
   return (
     <>
       <ProductDetailCard>

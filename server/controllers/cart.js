@@ -46,3 +46,17 @@ export const removeFromCart = async (req, res) => {
     res.status(404).json({message: error.message});
   }
 }
+
+export const clearCart = async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    const user = await User.findById(userId);
+    user.cart = [];
+    await user.save();
+
+    res.status(200).json(user.cart);
+  } catch (error) {
+    res.status(404).json({message: error.message});
+  }
+}
