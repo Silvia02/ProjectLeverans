@@ -56,9 +56,13 @@ export const addFavouritesToCart = async (req, res) => {
       product.size = size;
       return product;
     });
+    // Add favourites with shoe size to cart
     user.cart = user.cart.concat(updatedFavourites);
+    // Empty favourites
+    user.favourites = [];
+    // Save changes
     const updatedUser = await user.save();
-    res.status(200).json(updatedUser);
+    res.status(200).json(updatedUser.favourites);
   } catch (error) {
     res.status(400).json({message: error.message});
   }

@@ -3,14 +3,9 @@ import ApiUrlContext from '../ApiUrlContext.js';
 import '../css/mycart.css'
 import {AddtoCartButton} from '../pages/ProductStyle'
 import {Link} from 'react-router-dom'
-import {
-  Grid,
-  Typography,
-  Paper,
-  Box,
-} from '@material-ui/core'
+import {Typography} from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import {CartPageWrapper, CartCard, CartText, CartWrapper, CheckoutWrapper, MyCartHeader} from './MyCartStyle.jsx';
+import {CartPageWrapper, CartCard, CartCardImg, CartText, CartWrapper, CheckoutWrapper, MyCartHeader} from './MyCartStyle.jsx';
 import mycarticon from '../images/mycart.jpeg';
 import Footer from '../components/footer/Footer.jsx';
 
@@ -19,6 +14,7 @@ const MyCart = () => {
   const ApiUrl = useContext(ApiUrlContext);
   const [cart, setCart] = useState([]);
   const [cartPrice, setCartPrice] = useState(0);
+  const [VAT, setVAT] = useState(0);
 
   useEffect(() => {
     fetchCart();
@@ -29,7 +25,10 @@ const MyCart = () => {
     setCart(newCart);
     // Calculate price for entire cart
     const price = cartPriceCalculator(newCart);
-    setCartPrice(price);
+    // Calculate and adjust for moms
+    const VAT = price * 0.25;
+    setCartPrice(price + VAT);
+    setVAT(VAT);
   }
 
   // Takes in a reduced cart and returns the total value
@@ -69,34 +68,7 @@ const MyCart = () => {
 
   return (
     <>
-      {/*
-    <div>
-      <Grid container direction="column" alignItems="center">
-        <Paper elevation={10} style={paperStyle}>
-          {
-            cart.map((product, index) => (
-              <Box key={product._id + Math.random()} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
-                <img src={product.image} alt={product.name} />
-                <div>
-                  <Typography variant="h6">{product.name}</Typography>
-                  <Typography variant="h6" align="center" style={{marginTop: "10px"}}>${product.price.toFixed(2)}</Typography>
-                  <div>
-                    <span>EU {product.size}</span>
-                  </div>
-                </div>
-                <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(index)} />
-              </Box>
-            ))
-          }
-          <br />
-          <hr style={{width: "100%"}} />
-          <Typography variant="h5" style={{textAlign: "end", marginTop: "25px", fontWeight: "bold"}}>Total: ${cartPrice.toFixed(2)}</Typography>
-          <Link to="/checkout"><AddtoCartButton style={{width: '100%', marginTop: '25px', border: "none"}}>Check out</AddtoCartButton></Link>
-        </Paper>
-      </Grid>
-    </div>
-    */}
-      <CartPageWrapper container direction="column" alignItems="center">
+      <CartPageWrapper>
         <MyCartHeader>
           <h2 style={{fontFamily: 'fantancy'}}>My Cart</h2>
           <img src={mycarticon} alt="mycart" style={{width: "35px", marginLeft: "4px"}} />
@@ -106,7 +78,7 @@ const MyCart = () => {
           {
             cart.map((product, index) => (
               <CartCard key={product._id + Math.random()} display="flex" alignItems="center" style={{justifyContent: 'space-between'}}>
-                <img src={product.image} alt={product.name} />
+                <CartCardImg src={product.image} alt={product.name} />
                 <CartText>
                   <Typography variant="h6">{product.name}</Typography>
                   <Typography variant="h6" align="center" style={{marginTop: "10px"}}>${product.price.toFixed(2)}</Typography>
@@ -114,7 +86,7 @@ const MyCart = () => {
                     <span>EU {product.size}</span>
                   </div>
                 </CartText>
-                <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(index)} />
+                <HighlightOffIcon size="20" style={{cursor: 'pointer', marginLeft: "auto"}} onClick={() => removeProduct(index)} />
               </CartCard>
             ))
           }
@@ -123,7 +95,8 @@ const MyCart = () => {
         <CheckoutWrapper>
           <br />
           <h2 style={{textAlign: "left", fontFamily: "'Times New Roman', Times, serif"}}>Total amount</h2>
-          <Typography style={{textAlign: "end", fontSize: "1.3em", marginTop: "25px", fontFamily: "'Times New Roman', Times, serif"}}>Total (inkl. moms):${cartPrice.toFixed(2)}</Typography>
+          <Typography style={{textAlign: "end", fontSize: "1.3em", marginTop: "20px", marginLeft: "15px", fontFamily: "'Times New Roman', Times, serif"}}>VAT: ${VAT.toFixed(2)}</Typography>
+          <Typography style={{textAlign: "end", fontSize: "1.3em", marginTop: "20px", marginLeft: "15px", fontFamily: "'Times New Roman', Times, serif"}}>Total (incl. VAT):${cartPrice.toFixed(2)}</Typography>
           <Link to="/checkout"><AddtoCartButton style={{width: '100%', marginTop: '25px', border: "none", marginBottom: '72px'}}>Check out</AddtoCartButton></Link>
         </CheckoutWrapper>
       </CartPageWrapper>

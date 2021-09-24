@@ -54,7 +54,7 @@ const Favourites = () => {
 
   const addFavouritesToCart = async () => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    await fetch(`${ApiUrl}/favourites/addToCart/${userId}`, {
+    const response = await fetch(`${ApiUrl}/favourites/addToCart/${userId}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -62,8 +62,9 @@ const Favourites = () => {
       },
       body: JSON.stringify({size})
     });
+    const data = await response.json();
     setShowSizePicker(false);
-    
+    setFavourites(data);
   }
 
   return (
@@ -79,21 +80,21 @@ const Favourites = () => {
               {
                 favourites.map((product, index) => (
                   <FavouriteCard key={product._id} display="flex" alignItems="center" style={{justifyContent: 'space-between'}}>
-                    <HighlightOffIcon size="20" style={{ cursor: 'pointer', marginLeft:"85%", marginBottom:"-25px",zIndex:"5" }} onClick={() => removeProduct(index)} />
+                    <HighlightOffIcon size="20" style={{cursor: 'pointer', marginLeft: "85%", marginBottom: "-25px", zIndex: "5"}} onClick={() => removeProduct(index)} />
                     <FavouriteImg src={product.image} alt={product.name} />
                     <FavouriteProductInfo>
                       <div style={{paddingTop: '10%'}}>
                         <Typography variant="h6" >{product.name}</Typography>
                         <Typography variant="h6" style={{marginTop: '10%'}}>${product.price}</Typography>
                       </div>
-                      
+
                     </FavouriteProductInfo>
                   </FavouriteCard>
                 ))
-                
+
               }
             </FavouritesLists>
-            <AddFavouritetoCartButton style={{ whiteSpace: "nowrap" }} onClick={() => setShowSizePicker(true)}>Add to cart</AddFavouritetoCartButton>
+            <AddFavouritetoCartButton style={{whiteSpace: "nowrap"}} onClick={() => setShowSizePicker(true)}>Add to cart</AddFavouritetoCartButton>
           </>
         ) : null}
         {showSizePicker ? (
