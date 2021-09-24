@@ -19,6 +19,7 @@ import Sport from "./pages/Sport";
 import Formal from "./pages/Formal";
 import DefaultHeader from './components/DefaultHeader/DefaultHeader';
 import Footer from './components/footer/Footer';
+import ThankYou from './pages/ThankYou';
 
 
 
@@ -49,9 +50,6 @@ function App() {
     } else {
       setFavourites([...favourites, product])
     }
-    console.log('favourite button is onclick')
-    console.log(product)
-    console.log(favourites)
   }
   const onRemove = (product) => {
     const exist = favourites.find(favourite => favourite._id === product._id);
@@ -81,9 +79,7 @@ function App() {
     } else {
       setShoppingList([...shoppingList, product])
     }
-    console.log('Add to cart button is onclick')
-    console.log(product)
-    console.log(shoppingList)
+    
   }
   const removeFromShoppingList = (product) => {
     const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
@@ -147,11 +143,13 @@ function App() {
             />
           </Route>
           <Route path="/favourites">
-            <Favourites
+             {
+               user && user._id ? <Favourites
               favourites={favourites}
               onAdd={onAdd}
               onRemove={onRemove}
-            />
+            /> : <Login stayLogedin={stayLogedin}/>
+             }
           </Route>
           <Route path="/checkout">
             {
@@ -159,10 +157,15 @@ function App() {
             }    
           </Route>
           <Route path="/mycart">
-            <MyCart />
+            {
+              user && user._id ? <MyCart/> : <Login stayLogedin={stayLogedin}/>
+            }
           </Route>
+          <Route exact path="/thankyou">
+            <ThankYou/>
+          </Route>
+
         </Switch>
-        <Footer/>
       </Router>
     </div>
   )}

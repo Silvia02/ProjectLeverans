@@ -5,13 +5,10 @@ import {
   makeStyles,
   TextField,
   Paper,
-  TableHead,
-  TableCell,
-  Table,
-  TableRow,
 } from '@material-ui/core'
 import { Scrollbars } from 'react-custom-scrollbars-2';
-import Mycart from "./MyCart"
+import { useHistory } from 'react-router';
+
 
 
 const useStyle = makeStyles(theme => ({
@@ -29,8 +26,8 @@ const initialInputValues = {
   city: "",
   zipcode: ""
 }
-export const ShippingDetails = () => {
-
+export const ShippingDetails = ({ addToShoppingList, removeFromShoppingList,shoppingList }) => {
+  const history = useHistory();
   const classes = useStyle();
   const paperStyle = {
     padding: 20,
@@ -54,9 +51,7 @@ export const ShippingDetails = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate())
-      <div>
-       <span style={{backgroundColor:"black", color:"white"}}>Thank you for shopping with us!</span>
-      </div>
+     history.push('/thankyou')
   }
     const validate = () => {
       let temp = {}
@@ -136,9 +131,9 @@ export const ShippingDetails = () => {
                       <p>Sport Shoe 2</p>
                   </div>
                   <div className="minusPlus">
-                    <i className="fas fa-minus minus"></i>
+                    <i className="fas fa-minus minus" onClick={removeFromShoppingList}></i>
                      <input className = "quantity" type="text" placeholder="2"></input>
-                    <i className="fas fa-plus add"></i>
+                    <i className="fas fa-plus add" onClick={addToShoppingList}></i>
                   </div>
                   <div className="price">
                       <h5>$2000</h5>
@@ -148,25 +143,8 @@ export const ShippingDetails = () => {
                     </div>
                   </div>
                   <hr></hr>
-                  <div className="billItems">
-                  <div className="itemsImg">
-                    <img src="http://clipartmag.com/images/cartoon-pictures-of-shoes-42.png" alt="itemImage"></img>
-                      <p>Sport Shoe 2</p>
-                  </div>
-                  <div className="minusPlus">
-                    <i className="fas fa-minus minus"></i>
-                     <input className = "quantity" type="text" placeholder="2"></input>
-                    <i className="fas fa-plus add"></i>
-                  </div>
-                  <div className="price">
-                      <h5>$2000</h5>
-                  </div>
-                  <div>
-                    <i className="fas fa-trash-alt"></i>
-                    </div>
-                  </div>
-                       <hr></hr>
                 </div>
+                
              
 
                   
@@ -175,9 +153,10 @@ export const ShippingDetails = () => {
     </div> 
     </Grid> 
     </form> 
-    <br></br> 
-    <button id = "checkout" type='submit' onClick={handleSubmit}>
+      <br></br>
+     <button id="checkout" type='submit' onClick={handleSubmit}>
     Checkout </button> 
+  
     </div>
   )
 }

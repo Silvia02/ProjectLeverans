@@ -103,12 +103,18 @@ export const SizeButtonWrapper = styled.div`
 export const SizeButton = styled.button`
   width:35px;
   height: 35px;
-  font-size:0.8em;
+  font-size: 0.8em;
   border-radius: 0px;
   margin: 3px;
   background-color: whitesmoke;
+  padding: 0;
 
+  ${({selected}) => selected && `
+    border: 5px solid #222;
+    border-radius: 2px;
+  `} 
 `
+
 export const AddtoCartWrapper = styled.div`
   width:100%;
   display:flex;
@@ -124,6 +130,13 @@ export const AddtoCartButton = styled.button`
   background-color: rgb(38, 39, 39);
   color:whitesmoke;
   margin-left: 3px;
+
+  ${({disabled}) => disabled && `
+    cursor: not-allowed;
+    background-color: rgb(100, 100, 100);
+    color: grey;
+  `} 
+
    @media (min-width: 1023px) {
    font-size: 1.3em;
   }

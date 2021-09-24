@@ -1,22 +1,12 @@
-import Favourites from '../models/favourites.js'
-import Cart from '../models/cart.js'
+import User from '../models/user.js';
 import Product from '../models/product.js'
-
-export const createFavourites = async (req, res) => {
-  try {
-    const favourites = new Favourites();
-    await favourites.save();
-    res.status(200).json(favourites);
-  } catch (error) {
-    res.status(400).json({message: error.message});
-  }
-}
 
 export const getFavourites = async (req, res) => {
   try {
-    const favouritesId = req.params.id;
-    const favourites = await Favourites.findById(favouritesId);
-    res.status(200).json(favourites);
+    const userId = req.params.id;
+    const user = await User.findById(userId);
+
+    res.status(200).json(user.favourites);
   } catch (error) {
     res.status(400).json({message: error.message});
   }
@@ -24,16 +14,14 @@ export const getFavourites = async (req, res) => {
 
 export const addToFavourites = async (req, res) => {
   try {
-    const favouritesId = req.params.id;
-    const {productId} = req.body;
+    const userId = req.params.id;
+    const {product} = req.body;
 
-    const product = await Product.findById(productId);
-
-    const favourites = await Favourites.findByIdAndUpdate(favouritesId, {
-      $addToSet: {products: product},
+    const user = await User.findByIdAndUpdate(userId, {
+      $addToSet: {favourites: product},
     }, {new: true}).exec();
 
-    res.status(200).json(favourites);
+    res.status(200).json(user.favourites);
   } catch (error) {
     res.status(400).json({message: error.message});
   }
@@ -41,16 +29,18 @@ export const addToFavourites = async (req, res) => {
 
 export const removeFromFavourites = async (req, res) => {
   try {
-    const {productId} = req.body;
-    const favouritesId = req.params.id;
+    const userId = req.params.id;
+    const {index} = req.body;
 
-    const favourites = await Favourites.findByIdAndUpdate(favouritesId, {
-      $pull: {
-        products: {_id: productId}
-      }
-    }, {new: true}).exec();
+    const user = await User.findById(userId);
 
-    res.status(200).json(favourites);
+    let updatedFavourites = [...user.favourites];
+    updatedFavourites.splice(index, 1);
+
+    user.favourites = updatedFavourites;
+    await user.save();
+
+    res.status(200).json(user.favourites);
   } catch (error) {
     res.status(400).json({message: error.message});
   }
@@ -58,13 +48,17 @@ export const removeFromFavourites = async (req, res) => {
 
 export const addFavouritesToCart = async (req, res) => {
   try {
-    const {cartId, favourites} = req.body;
+    const userId = req.params.id;
+    const {size} = req.body;
 
-    const cart = await Cart.findById(cartId);
-    cart.products = [...cart.products, ...favourites];
-    cart.save();
-
-    res.status(200).send(cart);
+    const user = await User.findById(userId);
+    const updatedFavourites = user.favourites.map(product => {
+      product.size = size;
+      return product;
+    });
+    user.cart = user.cart.concat(updatedFavourites);
+    const updatedUser = await user.save();
+    res.status(200).json(updatedUser);
   } catch (error) {
     res.status(400).json({message: error.message});
   }
