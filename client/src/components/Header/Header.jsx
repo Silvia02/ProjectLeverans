@@ -36,7 +36,7 @@ const Header = ({stayLogedin, userName }) => {
           </div>
          <div className="avatar">
            <Avatar area-aria-controls="menu" style={iconStyle} onClick={handleMenu} />
-            <h3>{userName}</h3>
+            <h3>{userName.charAt(0).toUpperCase()+userName.slice(1)}</h3>
          </div>
         </div>
        <Menu

@@ -135,6 +135,8 @@ export const ShippingDetails = ({addToShoppingList, removeFromShoppingList, shop
               </Paper>
             </Grid>
           </div>
+    </Grid> 
+    </form> 
           <div className='priceDetails'>
             <Grid item xs={6} align='center'>
               <Paper elevation={10} style={paperStyle}>
