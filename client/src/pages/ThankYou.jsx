@@ -21,9 +21,11 @@ function ThankYou() {
         <img src={byshoes} alt='sohe'></img>
       <h1>Thank you for shopping with us!</h1>
         <br></br>
-      </div>
+        </div>
+        <div>
       <button id='continue' onClick={() => { history.push("/") }}>Continue shopping</button>
-        <br></br>
+        </div>
+          <br></br>
         <p>Follow us</p>
       <div className='followus'>
           <img src={facebook} alt='facebook' style={{hight:'25px',width:'25px'}}></img>
