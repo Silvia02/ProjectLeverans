@@ -5,13 +5,10 @@ import {
   makeStyles,
   TextField,
   Paper,
-  TableHead,
-  TableCell,
-  Table,
-  TableRow,
 } from '@material-ui/core'
 import { Scrollbars } from 'react-custom-scrollbars-2';
-import Mycart from "./MyCart"
+import { useHistory } from 'react-router';
+
 
 
 const useStyle = makeStyles(theme => ({
@@ -30,7 +27,7 @@ const initialInputValues = {
   zipcode: ""
 }
 export const ShippingDetails = ({ addToShoppingList, removeFromShoppingList,shoppingList }) => {
-
+  const history = useHistory();
   const classes = useStyle();
   const paperStyle = {
     padding: 20,
@@ -54,9 +51,7 @@ export const ShippingDetails = ({ addToShoppingList, removeFromShoppingList,shop
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate())
-      <div>
-       <span style={{backgroundColor:"black", color:"white"}}>Thank you for shopping with us!</span>
-      </div>
+     history.push('/thankyou')
   }
     const validate = () => {
       let temp = {}
@@ -147,9 +142,9 @@ export const ShippingDetails = ({ addToShoppingList, removeFromShoppingList,shop
                     <i className="fas fa-trash-alt"></i>
                     </div>
                   </div>
-                  {console.log({ shoppingList })}
                   <hr></hr>
                 </div>
+                
              
 
                   
@@ -158,9 +153,10 @@ export const ShippingDetails = ({ addToShoppingList, removeFromShoppingList,shop
     </div> 
     </Grid> 
     </form> 
-    <br></br> 
-    <button id = "checkout" type='submit' onClick={handleSubmit}>
+      <br></br>
+     <button id="checkout" type='submit' onClick={handleSubmit}>
     Checkout </button> 
+  
     </div>
   )
 }
