@@ -1,7 +1,7 @@
 .container{
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+ align-items: center;
   justify-content: center;
 
 }
@@ -40,7 +40,8 @@ img{
   border-radius: 15px;
   border-style: none;
   width: 200px;
-  margin-left:50px;
+  margin-right: 100px;
+  
   
 }
 .followus{
@@ -121,7 +122,7 @@ h1{
   margin-bottom: 10px;
 }
 #continue{
-          margin-left:45%;
+          margin-right:40%;
           margin-top: 50px;
 }
 
@@ -155,20 +156,20 @@ p{
 }
 @media only screen and (max-width : 2200px){
   .thanks{
-  height: 80%;
-  width: 80%;
+  height: 40%;
+  width: 70%;
   margin-left: 10%;
 }
 img{
-      height: 40%;
-      width: 90%;
+      height: 70%;
+      width: 70%;
 }
 h1{
   margin-left: 20%;
   margin-bottom: 10px;
 }
 #continue{
-          margin-left:45%;
+          margin-left:10%;
           margin-top: 50px;
 }
 .followus{
