@@ -76,12 +76,12 @@ export const FavouriteHeader = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
   }
-  @media(min-width: 1023px){
+  @media(min-width: 1022px){
     flex-direction: column;
     justify-content: center;
     margin-left:36%;
   }
-  @media(min-width: 1023px){
+  @media(min-width: 1024.9px){
     margin-left:23%;
   }
 `
@@ -93,7 +93,7 @@ export const FavouritesLists = styled.div`
   flex-wrap: wrap;
   width: 90%;
   margin-left:8%;
-
+ 
   @media(min-width: 767px) {
     flex-direction: row;
     justify-content: space-around;
@@ -103,7 +103,7 @@ export const FavouritesLists = styled.div`
     width: 70%;
     margin-left: 4%;
   }
-  @media(min-width: 1023px){
+  @media(min-width: 1022px){
     flex-direction: row;
   }
   @media(min-width: 1024.9px){
@@ -120,7 +120,7 @@ export const FavouriteCard = styled.div`
   justify-content: space-around;
   background-color: white;
   box-shadow: 1px 1px 1px 1px whitesmoke;
-
+ 
   @media only screen and(min-width: 767px) {
     flex-direction: column;
     margin-right: 0px;
@@ -129,7 +129,7 @@ export const FavouriteCard = styled.div`
     border-bottom: 1px darkgrey solid;
   }
 
-  @media only screen and(min-width: 1023px) {
+  @media only screen and(min-width: 1022px) {
     flex-direction: column;
     border-bottom: none;
   }
@@ -140,6 +140,12 @@ export const FavouriteCard = styled.div`
     margin-right: 20px;
     box-shadow: none;
     margin-bottom: 5%;
+  }
+  @media(min-width: 1065px) {
+    width:30%;
+  }
+  @media(min-width: 1300px) {
+    width:23%;
   }
 `
 
@@ -152,7 +158,7 @@ export const FavouriteImg = styled.img`
     object-fit: fit;
   }
 
-  @media(min-width: 1023px) {
+  @media(min-width: 1022px) {
     width: 100%;
     height:400px;
     object-fit:cover;
@@ -175,8 +181,13 @@ export const AddFavouritetoCartButton = styled.button`
     background-color: black;
     color:whitesmoke;
     padding:2px;
-    width:100%;
-    margin-top:1em;
-    margin-left: 0%;
-
+    width:86%;
+    margin-top:2em;
+    margin-left: 7%;
+    height:45px;
+    font-size: 1.2em;
+     @media(min-width: 767px) {
+       font-size: 1.4em;
+       margin-bottom: 1%;
+     }
 `

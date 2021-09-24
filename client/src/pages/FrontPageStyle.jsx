@@ -25,6 +25,7 @@ export const FrontPageWrapper = styled.div`
   display:flex;
   flex-direction: column;
   margin-bottom: 80px;
+  width:100%;
   @media (min-width: 1023px) {
     width:80%;
     flex-direction: row;
@@ -34,7 +35,7 @@ export const FrontPageWrapper = styled.div`
     margin-top: 10%;
   }
   @media (min-width: 1024.9px){
-    margin-top: 0%;
+    margin-top: 1.5%;
   }
 `;
 export const PhotoCard = styled.div`
