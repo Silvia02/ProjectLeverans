@@ -19,6 +19,7 @@ import Sport from "./pages/Sport";
 import Formal from "./pages/Formal";
 import DefaultHeader from './components/DefaultHeader/DefaultHeader';
 import Footer from './components/footer/Footer';
+import ThankYou from './pages/ThankYou';
 
 
 
@@ -160,6 +161,10 @@ function App() {
               user && user._id ? <MyCart/> : <Login stayLogedin={stayLogedin}/>
             }
           </Route>
+          <Route exact path="/thankyou">
+            <ThankYou/>
+          </Route>
+
         </Switch>
       </Router>
     </div>

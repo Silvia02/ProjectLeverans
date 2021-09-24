@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import ApiUrlContext from '../ApiUrlContext.js';
 import {Grid, Typography, Paper, Box, } from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import {AddtoCartButton, SizeButtonWrapper, SizeButton} from './ProductStyle.jsx';
+import {SizeButtonWrapper, SizeButton} from './ProductStyle.jsx';
 import {
   FavouritesWrapper,
   FavouritesLists,
@@ -12,7 +12,8 @@ import {
   Backdrop,
   Modal,
   ModalHeading,
-  InvertedAddtoCartButton
+  InvertedAddtoCartButton,
+  AddFavouritetoCartButton, FavouriteProductInfo
 } from './FavouritesStyle.jsx';
 import favouriteImg from '../images/heart.png';
 import Footer from '../components/footer/Footer.jsx';
@@ -76,18 +77,22 @@ const Favourites = () => {
             <FavouritesLists>
               {
                 favourites.map((product, index) => (
-                  <FavouriteCard key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
+                  <FavouriteCard key={product._id} display="flex" alignItems="center" style={{justifyContent: 'space-between'}}>
+                    <HighlightOffIcon size="20" style={{ cursor: 'pointer', marginLeft:"85%", marginBottom:"-25px",zIndex:"5" }} onClick={() => removeProduct(index)} />
                     <FavouriteImg src={product.image} alt={product.name} />
-                    <div style={{paddingTop: '12%'}}>
-                      <Typography variant="h6" >{product.name}</Typography>
-                      <Typography variant="h6" style={{marginTop: '10%'}}>${product.price}</Typography>
-                    </div>
-                    <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(index)} />
+                    <FavouriteProductInfo>
+                      <div style={{paddingTop: '10%'}}>
+                        <Typography variant="h6" >{product.name}</Typography>
+                        <Typography variant="h6" style={{marginTop: '10%'}}>${product.price}</Typography>
+                      </div>
+                      <AddFavouritetoCartButton style={{ whiteSpace: "nowrap" }} onClick={() => setShowSizePicker(true)}>Add to cart</AddFavouritetoCartButton>
+                    </FavouriteProductInfo>
                   </FavouriteCard>
                 ))
+                
               }
             </FavouritesLists>
-            <AddtoCartButton style={{whiteSpace: "nowrap"}} onClick={() => setShowSizePicker(true)}>Add favourites to cart</AddtoCartButton>
+            
           </>
         ) : null}
         {showSizePicker ? (
