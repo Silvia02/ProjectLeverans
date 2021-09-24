@@ -66,10 +66,11 @@ h3{
 @media only screen and (max-width : 2200px){
 
 .avatar{
-  margin-left:70%;
+  margin-left:80%;
 }
 #title{
   font-size:2rem;
+  margin-left: 40px;
 }
 
 }
