@@ -63,6 +63,7 @@ const Favourites = () => {
       body: JSON.stringify({size})
     });
     setShowSizePicker(false);
+    
   }
 
   return (
@@ -85,14 +86,14 @@ const Favourites = () => {
                         <Typography variant="h6" >{product.name}</Typography>
                         <Typography variant="h6" style={{marginTop: '10%'}}>${product.price}</Typography>
                       </div>
-                      <AddFavouritetoCartButton style={{ whiteSpace: "nowrap" }} onClick={() => setShowSizePicker(true)}>Add to cart</AddFavouritetoCartButton>
+                      
                     </FavouriteProductInfo>
                   </FavouriteCard>
                 ))
                 
               }
             </FavouritesLists>
-            
+            <AddFavouritetoCartButton style={{ whiteSpace: "nowrap" }} onClick={() => setShowSizePicker(true)}>Add to cart</AddFavouritetoCartButton>
           </>
         ) : null}
         {showSizePicker ? (
