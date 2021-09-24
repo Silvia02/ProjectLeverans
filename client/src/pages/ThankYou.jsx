@@ -30,7 +30,7 @@ function ThankYou() {
           <img src={twitter} alt='facebook' style={{hight:'25px',width:'25px'}}></img>
           <img src={instagram} alt='facebook' style={{hight:'25px',width:'25px'}}></img>
       </div>
-      </div>
+    </div>
       <Footer/>
     </>
   )
