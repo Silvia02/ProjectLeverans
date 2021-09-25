@@ -46,7 +46,7 @@ const Header = ({stayLogedin, userName }) => {
          anchorEl={anchorEl}
          open={Boolean(anchorEl)}>
          <MenuItem onClick={handleClose}>
-            <FavoriteBorderOutlinedIcon fontSize="large" style={iconStyle}/>
+          <Link to='/favourites'><FavoriteBorderOutlinedIcon fontSize="large" style={iconStyle}/></Link>
          </MenuItem>
          <MenuItem onClick={handleClose}>
             <h4 onClick={handleLogout}>Logout</h4>
