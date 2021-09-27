@@ -25,11 +25,32 @@ export default function ElectronSpecific() {
     // add an event listener listening to the Electron main process
     // and the event sent from the main process called menuChoice
     ipcRenderer.on('menuChoice', (ipcEvent, choice) => {
-      if (choice === 'Save current wish list') {
+      
+      alert(`you have click on the ${choice}`)
+      let fileExtensionToUse = "wishlist";
+      if (choice === 'Download current wish list') {
         let filePath = dialog.showSaveDialogSync({
           properties: ['createDirectory']
-        });
-        // your logic and something with fs and path eventually to save
+        }); 
+        // your logic and something with fs and path eventually to save 
+        if (filePath) {
+          // add extension if missing
+          if (
+            filePath.slice(-fileExtensionToUse.length - 1) !==
+            '.' + fileExtensionToUse
+          ) {
+            filePath += '.' + fileExtensionToUse;
+          }
+          // save text as json
+          let text = document.querySelector('.text-to-remember').value;
+          fs.writeFileSync(
+            filePath,
+            JSON.stringify({ textArea: text }, null, '  '),
+            'utf-8'
+          );
+          console.log('userData', app.getPath('userData'))
+        }
+        console.log('you have click on save file')
       }
       if (choice === 'Load a wish list') {
         let filePaths = dialog.showOpenDialogSync({
