@@ -36,7 +36,7 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
         console.log(file.filePath.toString());
         
         for (let i = 0; i < favouritesLists.length; i++) {
-          text+=favouritesLists[i].name+',';
+          text+=favouritesLists[i].name+'; ';
           fs.writeFile(file.filePath.toString(),
             text, function (err) {
               if (err) throw err;
