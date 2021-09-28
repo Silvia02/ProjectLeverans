@@ -17,15 +17,17 @@ import {
 } from './FavouritesStyle.jsx';
 import favouriteImg from '../images/heart.png';
 import Footer from '../components/footer/Footer.jsx';
-
 import ElectronSpecific from '../components/ElectronSpecific/ElectronSpecific.jsx';
 
+// Check if user is using electron app
+function isElectron() {
+  if (typeof window !== 'undefined' && typeof window.process === 'object' && window.process.type === 'renderer') return true;
+  if (typeof process !== 'undefined' && typeof process.versions === 'object' && !!process.versions.electron) return true;
+  if (typeof navigator === 'object' && typeof navigator.userAgent === 'string' && navigator.userAgent.indexOf('Electron') >= 0) return true;
+  return false;
+}
+
 const Favourites = () => {
-  // Check if user is using electron app
-  const isElectron = navigator.userAgent.includes('Electron');
-  console.log(isElectron)
-
-
   const ApiUrl = useContext(ApiUrlContext);
   const [favourites, setFavourites] = useState([]);
   const [size, setSize] = useState(null);
@@ -126,7 +128,7 @@ const Favourites = () => {
             </Modal>
           </>
         ) : null}
-        {isElectron && <ElectronSpecific setFavourites={setFavourites} />}
+        {isElectron() && <ElectronSpecific setFavourites={setFavourites} />}
       </FavouritesWrapper>
       <Footer />
     </div>

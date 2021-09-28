@@ -74,17 +74,11 @@ export const addFileToFavourites = async (req, res) => {
     const {favourites} = req.body;
 
     // Create new array of favourites based on names passed in body
-    // let currentItem;
-    // let newFavourites = [];
     let newFavourites = await Product.find({
       name: {
         $in: favourites
       }
     });
-    // favourites.forEach(item => {
-    //   currentItem = await Product.find({name: item});
-    //   newFavourites.push(currentItem);
-    // })
 
     // Set user favourites to new items in file
     const user = await User.findById(userId);
