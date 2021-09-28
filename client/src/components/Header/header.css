@@ -46,24 +46,11 @@ p {
   margin-right: 40px !important;
  
 
-
-.headerBackArrow {
-  cursor: pointer;
-  margin: 20px 0 0 15px;
-}
-
-.title{
-  font-family: 'fantasy', cursive;
-  font-size: 30px;
-  margin-top: 20px !important;
-  margin-left: 10px !important;
-
-}
   }
+}
 
 
 @media(max-width: 768px){
- 
   #title  {
   /* position: absolute;   */
     font-size: 1.5rem; 
@@ -71,75 +58,9 @@ p {
  
 }
 
-
 }
 
 
 
 
-/* @media only screen and (max-width : 768px){
-  .avatar{
-    width: 100%;
-  /* margin-left:50%; */
-      /* background-color: blue; */
-   /* text-align: center;
-   margin-top: -20px;
-}
-#title{
-  font-size: 1em;
-  
-}
-}  */ 
-
-/* @media only screen and (max-width : 1024px){
-
-.avatarWrapper {
-  margin-left: auto;
-}
-
-
-.avatar{
-  padding: 10px;
-  padding-right: 15px;
-  position: relative;
-}
-
-.avatarIcon {
-  position: absolute;
-  top: 15px;
-  left: -25px;
-  z-index: -1;
-}
-
-.avatarUsername {
-  background-color: #fff;
-  padding: 0 1px;
-  line-height: 0.9em;
-  border-radius: 4px;
-}
-
-@media only screen and (max-width: 370px) {
-  .title {
-    font-size: 22px;
-  }
-
-  .avatarIcon {
-    width: 75%;
-    height: 75%;
-  }
-
-  .avatarUsername {
-    line-height: 1em;
-    padding: 0 2px;
-    font-size: 0.9em;
-  }
-}
-
-} */
-
-@media only screen and (max-width: 300px) {
-  .title {
-    font-size: 18px;
-  }
-}
 
