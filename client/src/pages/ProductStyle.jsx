@@ -129,7 +129,6 @@ export const AddtoCartButton = styled.button`
   border-radius: 0px;
   background-color: rgb(38, 39, 39);
   color:whitesmoke;
-  margin-left: 3px;
 
   ${({disabled}) => disabled && `
     cursor: not-allowed;

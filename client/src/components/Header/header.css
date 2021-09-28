@@ -1,76 +1,70 @@
 .header{
-          box-sizing: border-box;
-          position: relative;
-          display: flex;
-          flex-direction:row;
-          align-items: flex-start;
-          color: rgb(224, 159, 6);
-          border-bottom: rgba(114, 108, 108, 0.123) 1px solid;
-          font-size: large;
-          width: 100vw;
-          height: 80px;
-          z-index:99;
-          width:100%;
-          
+  display: flex;
+  align-items: center;
+  color: rgb(224, 159, 6);
+  border-bottom: rgba(114, 108, 108, 0.123) 1px solid;
+  font-size: large;
+  width: 100vw;
+  height: 80px;
+  z-index:99;
+  width:100%;
 }
-h3{
-      
-      margin-left: 40px;
-      margin-top: -20px;
-      
 
+.headerBackArrow {
+  cursor: pointer;
+  margin: 20px 0 0 15px;
 }
-#title{
-  
-  box-sizing: border-box;
+
+.title{
+  font-family: 'fantasy', cursive;
+  font-size: 30px;
+  margin-top: 20px !important;
+  margin-left: 10px !important;
+}
+
+.avatarWrapper {
+  margin-left: auto;
+}
+
+.avatar{
+  padding: 10px;
+  padding-right: 15px;
+  position: relative;
+}
+
+.avatarIcon {
   position: absolute;
-  margin-left: -10px;
- 
-  
+  top: 15px;
+  left: -25px;
+  z-index: -1;
 }
 
-
-@media only screen and (max-width : 480px) and (min-width:767px){
-  
-.avatar{
-  margin-left:100px;
+.avatarUsername {
+  background-color: #fff;
+  padding: 0 1px;
+  line-height: 0.9em;
+  border-radius: 4px;
 }
 
-}
-@media only screen and (max-width : 768px){
-  .avatar{
-  margin-left:50%;
-}
-#title{
-  font-size: 1em;
-  
-}
-}
-@media only screen and (max-width : 1024px){
-.avatar{
-  margin-left:50%;
-}
-#title{
-  font-size: 1em;
-  
-}
-}
-@media only screen and (max-width : 1281px){
-  .avatar{
-  margin-left:60%;
-}
-#title{
-  font-size:1rem;
-}
-}
-@media only screen and (max-width : 2200px){
+@media only screen and (max-width: 370px) {
+  .title {
+    font-size: 22px;
+  }
 
-.avatar{
-  margin-left:80%;
-}
-#title{
-  font-size:2rem;
-  margin-left: 40px;
+  .avatarIcon {
+    width: 75%;
+    height: 75%;
+  }
+
+  .avatarUsername {
+    line-height: 1em;
+    padding: 0 2px;
+    font-size: 0.9em;
+  }
 }
 
+@media only screen and (max-width: 300px) {
+  .title {
+    font-size: 18px;
+  }
 }
