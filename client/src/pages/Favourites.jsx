@@ -18,7 +18,13 @@ import {
 import favouriteImg from '../images/heart.png';
 import Footer from '../components/footer/Footer.jsx';
 
+import ElectronSpecific from '../components/ElectronSpecific/ElectronSpecific.jsx';
+
 const Favourites = () => {
+  // Check if user is using electron app
+  const isElectron = navigator.userAgent.includes('Electron');
+  console.log(isElectron)
+
 
   const ApiUrl = useContext(ApiUrlContext);
   const [favourites, setFavourites] = useState([]);
@@ -91,7 +97,6 @@ const Favourites = () => {
                     </FavouriteProductInfo>
                   </FavouriteCard>
                 ))
-
               }
             </FavouritesLists>
             <AddFavouritetoCartButton style={{whiteSpace: "nowrap"}} onClick={() => setShowSizePicker(true)}>Add to cart</AddFavouritetoCartButton>
@@ -121,6 +126,7 @@ const Favourites = () => {
             </Modal>
           </>
         ) : null}
+        {isElectron && <ElectronSpecific setFavourites={setFavourites} />}
       </FavouritesWrapper>
       <Footer />
     </div>

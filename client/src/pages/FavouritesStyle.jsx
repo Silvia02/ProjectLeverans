@@ -60,6 +60,7 @@ export const ModalHeading = styled.h3`
 `
 
 export const InvertedAddtoCartButton = styled(AddtoCartButton)`
+  width: 100%;
   background-color: whitesmoke;
   color: rgb(38, 39, 39);
   margin: 0 25px;
@@ -178,16 +179,15 @@ export const FavouriteProductInfo = styled.div`
 
 `
 export const AddFavouritetoCartButton = styled.button`
+    cursor: pointer;
     background-color: black;
     color:whitesmoke;
     padding:2px;
-    width:86%;
-    margin-top:2em;
-    margin-left: 7%;
+    width: 75%;
+    margin: 4px;
     height:45px;
     font-size: 1.2em;
      @media(min-width: 767px) {
        font-size: 1.4em;
-       margin-bottom: 1%;
      }
 `

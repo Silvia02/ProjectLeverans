@@ -20,13 +20,10 @@ import Formal from "./pages/Formal";
 import DefaultHeader from './components/DefaultHeader/DefaultHeader';
 import Footer from './components/footer/Footer';
 import ThankYou from './pages/ThankYou';
-// import ElectronSpecific from './components/ElectronSpecific.jsx';
 
 
 
 function App() {
-  // Check if user is using electron app
-  // const isElectron = navigator.userAgent.includes('Electron');
 
   const [user, setUserLogin] = useState({})
   // check is user is store in local storage
