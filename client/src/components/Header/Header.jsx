@@ -28,11 +28,11 @@ const Header = ({stayLogedin, userName }) => {
      <>
        
        <div className="header">
-         <div>
-           <ArrowBackIosIcon style={{ marginTop: "40px" }} onClick={() => { window.history.back(); }}></ArrowBackIosIcon>
+         <div className="arrow">
+           <ArrowBackIosIcon style={{ marginTop: "40px",  marginLeft:"60px"}} onClick={() => { window.history.back(); }}></ArrowBackIosIcon>
          </div>
          <div>
-           <p id ="title" style={{ marginTop: 45, fontFamily: 'fantasy' }}> The Shoe Store</p>
+           <p id ="title" style={{ marginTop: 30, fontFamily: 'fantasy' }}> The Shoe Store</p>
           </div>
          <div className="avatar">
            <Avatar area-aria-controls="menu" style={iconStyle} onClick={handleMenu} />
