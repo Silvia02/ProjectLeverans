@@ -16,7 +16,6 @@ import {
   AddFavouritetoCartButton, FavouriteProductInfo
 } from './FavouritesStyle.jsx';
 import favouriteImg from '../images/heart.png';
-import ElectronSpecific from '../components/ElectronSpecific.jsx';
 import Footer from '../components/footer/Footer.jsx';
 import ElectronSpecific from '../components/ElectronSpecific/ElectronSpecific.jsx';
 
@@ -129,7 +128,7 @@ const Favourites = () => {
             </Modal>
           </>
         ) : null}
-        {isElectron() && <ElectronSpecific setFavourites={setFavourites} />}
+        {isElectron() && <ElectronSpecific setFavourites={setFavourites} favouritesLists={favourites}/>}
       </FavouritesWrapper>
       
       <Footer />

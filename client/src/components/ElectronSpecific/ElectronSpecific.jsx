@@ -2,14 +2,14 @@ import React, {useState, useEffect, useContext} from "react";
 import {ElectronButtonWrapper, ElectronButton, ElectronLoadMessage} from './ElectronSpecificStyle';
 import ApiUrlContext from '../../ApiUrlContext.js';
 
-export default function ElectronSpecific({setFavourites}) {
+export default function ElectronSpecific({setFavourites, favouritesLists}) {
   const ApiUrl = useContext(ApiUrlContext);
   const [favouritesFile, setFavouritesFile] = useState('');
   const [showMessage, setShowMessage] = useState(false);
 
   // Not needed in Vite, but in CRA
   const require = window.require;
-
+  console.log(favouritesLists)
   // Dialog and remote from electron
   const remote = require('@electron/remote');
   const {dialog} = remote;
@@ -18,7 +18,16 @@ export default function ElectronSpecific({setFavourites}) {
   const fs = require('fs');
   const path = require('path');
 
-
+  const downloadFromFavourites = async () => { 
+    const data = await dialog.showSaveDialog({
+      properties: ['createDirectory']
+    })
+    fs.writeFile(
+      // filePath,
+      JSON.stringify({ textArea: favouritesLists }, null, '  '),
+      'utf-8'
+    )
+  }
   const loadFavouritesFromFile = async () => {
     const data = await dialog.showOpenDialog({
       properties: ['openFile'],
