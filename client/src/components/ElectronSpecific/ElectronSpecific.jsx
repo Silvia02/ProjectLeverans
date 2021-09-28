@@ -5,11 +5,10 @@ import ApiUrlContext from '../../ApiUrlContext.js';
 export default function ElectronSpecific({setFavourites, favouritesLists}) {
   const ApiUrl = useContext(ApiUrlContext);
   const [favouritesFile, setFavouritesFile] = useState('');
+  const [wishList, setWishList]=useState([ ])
   const [showMessage, setShowMessage] = useState(false);
 
-  // Not needed in Vite, but in CRA
   const require = window.require;
-  console.log(favouritesLists)
   // Dialog and remote from electron
   const remote = require('@electron/remote');
   const {dialog} = remote;
@@ -18,16 +17,45 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
   const fs = require('fs');
   const path = require('path');
 
-  const downloadFromFavourites = async () => { 
+  const saveFavouritesAsFile = async () => {
+    let text='';
     const data = await dialog.showSaveDialog({
-      properties: ['createDirectory']
-    })
-    fs.writeFile(
-      // filePath,
-      JSON.stringify({ textArea: favouritesLists }, null, '  '),
-      'utf-8'
-    )
-  }
+      properties: ['createDirectory'],
+      title: 'Select the File Path to save',
+      defaultPath: path.join(__dirname, '../desktop/wishlist.txt'),
+      buttonLabel: 'Save',
+      filters: [
+        {
+          name: 'Text Files',
+          extensions: ['txt', 'docx']
+        },]
+    }).then(file => {
+      // Stating whether dialog operation was cancelled or not.
+      console.log(file.canceled);
+      if (!file.canceled) {
+        console.log(file.filePath.toString());
+        
+        for (let i = 0; i < favouritesLists.length; i++) {
+          text+=favouritesLists[i].name+',';
+          fs.writeFile(file.filePath.toString(),
+            text, function (err) {
+              if (err) throw err;
+              console.log('Saved!');
+            });
+          console.log(text)
+        }
+        // Creating and Writing to the sample.txt file
+        
+      }
+    }).catch(err => {
+      console.log(err)
+    });
+    setWishList(favouritesLists);
+    console.log(favouritesLists)
+      // save text as json
+      
+    }
+  
   const loadFavouritesFromFile = async () => {
     const data = await dialog.showOpenDialog({
       properties: ['openFile'],
@@ -66,7 +94,7 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
   return (
     <>
       <ElectronButtonWrapper>
-        <ElectronButton onClick={loadFavouritesFromFile}>Save favourites to file</ElectronButton>
+        <ElectronButton onClick={saveFavouritesAsFile}>Save favourites to file</ElectronButton>
         <ElectronButton onClick={loadFavouritesFromFile}>Load favourites from file</ElectronButton>
       </ElectronButtonWrapper>
       { showMessage && <ElectronLoadMessage>Loaded favourites from {favouritesFile}</ElectronLoadMessage>}
