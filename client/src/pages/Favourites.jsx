@@ -128,8 +128,9 @@ const Favourites = () => {
             </Modal>
           </>
         ) : null}
-        {isElectron() && <ElectronSpecific setFavourites={setFavourites} />}
+        {isElectron() && <ElectronSpecific setFavourites={setFavourites} favouritesLists={favourites}/>}
       </FavouritesWrapper>
+      
       <Footer />
     </div>
   )
