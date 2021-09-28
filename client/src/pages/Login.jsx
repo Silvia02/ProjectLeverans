@@ -44,6 +44,7 @@ const Login = ({stayLogedin}) => {
   return (
     <>
       <h1>Login</h1>
+    
       <StlyedFormWrappper>
         <StlyedForm>
           <label htmlFor="Email">Email</label>
