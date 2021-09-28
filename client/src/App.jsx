@@ -34,67 +34,7 @@ function App() {
     localStorage.setItem("MyUser", JSON.stringify(user))
     setUserLogin(user)
   }
-  const [favourites, setFavourites] = useState([])
-  const [shoppingList, setShoppingList] = useState([]);
 
-  const onAdd = (product) => {
-    const exist = favourites.find(favourite => favourite._id === product._id);
-    setFavourites([...favourites, {...product}])
-    if (exist) {
-      setFavourites(
-        favourites.map(favourite =>
-          favourite._id === product._id ? {...exist, quantity: exist.quantity + 1}
-            : favourite
-        )
-      )
-    } else {
-      setFavourites([...favourites, product])
-    }
-  }
-  const onRemove = (product) => {
-    const exist = favourites.find(favourite => favourite._id === product._id);
-    if (exist.quantity === 1) {
-      setFavourites(favourites.filter(favourite => favourite._id !== product._id))
-    } else {
-      setFavorites(
-        favourites.map(favourite =>
-          favourite._id === product._id
-            ? {...exist, quantity: exist.quantity - 1}
-            : favourite
-        )
-      )
-    }
-  }
-
-  const addToShoppingList = (product) => {
-    const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
-    setShoppingList([...shoppingList, {...product}])
-    if (exist) {
-      setShoppingList(
-        shoppingList.map(shoppingItem =>
-          shoppingItem._id === product._id ? {...exist, quantity: exist.quantity + 1}
-            : shoppingItem
-        )
-      )
-    } else {
-      setShoppingList([...shoppingList, product])
-    }
-
-  }
-  const removeFromShoppingList = (product) => {
-    const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
-    if (exist.quantity === 1) {
-      setShoppingList(shoppingList.filter(shoppingItem => shoppingItem._id !== product._id))
-    } else {
-      setShoppingList(
-        shoppingList.map(shoppingItem =>
-          shoppingItem._id === product._id
-            ? {...exist, quantity: exist.quantity - 1}
-            : shoppingItem
-        )
-      )
-    }
-  }
   return (
 
     <div className="App">
@@ -109,7 +49,7 @@ function App() {
           <Route path="/home">
             {
               user && user._id ?
-                <Home stayLogedin={stayLogedin} userName={user.name} favourites={favourites} onAdd={onAdd} />
+                <Home stayLogedin={stayLogedin} userName={user.name}  />
                 : <Login stayLogedin={stayLogedin} />
             }
           </Route>
@@ -120,34 +60,28 @@ function App() {
             <RegisterPage />
           </Route>
           <Route path="/casual">
-            <Casual favourites={favourites} onAdd={onAdd} />
+            <Casual  />
           </Route>
           <Route path="/sport">
-            <Sport favourites={favourites} onAdd={onAdd} />
+            <Sport  />
           </Route>
           <Route path="/formal">
-            <Formal favourites={favourites} onAdd={onAdd} />
+            <Formal />
           </Route>
           <Route path="/register">
             <RegisterPage />
           </Route>
           <Route exact path="/products">
-            <Home favourites={favourites} onAdd={onAdd} />
+            <Home  />
           </Route>
           <Route path="/products/:id">
             <Product
-              favourites={favourites}
-              shoppingList={shoppingList}
-              onAdd={onAdd}
-              addToShoppingList={addToShoppingList}
             />
           </Route>
           <Route path="/favourites">
             {
               user && user._id ? <Favourites
-                favourites={favourites}
-                onAdd={onAdd}
-                onRemove={onRemove}
+                
               /> : <Login stayLogedin={stayLogedin} />
             }
           </Route>
