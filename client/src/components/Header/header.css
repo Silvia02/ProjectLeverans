@@ -22,9 +22,13 @@
   margin-left: 10px !important;
 }
 
-.avatar{
+.avatarWrapper {
   margin-left: auto;
+}
+
+.avatar{
   padding: 10px;
+  padding-right: 15px;
   position: relative;
 }
 
