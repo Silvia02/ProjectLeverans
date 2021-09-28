@@ -20,6 +20,18 @@ const Header = ({stayLogedin, userName}) => {
 
   }
 
+   
+   return (
+     <>
+       
+       <div className="header">
+         <div className="arrow">
+           <ArrowBackIosIcon style={{ marginTop: "40px",  marginLeft:"60px"}} onClick={() => { window.history.back(); }}></ArrowBackIosIcon>
+         </div>
+         <div>
+           <p id ="title" style={{ marginTop: 30, fontFamily: 'fantasy' }}> The Shoe Store</p>
+
+
   return (
     <>
       <div className="header">
@@ -33,6 +45,7 @@ const Header = ({stayLogedin, userName}) => {
           <div className="avatar">
             <Avatar className="avatarIcon" />
             <h3 className="avatarUsername">{userName.charAt(0).toUpperCase() + userName.slice(1)}</h3>
+
           </div>
           <Menu
             style={{marginTop: "55px", marginLeft: "-10px"}}

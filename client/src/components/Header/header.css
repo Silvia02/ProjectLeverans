@@ -10,6 +10,43 @@
   width:100%;
 }
 
+.avatar {
+  display: flex;
+ text-align: center;
+ justify-content: center;
+ width: 100%;
+}
+ h3{
+       
+margin-top: 35px;
+margin-left: 20px;
+    
+    
+ }
+ #title {
+  
+  box-sizing: border-box;
+  position: absolute;  
+  font-size: 2rem;
+  
+}
+p {
+ margin-left:10px;
+}
+
+  @media only screen and (max-width: 600px) and (min-width: 320px){
+
+#title{
+ 
+   display: none;
+ 
+}
+.arrow{
+
+  margin-right: 40px !important;
+ 
+
+
 .headerBackArrow {
   cursor: pointer;
   margin: 20px 0 0 15px;
@@ -20,11 +57,46 @@
   font-size: 30px;
   margin-top: 20px !important;
   margin-left: 10px !important;
+
 }
+  }
+
+
+@media(max-width: 768px){
+ 
+  #title  {
+  /* position: absolute;   */
+    font-size: 1.5rem; 
+    margin-left: 5px;
+ 
+}
+
+
+}
+
+
+
+
+/* @media only screen and (max-width : 768px){
+  .avatar{
+    width: 100%;
+  /* margin-left:50%; */
+      /* background-color: blue; */
+   /* text-align: center;
+   margin-top: -20px;
+}
+#title{
+  font-size: 1em;
+  
+}
+}  */ 
+
+/* @media only screen and (max-width : 1024px){
 
 .avatarWrapper {
   margin-left: auto;
 }
+
 
 .avatar{
   padding: 10px;
@@ -63,8 +135,11 @@
   }
 }
 
+} */
+
 @media only screen and (max-width: 300px) {
   .title {
     font-size: 18px;
   }
 }
+
