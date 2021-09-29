@@ -12,7 +12,7 @@ import {
   ProductInformationWrapper,
 } from "./HomeStyle";
 
-const Sport = () => {
+const Sport = ( stayLogedin ) => {
   const ApiUrl = useContext(ApiUrlContext);
   const [sports, setSports] = useState([]);
 
@@ -23,25 +23,27 @@ const Sport = () => {
       const response = await fetch(`${ApiUrl}/products/category/sport`);
       const data = await response.json();
 
-      setSports(data)
-    }
+      setSports(data);
+    };
 
     getItems();
   }, []);
 
   return (
     <div>
-      <ArrowBackIosIcon
-        style={{
-          marginTop: "40px",
-          marginLeft: "60px",
-          color: "red",
-          fontSize: 35,
-        }}
-        onClick={() => {
-          window.history.back();
-        }}
-      ></ArrowBackIosIcon>
+      {stayLogedin ? null :
+        <ArrowBackIosIcon
+          style={{
+            marginTop: "40px",
+            marginLeft: "60px",
+            color: "red",
+            fontSize: 35,
+          }}
+          onClick={() => {
+            window.history.back();
+          }}
+        ></ArrowBackIosIcon>
+      }
       <ProductWrapper>
         {sports.map((sportCate) => (
           <ProductCard key={sportCate._id}>

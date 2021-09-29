@@ -12,7 +12,7 @@ import {
   ProductInformationWrapper,
 } from "./HomeStyle";
 
-const Formal = () => {
+const Formal = ( stayLogedin ) => {
   const ApiUrl = useContext(ApiUrlContext);
   const [formals, setFormals] = useState([]);
 
@@ -22,25 +22,27 @@ const Formal = () => {
       const response = await fetch(`${ApiUrl}/products/category/formal`);
       const data = await response.json();
 
-      setFormals(data)
-    }
+      setFormals(data);
+    };
 
     getItems();
-  }, [])
+  }, []);
 
   return (
     <div>
-      <ArrowBackIosIcon
-        style={{
-          marginTop: "40px",
-          marginLeft: "60px",
-          color: "red",
-          fontSize: 35,
-        }}
-        onClick={() => {
-          window.history.back();
-        }}
-      ></ArrowBackIosIcon>
+      { stayLogedin ? null :
+        <ArrowBackIosIcon
+          style={{
+            marginTop: "40px",
+            marginLeft: "60px",
+            color: "red",
+            fontSize: 35,
+          }}
+          onClick={() => {
+            window.history.back();
+          }}
+        ></ArrowBackIosIcon>
+      }
 
       <ProductWrapper>
         {formals.map((formalCate) => (
