@@ -7,7 +7,8 @@ import ToggleDisplay from 'react-toggle-display';
 // import logo from '../images/shop.png'
 // import {HeaderWrapper} from './FrontPageStyle';
 import Footer from '../components/footer/Footer';
-import {useHistory} from 'react-router';
+import { useHistory } from 'react-router';
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const Product = () => {
   const history = useHistory();
@@ -70,37 +71,82 @@ const Product = () => {
 
   return (
     <>
+      <ArrowBackIosIcon
+        style={{
+          marginTop: "40px",
+          marginLeft: "60px",
+          color: "red",
+          fontSize: 35,
+        }}
+        onClick={() => {
+          window.history.back();
+        }}
+      ></ArrowBackIosIcon>
       <ProductDetailCard>
         <ProductImgDetail src={product.image} alt="" />
         <ProductTextWrapper>
           <ProductLabel>
             <span>{product.category}</span>
-            <span><strong>{product.name}</strong></span>
+            <span>
+              <strong>{product.name}</strong>
+            </span>
             <span>${product.price}</span>
           </ProductLabel>
 
-          <SizeButtonWrapper> {/* conditional styling will be added when size matches button */}
-            <SizeButton selected={size === 37} onClick={() => setSize(37)}>37</SizeButton>
-            <SizeButton selected={size === 38} onClick={() => setSize(38)}>38</SizeButton>
-            <SizeButton selected={size === 39} onClick={() => setSize(39)}>39</SizeButton>
-            <SizeButton selected={size === 40} onClick={() => setSize(40)}>40</SizeButton>
-            <SizeButton selected={size === 41} onClick={() => setSize(41)}>41</SizeButton>
-            <SizeButton selected={size === 42} onClick={() => setSize(42)}>42</SizeButton>
-            <SizeButton selected={size === 43} onClick={() => setSize(43)}>43</SizeButton>
-            <SizeButton selected={size === 44} onClick={() => setSize(44)}>44</SizeButton>
-            <SizeButton selected={size === 45} onClick={() => setSize(45)}>45</SizeButton>
-            <SizeButton selected={size === 46} onClick={() => setSize(46)}>46</SizeButton>
+          <SizeButtonWrapper>
+            {" "}
+            {/* conditional styling will be added when size matches button */}
+            <SizeButton selected={size === 37} onClick={() => setSize(37)}>
+              37
+            </SizeButton>
+            <SizeButton selected={size === 38} onClick={() => setSize(38)}>
+              38
+            </SizeButton>
+            <SizeButton selected={size === 39} onClick={() => setSize(39)}>
+              39
+            </SizeButton>
+            <SizeButton selected={size === 40} onClick={() => setSize(40)}>
+              40
+            </SizeButton>
+            <SizeButton selected={size === 41} onClick={() => setSize(41)}>
+              41
+            </SizeButton>
+            <SizeButton selected={size === 42} onClick={() => setSize(42)}>
+              42
+            </SizeButton>
+            <SizeButton selected={size === 43} onClick={() => setSize(43)}>
+              43
+            </SizeButton>
+            <SizeButton selected={size === 44} onClick={() => setSize(44)}>
+              44
+            </SizeButton>
+            <SizeButton selected={size === 45} onClick={() => setSize(45)}>
+              45
+            </SizeButton>
+            <SizeButton selected={size === 46} onClick={() => setSize(46)}>
+              46
+            </SizeButton>
           </SizeButtonWrapper>
 
           <div>
-            <ProductDetailButton onClick={() => handleClick()}>Product information</ProductDetailButton>
+            <ProductDetailButton onClick={() => handleClick()}>
+              Product information
+            </ProductDetailButton>
             <ToggleDisplay show={show}>{product.description}</ToggleDisplay>
           </div>
           {/*<BackButton><Link to="/products" style={{textDecoration:"none"}}>Back to check more</Link></BackButton>*/}
           <AddtoCartWrapper>
-            <AddtoCartButton disabled={!size} onClick={addToCart}>Add to cart</AddtoCartButton>
+            <AddtoCartButton disabled={!size} onClick={addToCart}>
+              Add to cart
+            </AddtoCartButton>
             <FavoriteBorderIcon
-              style={{width: "45px", height: "50px", marginLeft: "10px", border: "1px solid black", cursor: "pointer"}}
+              style={{
+                width: "45px",
+                height: "50px",
+                marginLeft: "10px",
+                border: "1px solid black",
+                cursor: "pointer",
+              }}
               onClick={addToFavourites}
             />
           </AddtoCartWrapper>
@@ -108,12 +154,9 @@ const Product = () => {
       </ProductDetailCard>
       <br />
       <br />
-      <Footer
-        favouritesAmount={favouritesAmount}
-        myCartAmount={myCartAmount}
-      />
+      <Footer favouritesAmount={favouritesAmount} myCartAmount={myCartAmount} />
     </>
-  )
+  );
 }
 
 export default Product;
