@@ -3,10 +3,8 @@ import ApiUrlContext from '../ApiUrlContext.js';
 import {Link} from 'react-router-dom';
 import {ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper, } from './HomeStyle';
 import Footer from '../components/footer/Footer';
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
-
-const Home = ( stayLogedin ) => {
+const Home = ( ) => {
   const ApiUrl = useContext(ApiUrlContext);
   const [products, setProducts] = useState([]);
 
@@ -22,19 +20,6 @@ const Home = ( stayLogedin ) => {
 
   return (
     <>
-      {stayLogedin ? null :
-        <ArrowBackIosIcon
-          style={{
-            marginTop: "40px",
-            marginLeft: "60px",
-            color: "red",
-            fontSize: 35,
-          }}
-          onClick={() => {
-            window.history.back();
-          }}
-        ></ArrowBackIosIcon>
-      }
       <ProductWrapper>
         {products.map((product) => (
           <ProductCard key={product._id}>
