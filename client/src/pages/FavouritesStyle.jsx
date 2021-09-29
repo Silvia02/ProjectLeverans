@@ -17,7 +17,7 @@ export const FavouritesWrapper = styled.div`
     width:90%;
     margin-top: 2%;
     margin-bottom: 15%;
-    margin-left: 5%;
+    margin-left: 0%;
   }
   @media (min-width: 1024.9px) {
     margin-bottom: 5%;
@@ -71,9 +71,9 @@ export const FavouriteHeader = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 5px;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
   @media(min-width: 767px) {
-    margin-left: 15%;
+    margin-left: 20%;
     margin-top: 10px;
     margin-bottom: 10px;
   }
@@ -82,48 +82,73 @@ export const FavouriteHeader = styled.div`
     justify-content: center;
     margin-left:36%;
   }
-  @media(min-width: 1024.9px){
-    margin-left:23%;
+  @media(min-width: 1023.9px){
+    margin-left:70%;
+  }
+  @media(min-width: 1500px){
+    margin-left: 44%;
+    margin-bottom: 3%;
   }
 `
 
 export const FavouritesLists = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
   flex-wrap: wrap;
-  width: 90%;
-  margin-left:8%;
- 
+  width: 100%;
+  margin-left:0%;
+  margin-bottom: 2%;
+ @media(min-width: 415px){
+   margin-left: -2.5%;
+ }
+  @media(min-width: 659px){
+   width:80%;
+ }
+
   @media(min-width: 767px) {
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     flex-wrap: wrap;
     background-color: none;
     box-shadow: none;
     width: 70%;
-    margin-left: 4%;
+    margin-left: 0%;
   }
   @media(min-width: 1022px){
-    flex-direction: row;
+    flex-direction: column;
+    width:70%;
   }
-  @media(min-width: 1024.9px){
-    flex-direction: row;
+  @media(min-width: 1023.9px){
+    flex-direction: column;
+    margin-left:5%;
+    width:80%;
+  }
+  @media(min-width: 1050px){
+    flex-direction:row;
+    flex-wrap: wrap;
+    width:80%;
+  }
+  @media(min-width: 1120px){
+    width:80%;
+  }
+  @media(min-width: 1500px){
+    width:80%;
   }
 `
 
 export const FavouriteCard = styled.div`
-  width:45%;
-  margin-right: 1%;
+  width:95%;
+  margin-left: 2.5%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   text-align: center;
   justify-content: space-around;
   background-color: white;
   box-shadow: 1px 1px 1px 1px whitesmoke;
  
   @media only screen and(min-width: 767px) {
-    flex-direction: column;
+    flex-direction: row;
     margin-right: 0px;
     box-shadow: none;
     margin-bottom: 0%;
@@ -131,50 +156,75 @@ export const FavouriteCard = styled.div`
   }
 
   @media only screen and(min-width: 1022px) {
-    flex-direction: column;
+    flex-direction: row;
     border-bottom: none;
   }
 
-  @media(min-width: 1024.9px) {
+  @media(min-width: 1023.9px) {
+    flex-direction:row;
+    height:300px;
+    margin-bottom:10px;
+  }
+  @media(min-width: 1050px) {
     flex-direction: column;
-    width: 23%;
-    margin-right: 20px;
-    box-shadow: none;
-    margin-bottom: 5%;
+    justify-content: center;
+    align-items:center;
+    width:20%;
+    height:350px;
   }
-  @media(min-width: 1065px) {
-    width:30%;
+  @media(min-width: 1220px){
+    height:400px;
   }
-  @media(min-width: 1300px) {
-    width:23%;
+  @media(min-width: 1500px){
+    width:18.5%;
+    height:415px;
   }
+  
 `
 
 export const FavouriteImg = styled.img`
   width: 100%;
-  height:200px;
+  height:220px;
+  object-fit:contain;
+  margin-left: 0px;
 
   @media only screen and(min-width: 767px) {
     width: 30%;
+    height:300px;
     object-fit: fit;
   }
 
   @media(min-width: 1022px) {
     width: 100%;
-    height:400px;
-    object-fit:cover;
+    height:300px;
+    object-fit:fit;
     margin-right: 10px;
   }
-  @media(min-width: 1024.9px) {
-    width: 100%;
-    height:300px;
-    object-fit:cover;
-    margin-right: 5px;
+    @media(min-width: 1050px) {
+    width:100%;
+    margin-right: 0px;
+    margin-top:0px;
+  }
+  @media(min-width: 1500px){
+    width:100%;
+    margin-right: 0px;
   }
 `
 export const FavouriteProductInfo = styled.div`
    width:100%;
-   margin-top: -8%;
+   display:flex;
+   flex-direction: column;
+   justify-content:center;
+   align-items:center;
+   margin-left: 5%;
+   font-size:1.5em;
+   font-family: 'Times New Roman', Times, serif;
+    @media(min-width: 1022px) {
+  
+    margin-top: 30px;
+    margin-left:10px;
+    font-size:1em;
+  }
 
 
 `
@@ -183,11 +233,25 @@ export const AddFavouritetoCartButton = styled.button`
     background-color: black;
     color:whitesmoke;
     padding:2px;
-    width: 75%;
+    width: 95%;
     margin: 4px;
+    margin-bottom:15%;
     height:45px;
     font-size: 1.2em;
      @media(min-width: 767px) {
        font-size: 1.4em;
+       width: 70%;
      }
+     @media(min-width: 1023.9px) {
+       width: 70%;
+       margin-left:10%;
+     }
+      @media(min-width: 1050px){
+        width:80%;
+      }
+      @media(min-width: 1500px){
+        width:75%;
+        margin-left: 8%;
+  }
+
 `

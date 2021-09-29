@@ -32,7 +32,7 @@ const Home = ( ) => {
                 <img
                   src={product.image}
                   alt="shoes"
-                  style={{ width: "100%", height: "90%", objectFit: "cover" }}
+                  style={{ width: "100%", height: "90%", objectFit: "cover",marginLeft:'0px', marginTop:'0px' }}
                 />
               </ImageWrapper>
             </Link>
