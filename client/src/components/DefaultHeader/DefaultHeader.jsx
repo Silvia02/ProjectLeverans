@@ -7,17 +7,56 @@ import { CategoryButton, FrontPageWrapper, HeaderLinks, HeaderWrapper, Photo, Ph
 const DefaultHeader = () => {
   return (
     <>
-   <HeaderWrapper>
-        <Link to="/"><ArrowBackIosIcon style={{marginTop:45,color: 'red',fontSize:35}}></ArrowBackIosIcon></Link>
-           
-        <img src={logo} alt="logo" style={{ width: '50px', paddingLeft: '10px', paddingTop: '40px' }} />
+      <HeaderWrapper>
+        <Link to="/">
+       
+          <ArrowBackIosIcon
+            style={{
+              marginTop: 45,
+              color: "red",
+              fontSize: 35,
+              marginLeft: 40,
+            }}
+            
+          ></ArrowBackIosIcon>
+        </Link>
+
+        <img
+          src={logo}
+          alt="logo"
+          style={{ width: "50px", paddingLeft: "10px", paddingTop: "40px" }}
+        />
         <HeaderLinks>
-          <Link to="/register" style={{ textDecoration: "none", color:"rgb(58, 7, 2)", fontFamily: 'Roboto',fontSize:'1.1em',paddingTop: '40px' }}>Register</Link>
-          <Link to="/login" style={{ textDecoration: "none", color: "rgb(58, 7, 2)", fontFamily: 'Roboto', fontSize: '1.1em',paddingTop: '40px' }}>Sign In</Link>
+          <Link
+            to="/register"
+            style={{
+              textDecoration: "none",
+              color: "rgb(58, 7, 2)",
+              fontFamily: "Roboto",
+              fontSize: "1.1em",
+              paddingTop: "40px",
+              marginRight: 60,
+            }}
+          >
+            Register
+          </Link>
+          <Link
+            to="/login"
+            style={{
+              textDecoration: "none",
+              color: "rgb(58, 7, 2)",
+              fontFamily: "Roboto",
+              fontSize: "1.1em",
+              paddingTop: "40px",
+              marginRight: 200,
+            }}
+          >
+            Sign In
+          </Link>
         </HeaderLinks>
       </HeaderWrapper>
       <br />
     </>
-  )
+  );
 }
 export default DefaultHeader
