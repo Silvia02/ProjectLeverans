@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react';
 import ApiUrlContext from '../ApiUrlContext.js';
 import {Link} from "react-router-dom";
-import Footer from '../components/footer/Footer'
+import Footer from '../components/footer/Footer';
+
 import {
   ProductCard,
   ProductPrice,
@@ -21,15 +22,14 @@ const Formal = () => {
       const response = await fetch(`${ApiUrl}/products/category/formal`);
       const data = await response.json();
 
-      setFormals(data)
-    }
+      setFormals(data);
+    };
 
     getItems();
-  }, [])
+  }, []);
 
   return (
     <div>
-
       <ProductWrapper>
         {formals.map((formalCate) => (
           <ProductCard key={formalCate._id}>

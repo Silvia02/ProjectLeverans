@@ -1,76 +1,88 @@
-.header{
-          box-sizing: border-box;
-          position: relative;
-          display: flex;
-          flex-direction:row;
-          align-items: flex-start;
-          color: rgb(224, 159, 6);
-          border-bottom: rgba(114, 108, 108, 0.123) 1px solid;
-          font-size: large;
-          width: 100vw;
-          height: 80px;
-          z-index:99;
-          width:100%;
-          
+.header {
+  /* display: flex; */
+  color: rgb(224, 159, 6);
+  border-bottom: rgba(114, 108, 108, 0.123) 1px solid;
+  font-size: large;
+  width: 100vw;
+  height: 80px;
+  z-index:99;
+  width:100%; 
 }
-h3{
-      
-      margin-left: 40px;
-      margin-top: -20px;
-      
+
+.avatar {
+display: flex;
+justify-content: flex-end;
+margin-top: -75px;
+margin-right: 10%;
 
 }
-#title{
-  
-  box-sizing: border-box;
-  position: absolute;
-  margin-left: -10px;
+.arrow{
+  display: flex;
+  margin-left: 10px;
+}
+
+
+ #title {
  
+  position: relative;  
+  font-size: 2rem;
   
 }
+#userName{
+    margin-top: 45px;
+    margin-left:15px;
+    
+}
 
-
-@media only screen and (max-width : 480px) and (min-width:767px){
-  
+@media only screen and (max-width: 540px) and (min-width: 280px){
 .avatar{
-  margin-left:100px;
+margin-right: 1px;
+margin-top: -60px;
+
+} 
+
+ .avatar div, path{
+ opacity: 0.5;
+
+}
+
+#title{
+    font-size: large;
+    box-sizing: border-box;
+    position: absolute;
+    padding-top: 10px;
 }
 
 }
-@media only screen and (max-width : 768px){
-  .avatar{
-  margin-left:50%;
-}
-#title{
-  font-size: 1em;
-  
-}
-}
-@media only screen and (max-width : 1024px){
+
+  @media only screen and (max-width: 768px) and (min-width: 320px){
 .avatar{
-  margin-left:50%;
-}
-#title{
-  font-size: 1em;
-  
-}
-}
-@media only screen and (max-width : 1281px){
-  .avatar{
-  margin-left:60%;
-}
-#title{
-  font-size:1rem;
-}
-}
-@media only screen and (max-width : 2200px){
+margin-left: -30px;
+} 
 
-.avatar{
-  margin-left:80%;
-}
-#title{
-  font-size:2rem;
-  margin-left: 40px;
-}
+ .avatar div, path{
+ opacity: 0.5;
+ 
 
 }
+
+ .avatar h3{
+
+  margin-right: 40px;
+  width: 2%;
+}
+/* #title{
+    display: none;
+} */
+/* .arrow{
+  width: 20%;
+  margin-left: 20px;
+} */
+}
+
+
+
+
+
+
+

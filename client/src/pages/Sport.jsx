@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react';
 import ApiUrlContext from '../ApiUrlContext.js';
 import {Link} from "react-router-dom";
-import Footer from '../components/footer/Footer'
+import Footer from '../components/footer/Footer';
+
 import {
   ProductCard,
   ProductPrice,
@@ -11,7 +12,7 @@ import {
   ProductInformationWrapper,
 } from "./HomeStyle";
 
-const Sport = () => {
+const Sport = (  ) => {
   const ApiUrl = useContext(ApiUrlContext);
   const [sports, setSports] = useState([]);
 
@@ -22,14 +23,16 @@ const Sport = () => {
       const response = await fetch(`${ApiUrl}/products/category/sport`);
       const data = await response.json();
 
-      setSports(data)
-    }
+      setSports(data);
+    };
 
     getItems();
   }, []);
 
   return (
     <div>
+
+      
       <ProductWrapper>
         {sports.map((sportCate) => (
           <ProductCard key={sportCate._id}>
