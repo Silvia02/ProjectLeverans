@@ -5,7 +5,6 @@ import ApiUrlContext from '../../ApiUrlContext.js';
 export default function ElectronSpecific({setFavourites, favouritesLists}) {
   const ApiUrl = useContext(ApiUrlContext);
   const [favouritesFile, setFavouritesFile] = useState('');
-  const [wishList, setWishList]=useState([ ])
   const [showMessage, setShowMessage] = useState(false);
 
   const require = window.require;
@@ -36,7 +35,7 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
         console.log(file.filePath.toString());
         
         for (let i = 0; i < favouritesLists.length; i++) {
-          text+=favouritesLists[i].name+'; ';
+          text+=favouritesLists[i].name+'\n';
           fs.writeFile(file.filePath.toString(),
             text, function (err) {
               if (err) throw err;

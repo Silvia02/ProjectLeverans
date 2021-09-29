@@ -9,7 +9,7 @@ const DefaultHeader = ({ stayLogedin }) => {
   return (
     <>
       <HeaderWrapper>
-        {stayLogedin ?
+        {stayLogedin ? (
           <Link to="/">
             <ArrowBackIosIcon
               style={{
@@ -19,13 +19,24 @@ const DefaultHeader = ({ stayLogedin }) => {
                 marginLeft: 40,
               }}
             ></ArrowBackIosIcon>
-          </Link> : null}
-
-        <img
-          src={logo}
-          alt="logo"
-          style={{ width: "50px", paddingLeft: "10px", paddingTop: "40px" }}
-        />
+          </Link>
+        ) : null}
+        <div className="logo">
+          <Link to="/">
+            <img
+              src={logo}
+              alt="logo"
+              style={{
+                // width: "50px",
+                // paddingLeft: "10px",
+                // paddingTop: "40px",
+                marginTop: 10,
+                marginLeft: 40,
+             
+              }}
+            />
+          </Link>
+        </div>
         <HeaderLinks>
           <Link
             to="/register"

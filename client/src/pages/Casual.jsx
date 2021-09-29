@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react';
 import ApiUrlContext from '../ApiUrlContext.js';
 import {Link} from "react-router-dom";
-import Footer from '../components/footer/Footer'
+import Footer from '../components/footer/Footer';
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import {
   ProductCard,
   ProductPrice,
@@ -16,6 +17,7 @@ const Casual = () => {
   const ApiUrl = useContext(ApiUrlContext);
   const [categories, setCategories] = useState([])
 
+
   useEffect(() => {
     const getItems = async () => {
       const response = await fetch(`${ApiUrl}/products/category/casual`);
@@ -29,6 +31,17 @@ const Casual = () => {
 
   return (
     <div>
+      <ArrowBackIosIcon
+        style={{
+          marginTop: "40px",
+          marginLeft: "60px",
+          color: "red",
+          fontSize: 35,
+        }}
+        onClick={() => {
+          window.history.back();
+        }}
+      ></ArrowBackIosIcon>
       {/* <h1>Hello from casual</h1> */}
       <ProductWrapper>
         {categories.map((categorie) => (
