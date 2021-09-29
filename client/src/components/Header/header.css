@@ -1,70 +1,62 @@
-.header{
-  display: flex;
-  align-items: center;
+.header {
+  /* display: flex; */
   color: rgb(224, 159, 6);
   border-bottom: rgba(114, 108, 108, 0.123) 1px solid;
   font-size: large;
   width: 100vw;
   height: 80px;
   z-index:99;
-  width:100%;
+  width:100%; 
 }
 
-.headerBackArrow {
-  cursor: pointer;
-  margin: 20px 0 0 15px;
+.avatar {
+display: flex;
+justify-content: flex-end;
+margin-top: -60px;
+margin-right: 20px;
+
+}
+.arrow{
+  display: flex;
+  margin-left: 20px;
 }
 
-.title{
-  font-family: 'fantasy', cursive;
-  font-size: 30px;
-  margin-top: 20px !important;
-  margin-left: 10px !important;
+
+ #title {
+ 
+  position: absolute;  
+  font-size: 2rem;
+  
 }
 
-.avatarWrapper {
-  margin-left: auto;
-}
 
+  @media only screen and (max-width: 768px) and (min-width: 320px){
 .avatar{
-  padding: 10px;
-  padding-right: 15px;
-  position: relative;
+margin-left: -30px;
+} 
+
+ .avatar div, path{
+ opacity: 0.5;
+
 }
 
-.avatarIcon {
-  position: absolute;
-  top: 15px;
-  left: -25px;
-  z-index: -1;
+ .avatar h3{
+
+  margin-right: 40px;
+  width: 2%;
+}
+#title{
+    display: none;
+}
+/* .arrow{
+  width: 20%;
+  margin-left: 20px;
+} */
 }
 
-.avatarUsername {
-  background-color: #fff;
-  padding: 0 1px;
-  line-height: 0.9em;
-  border-radius: 4px;
-}
 
-@media only screen and (max-width: 370px) {
-  .title {
-    font-size: 22px;
-  }
 
-  .avatarIcon {
-    width: 75%;
-    height: 75%;
-  }
 
-  .avatarUsername {
-    line-height: 1em;
-    padding: 0 2px;
-    font-size: 0.9em;
-  }
-}
 
-@media only screen and (max-width: 300px) {
-  .title {
-    font-size: 18px;
-  }
-}
+
+

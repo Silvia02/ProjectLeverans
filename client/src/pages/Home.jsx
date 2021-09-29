@@ -4,12 +4,9 @@ import {Link} from 'react-router-dom';
 import {ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper, } from './HomeStyle';
 import Footer from '../components/footer/Footer';
 
-
-const Home = () => {
-
+const Home = ( ) => {
   const ApiUrl = useContext(ApiUrlContext);
   const [products, setProducts] = useState([]);
- 
 
   useEffect(() => {
     getAllProducts();
@@ -23,9 +20,7 @@ const Home = () => {
 
   return (
     <>
-    
       <ProductWrapper>
-    
         {products.map((product) => (
           <ProductCard key={product._id}>
             {/* <FavoriteBorderIcon
