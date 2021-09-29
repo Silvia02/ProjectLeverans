@@ -33,7 +33,6 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
       console.log(file.canceled);
       if (!file.canceled) {
         console.log(file.filePath.toString());
-        
         for (let i = 0; i < favouritesLists.length; i++) {
           text+=favouritesLists[i].name+'\n';
           fs.writeFile(file.filePath.toString(),
@@ -43,16 +42,12 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
             });
           console.log(text)
         }
-        // Creating and Writing to the sample.txt file
         
       }
     }).catch(err => {
       console.log(err)
     });
-    setWishList(favouritesLists);
-    console.log(favouritesLists)
-      // save text as json
-      
+    console.log(favouritesLists)  
     }
   
   const loadFavouritesFromFile = async () => {
