@@ -27,14 +27,14 @@ const Header = ({ stayLogedin, userName }) => {
       <div className="header">
         <div className="arrow">
           <ArrowBackIosIcon
-            style={{ marginTop: "40px", marginLeft: "60px" }}
+            style={{ marginTop: "40px"}}
             onClick={() => {
               window.history.back();
             }}
           ></ArrowBackIosIcon>
         </div>
         <div>
-          <p id="title" style={{ marginTop: 3, fontFamily: "fantasy" }}>
+          <p id="title" style={{ marginTop: -33, fontFamily: "fantasy"}}>
             {" "}
             The Shoe Store
           </p>
