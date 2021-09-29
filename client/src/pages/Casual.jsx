@@ -13,35 +13,36 @@ import {
 
 } from "./HomeStyle";
 
-const Casual = () => {
+const Casual = ( stayLogedin ) => {
   const ApiUrl = useContext(ApiUrlContext);
-  const [categories, setCategories] = useState([])
-
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const getItems = async () => {
       const response = await fetch(`${ApiUrl}/products/category/casual`);
       const data = await response.json();
 
-      setCategories(data)
-    }
+      setCategories(data);
+    };
 
     getItems();
-  }, [])
+  }, []);
 
   return (
     <div>
-      <ArrowBackIosIcon
-        style={{
-          marginTop: "40px",
-          marginLeft: "60px",
-          color: "red",
-          fontSize: 35,
-        }}
-        onClick={() => {
-          window.history.back();
-        }}
-      ></ArrowBackIosIcon>
+      {stayLogedin ? null :
+        <ArrowBackIosIcon
+          style={{
+            marginTop: "40px",
+            marginLeft: "60px",
+            color: "red",
+            fontSize: 35,
+          }}
+          onClick={() => {
+            window.history.back();
+          }}
+        ></ArrowBackIosIcon>
+      }
       {/* <h1>Hello from casual</h1> */}
       <ProductWrapper>
         {categories.map((categorie) => (
@@ -78,6 +79,6 @@ const Casual = () => {
       <Footer />
     </div>
   );
-}
+};
 
 export default Casual;

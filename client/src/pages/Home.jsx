@@ -6,11 +6,9 @@ import Footer from '../components/footer/Footer';
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 
-const Home = () => {
-
+const Home = ( stayLogedin ) => {
   const ApiUrl = useContext(ApiUrlContext);
   const [products, setProducts] = useState([]);
- 
 
   useEffect(() => {
     getAllProducts();
@@ -24,17 +22,19 @@ const Home = () => {
 
   return (
     <>
-      <ArrowBackIosIcon
-        style={{
-          marginTop: "40px",
-          marginLeft: "60px",
-          color: "red",
-          fontSize: 35,
-        }}
-        onClick={() => {
-          window.history.back();
-        }}
-      ></ArrowBackIosIcon>
+      {stayLogedin ? null :
+        <ArrowBackIosIcon
+          style={{
+            marginTop: "40px",
+            marginLeft: "60px",
+            color: "red",
+            fontSize: 35,
+          }}
+          onClick={() => {
+            window.history.back();
+          }}
+        ></ArrowBackIosIcon>
+      }
       <ProductWrapper>
         {products.map((product) => (
           <ProductCard key={product._id}>

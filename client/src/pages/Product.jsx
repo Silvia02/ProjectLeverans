@@ -10,15 +10,15 @@ import Footer from '../components/footer/Footer';
 import { useHistory } from 'react-router';
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
-const Product = () => {
+const Product = ( stayLogedin ) => {
   const history = useHistory();
-  const {id} = useParams()
+  const { id } = useParams();
   const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
   const [size, setSize] = useState(null);
   const ApiUrl = useContext(ApiUrlContext);
   const [favouritesAmount, setFavouritesAmount] = useState(0);
-  const [myCartAmount, setMyCartAmount] = useState(0)
+  const [myCartAmount, setMyCartAmount] = useState(0);
 
   useEffect(() => {
     fetchProduct();
@@ -28,60 +28,62 @@ const Product = () => {
     const response = await fetch(`${ApiUrl}/products/${id}`);
     const data = await response.json();
     setProduct(data);
-  }
+  };
 
   const addToCart = async () => {
-    const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
+    const userId = JSON.parse(window.localStorage.getItem("MyUser"))._id;
     if (userId) {
       const response = await fetch(`${ApiUrl}/cart/add/${userId}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({product, size})
+        body: JSON.stringify({ product, size }),
       });
       const data = await response.json();
       setMyCartAmount(data.length);
     } else {
       history.push("/login");
     }
-  }
+  };
 
   const addToFavourites = async () => {
-    const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
+    const userId = JSON.parse(window.localStorage.getItem("MyUser"))._id;
     if (userId) {
       const response = await fetch(`${ApiUrl}/favourites/add/${userId}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({product})
+        body: JSON.stringify({ product }),
       });
       const data = await response.json();
-      setFavouritesAmount(data.length)
+      setFavouritesAmount(data.length);
     } else {
       history.push("/login");
     }
-  }
+  };
   const handleClick = () => {
-    setShow(!show)
-  }
+    setShow(!show);
+  };
 
   return (
     <>
-      <ArrowBackIosIcon
-        style={{
-          marginTop: "40px",
-          marginLeft: "60px",
-          color: "red",
-          fontSize: 35,
-        }}
-        onClick={() => {
-          window.history.back();
-        }}
-      ></ArrowBackIosIcon>
+      {stayLogedin ? null :
+        <ArrowBackIosIcon
+          style={{
+            marginTop: "40px",
+            marginLeft: "60px",
+            color: "red",
+            fontSize: 35,
+          }}
+          onClick={() => {
+            window.history.back();
+          }}
+        ></ArrowBackIosIcon>
+      }
       <ProductDetailCard>
         <ProductImgDetail src={product.image} alt="" />
         <ProductTextWrapper>
@@ -136,12 +138,17 @@ const Product = () => {
           </div>
           {/*<BackButton><Link to="/products" style={{textDecoration:"none"}}>Back to check more</Link></BackButton>*/}
           <AddtoCartWrapper>
-
             <AddtoCartButton disabled={!size} onClick={addToCart}>
               Add to cart
             </AddtoCartButton>
 
-            <AddtoCartButton disabled={!size} onClick={addToCart} data-id='addToCart'>Add to cart</AddtoCartButton>
+            <AddtoCartButton
+              disabled={!size}
+              onClick={addToCart}
+              data-id="addToCart"
+            >
+              Add to cart
+            </AddtoCartButton>
 
             <FavoriteBorderIcon
               style={{
@@ -161,6 +168,6 @@ const Product = () => {
       <Footer favouritesAmount={favouritesAmount} myCartAmount={myCartAmount} />
     </>
   );
-}
+};
 
 export default Product;
