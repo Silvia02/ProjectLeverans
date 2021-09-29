@@ -17,7 +17,7 @@ export const ProductDetailCard = styled.div`
      flex-direction: row;
      width:100%;
      margin-left: 0%;
-     margin-top: 2%;
+     margin-top: 8%;
    }
 
 `
@@ -129,6 +129,7 @@ export const AddtoCartButton = styled.button`
   border-radius: 0px;
   background-color: rgb(38, 39, 39);
   color:whitesmoke;
+  margin-bottom:10%;
 
   ${({disabled}) => disabled && `
     cursor: not-allowed;
