@@ -136,9 +136,13 @@ const Product = () => {
           </div>
           {/*<BackButton><Link to="/products" style={{textDecoration:"none"}}>Back to check more</Link></BackButton>*/}
           <AddtoCartWrapper>
+
             <AddtoCartButton disabled={!size} onClick={addToCart}>
               Add to cart
             </AddtoCartButton>
+
+            <AddtoCartButton disabled={!size} onClick={addToCart} data-id='addToCart'>Add to cart</AddtoCartButton>
+
             <FavoriteBorderIcon
               style={{
                 width: "45px",

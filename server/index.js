@@ -85,9 +85,13 @@ app.post("/api/users", (req, res) => {
 })
 
 
-// Move these variables to seperate .env file
-const CONNECTION_URL = 'mongodb+srv://rubin:pa55w0rd@tempcluster.gnptb.mongodb.net/tempCluster?retryWrites=true&w=majority';
+// Set correct database url
+const CONNECTION_URL = process.env.NODE_ENV === 'production'
+  ? 'mongodb://localhost:27017/test'
+  : 'mongodb+srv://rubin:pa55w0rd@tempcluster.gnptb.mongodb.net/tempCluster?retryWrites=true&w=majority';
+
 const PORT = process.env.PORT || 4000;
+
 
 mongoose.connect(CONNECTION_URL)
   .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))

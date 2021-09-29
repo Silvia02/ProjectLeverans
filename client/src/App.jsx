@@ -38,7 +38,7 @@ function App() {
   return (
 
     <div className="App">
-
+     
       <Router>
         {user && user._id ? <Header stayLogedin={stayLogedin} userName={user.name} />
           : <DefaultHeader />}
