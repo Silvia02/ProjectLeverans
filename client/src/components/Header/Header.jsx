@@ -45,7 +45,7 @@ const Header = ({ stayLogedin, userName }) => {
             style={iconStyle}
             onClick={handleMenu}
           />
-          <h3>{userName.charAt(0).toUpperCase() + userName.slice(1)}</h3>
+          <h3 id="userName">{userName.charAt(0).toUpperCase() + userName.slice(1)}</h3>
         </div>
       </div>
       <Menu
