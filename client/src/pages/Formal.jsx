@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import ApiUrlContext from '../ApiUrlContext.js';
 import {Link} from "react-router-dom";
 import Footer from '../components/footer/Footer';
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+
 import {
   ProductCard,
   ProductPrice,
@@ -12,7 +12,7 @@ import {
   ProductInformationWrapper,
 } from "./HomeStyle";
 
-const Formal = ( stayLogedin ) => {
+const Formal = () => {
   const ApiUrl = useContext(ApiUrlContext);
   const [formals, setFormals] = useState([]);
 
@@ -30,20 +30,6 @@ const Formal = ( stayLogedin ) => {
 
   return (
     <div>
-      { stayLogedin ? null :
-        <ArrowBackIosIcon
-          style={{
-            marginTop: "40px",
-            marginLeft: "60px",
-            color: "red",
-            fontSize: 35,
-          }}
-          onClick={() => {
-            window.history.back();
-          }}
-        ></ArrowBackIosIcon>
-      }
-
       <ProductWrapper>
         {formals.map((formalCate) => (
           <ProductCard key={formalCate._id}>

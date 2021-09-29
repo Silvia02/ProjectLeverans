@@ -8,9 +8,9 @@ import ToggleDisplay from 'react-toggle-display';
 // import {HeaderWrapper} from './FrontPageStyle';
 import Footer from '../components/footer/Footer';
 import { useHistory } from 'react-router';
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
-const Product = ( stayLogedin ) => {
+
+const Product = ( ) => {
   const history = useHistory();
   const { id } = useParams();
   const [product, setProduct] = useState({});
@@ -71,19 +71,7 @@ const Product = ( stayLogedin ) => {
 
   return (
     <>
-      {stayLogedin ? null :
-        <ArrowBackIosIcon
-          style={{
-            marginTop: "40px",
-            marginLeft: "60px",
-            color: "red",
-            fontSize: 35,
-          }}
-          onClick={() => {
-            window.history.back();
-          }}
-        ></ArrowBackIosIcon>
-      }
+  
       <ProductDetailCard>
         <ProductImgDetail src={product.image} alt="" />
         <ProductTextWrapper>
