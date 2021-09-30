@@ -5,7 +5,8 @@ import ApiUrlContext from '../../ApiUrlContext.js';
 export default function ElectronSpecific({setFavourites, favouritesLists}) {
   const ApiUrl = useContext(ApiUrlContext);
   const [favouritesFile, setFavouritesFile] = useState('');
-  const [showMessage, setShowMessage] = useState(false);
+  const [showMessage, setShowMessage] = useState('');
+  const [wishList, setWishList] = useState();
 
   const require = window.require;
   // Dialog and remote from electron
@@ -17,7 +18,7 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
   const path = require('path');
 
   const saveFavouritesAsFile = async () => {
-    let text='';
+    let text = '';
     const data = await dialog.showSaveDialog({
       properties: ['createDirectory'],
       title: 'Select the File Path to save',
@@ -30,31 +31,24 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
         },]
     }).then(file => {
       // Stating whether dialog operation was cancelled or not.
-      console.log(file.canceled);
       if (!file.canceled) {
-        console.log(file.filePath.toString());
-        
         for (let i = 0; i < favouritesLists.length; i++) {
-          text+=favouritesLists[i].name+'\n';
+          text += favouritesLists[i].name + '\n';
           fs.writeFile(file.filePath.toString(),
             text, function (err) {
               if (err) throw err;
               console.log('Saved!');
             });
-          console.log(text)
         }
-        // Creating and Writing to the sample.txt file
-        
+        setFavouritesFile(path.basename(file.filePath));
+        setShowMessage('write')
       }
     }).catch(err => {
       console.log(err)
     });
     setWishList(favouritesLists);
-    console.log(favouritesLists)
-      // save text as json
-      
-    }
-  
+  }
+
   const loadFavouritesFromFile = async () => {
     const data = await dialog.showOpenDialog({
       properties: ['openFile'],
@@ -87,8 +81,16 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
     });
     const data = await response.json();
     setFavourites(data);
-    setShowMessage(true);
+    setShowMessage('read');
   }
+
+  const writeMessage = () => (
+    <ElectronLoadMessage>Created the favourites file {favouritesFile}</ElectronLoadMessage>
+  )
+
+  const readMessage = () => (
+    <ElectronLoadMessage>Loaded favourites from {favouritesFile}</ElectronLoadMessage>
+  )
 
   return (
     <>
@@ -96,7 +98,13 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
         <ElectronButton onClick={saveFavouritesAsFile}>Save favourites to file</ElectronButton>
         <ElectronButton onClick={loadFavouritesFromFile}>Load favourites from file</ElectronButton>
       </ElectronButtonWrapper>
-      { showMessage && <ElectronLoadMessage>Loaded favourites from {favouritesFile}</ElectronLoadMessage>}
+      {
+        showMessage === 'write'
+          ? writeMessage()
+          : showMessage === 'read'
+            ? readMessage()
+            : null
+      }
     </>
   )
 }
