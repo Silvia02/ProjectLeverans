@@ -44,7 +44,7 @@ function App() {
           : <DefaultHeader />}
         <Switch>
           <Route exact path="/">
-            <FrontPage stayLogedin={stayLogedin} userName={user.name}/>
+            <FrontPage stayLogedin={stayLogedin}/>
           </Route>
           <Route path="/home">
             {

@@ -24,13 +24,16 @@ const FrontPage = ({stayLogedin,userName}) => {
   }, []);
 
   // Check if user is logged in
-  const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
+  // const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
 
-  if (width <= 768 && !userId) {
-    return <Login stayLogedin={stayLogedin}/>
-  } else {
+  // if (width <= 768) {
+  //   return <Login stayLogedin={stayLogedin}/>
+  // } else {
     return (
-      <>
+     <>
+        {
+          width <= 768 ? <Login stayLogedin={stayLogedin}/>:
+         <div>
         <FrontPageWrapper>
           <PhotoCard>
             <Photo src={allkinds} alt="formal-shoes" />
@@ -94,9 +97,11 @@ const FrontPage = ({stayLogedin,userName}) => {
           </PhotoCard>
         </FrontPageWrapper>
         <Footer />
-      </>
+     </div>
+      }
+               </>
     );
   }
 
-}
+
 export default FrontPage
