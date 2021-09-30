@@ -3,14 +3,10 @@ import ApiUrlContext from '../ApiUrlContext.js';
 import {Link} from 'react-router-dom';
 import {ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper, } from './HomeStyle';
 import Footer from '../components/footer/Footer';
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
-
-const Home = () => {
-
+const Home = ( ) => {
   const ApiUrl = useContext(ApiUrlContext);
   const [products, setProducts] = useState([]);
- 
 
   useEffect(() => {
     getAllProducts();
@@ -24,17 +20,6 @@ const Home = () => {
 
   return (
     <>
-      <ArrowBackIosIcon
-        style={{
-          marginTop: "40px",
-          marginLeft: "60px",
-          color: "red",
-          fontSize: 35,
-        }}
-        onClick={() => {
-          window.history.back();
-        }}
-      ></ArrowBackIosIcon>
       <ProductWrapper>
         {products.map((product) => (
           <ProductCard key={product._id}>
@@ -47,7 +32,7 @@ const Home = () => {
                 <img
                   src={product.image}
                   alt="shoes"
-                  style={{ width: "100%", height: "90%", objectFit: "cover" }}
+                  style={{ width: "100%", height: "90%", objectFit: "cover",marginLeft:'0px', marginTop:'0px' }}
                 />
               </ImageWrapper>
             </Link>

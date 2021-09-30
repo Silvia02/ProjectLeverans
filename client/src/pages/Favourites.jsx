@@ -79,8 +79,8 @@ const Favourites = () => {
     <div>
       <FavouritesWrapper>
         <FavouriteHeader>
-          <img src={favouriteImg} alt="favourite" style={{width: "55px", height: 'auto', marginRight: "10px"}} />
-          <h1 style={{fontFamily: 'fantancy'}}>Favourites</h1>
+          <img src={favouriteImg} alt="favourite" style={{width: "55px", height: 'auto', marginRight: "2px"}} />
+          <h1 style={{fontFamily: 'fantancy', marginLeft:"0px", marginTop:"2px"}}>Favourites</h1>
         </FavouriteHeader>
         {favourites.length ? (
           <>
@@ -88,15 +88,12 @@ const Favourites = () => {
               {
                 favourites.map((product, index) => (
                   <FavouriteCard key={product._id} display="flex" alignItems="center" style={{justifyContent: 'space-between'}}>
-                    <HighlightOffIcon size="20" style={{cursor: 'pointer', marginLeft: "85%", marginBottom: "-25px", zIndex: "5"}} onClick={() => removeProduct(index)} />
                     <FavouriteImg src={product.image} alt={product.name} />
                     <FavouriteProductInfo>
-                      <div style={{paddingTop: '10%'}}>
-                        <Typography variant="h6" >{product.name}</Typography>
-                        <Typography variant="h6" style={{marginTop: '10%'}}>${product.price}</Typography>
-                      </div>
-
+                        <span >{product.name}</span>
+                        <span style={{marginTop: '10%'}}>${product.price}</span>
                     </FavouriteProductInfo>
+                    <HighlightOffIcon size="20" style={{ cursor: 'pointer', marginLeft: "auto" }} onClick={() => removeProduct(index)} />
                   </FavouriteCard>
                 ))
               }

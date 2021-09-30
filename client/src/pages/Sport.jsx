@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import ApiUrlContext from '../ApiUrlContext.js';
 import {Link} from "react-router-dom";
 import Footer from '../components/footer/Footer';
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+
 import {
   ProductCard,
   ProductPrice,
@@ -12,7 +12,7 @@ import {
   ProductInformationWrapper,
 } from "./HomeStyle";
 
-const Sport = () => {
+const Sport = (  ) => {
   const ApiUrl = useContext(ApiUrlContext);
   const [sports, setSports] = useState([]);
 
@@ -23,25 +23,16 @@ const Sport = () => {
       const response = await fetch(`${ApiUrl}/products/category/sport`);
       const data = await response.json();
 
-      setSports(data)
-    }
+      setSports(data);
+    };
 
     getItems();
   }, []);
 
   return (
     <div>
-      <ArrowBackIosIcon
-        style={{
-          marginTop: "40px",
-          marginLeft: "60px",
-          color: "red",
-          fontSize: 35,
-        }}
-        onClick={() => {
-          window.history.back();
-        }}
-      ></ArrowBackIosIcon>
+
+      
       <ProductWrapper>
         {sports.map((sportCate) => (
           <ProductCard key={sportCate._id}>
@@ -62,6 +53,8 @@ const Sport = () => {
                     width: "100%",
                     height: "90%",
                     objectFit: "cover",
+                    marginLeft: '0px',
+                    marginTop: '0px'
                   }}
                 />
               </ImageWrapper>

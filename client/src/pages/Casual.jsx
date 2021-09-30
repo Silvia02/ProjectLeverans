@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import ApiUrlContext from '../ApiUrlContext.js';
 import {Link} from "react-router-dom";
 import Footer from '../components/footer/Footer';
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+
 import {
   ProductCard,
   ProductPrice,
@@ -15,34 +15,22 @@ import {
 
 const Casual = () => {
   const ApiUrl = useContext(ApiUrlContext);
-  const [categories, setCategories] = useState([])
-
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const getItems = async () => {
       const response = await fetch(`${ApiUrl}/products/category/casual`);
       const data = await response.json();
 
-      setCategories(data)
-    }
+      setCategories(data);
+    };
 
     getItems();
-  }, [])
+  }, []);
 
   return (
     <div>
-      <ArrowBackIosIcon
-        style={{
-          marginTop: "40px",
-          marginLeft: "60px",
-          color: "red",
-          fontSize: 35,
-        }}
-        onClick={() => {
-          window.history.back();
-        }}
-      ></ArrowBackIosIcon>
-      {/* <h1>Hello from casual</h1> */}
+    
       <ProductWrapper>
         {categories.map((categorie) => (
           <ProductCard key={categorie._id}>
@@ -63,6 +51,8 @@ const Casual = () => {
                     width: "100%",
                     height: "90%",
                     objectFit: "cover",
+                    marginLeft: '0px',
+                    marginTop: '0px'
                   }}
                 />
               </ImageWrapper>
@@ -78,6 +68,6 @@ const Casual = () => {
       <Footer />
     </div>
   );
-}
+};
 
 export default Casual;

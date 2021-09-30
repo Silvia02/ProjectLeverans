@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import ApiUrlContext from '../ApiUrlContext.js';
 import {Link} from "react-router-dom";
 import Footer from '../components/footer/Footer';
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+
 import {
   ProductCard,
   ProductPrice,
@@ -22,26 +22,14 @@ const Formal = () => {
       const response = await fetch(`${ApiUrl}/products/category/formal`);
       const data = await response.json();
 
-      setFormals(data)
-    }
+      setFormals(data);
+    };
 
     getItems();
-  }, [])
+  }, []);
 
   return (
     <div>
-      <ArrowBackIosIcon
-        style={{
-          marginTop: "40px",
-          marginLeft: "60px",
-          color: "red",
-          fontSize: 35,
-        }}
-        onClick={() => {
-          window.history.back();
-        }}
-      ></ArrowBackIosIcon>
-
       <ProductWrapper>
         {formals.map((formalCate) => (
           <ProductCard key={formalCate._id}>
@@ -62,6 +50,8 @@ const Formal = () => {
                     width: "100%",
                     height: "90%",
                     objectFit: "cover",
+                    marginLeft: '0px',
+                    marginTop: '0px'
                   }}
                 />
               </ImageWrapper>

@@ -69,7 +69,6 @@ const Product = () => {
 
   return (
     <>
-
       <ProductDetailCard>
         <ProductImgDetail src={product.image} alt="" />
         <ProductTextWrapper>

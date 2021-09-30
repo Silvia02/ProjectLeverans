@@ -4,12 +4,12 @@ import logo from '../../images/shop.png'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { CategoryButton, FrontPageWrapper, HeaderLinks, HeaderWrapper, Photo, PhotoCard } from '../../pages/FrontPageStyle';
 
-const DefaultHeader = ({ stayLogedin }) => {
+const DefaultHeader = () => {
 
   return (
     <>
       <HeaderWrapper>
-        {stayLogedin ? (
+       
           <Link to="/">
             <ArrowBackIosIcon
               style={{
@@ -20,7 +20,7 @@ const DefaultHeader = ({ stayLogedin }) => {
               }}
             ></ArrowBackIosIcon>
           </Link>
-        ) : null}
+   
         <div className="logo">
           <Link to="/">
             <img
@@ -30,8 +30,10 @@ const DefaultHeader = ({ stayLogedin }) => {
                 // width: "50px",
                 // paddingLeft: "10px",
                 // paddingTop: "40px",
-                marginTop: 10,
-                marginLeft: 40,
+                marginTop: 30,
+                marginRight: 60,
+                height: 50,
+                width:50
              
               }}
             />

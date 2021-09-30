@@ -27,14 +27,14 @@ const Header = ({ stayLogedin, userName }) => {
       <div className="header">
         <div className="arrow">
           <ArrowBackIosIcon
-            style={{ marginTop: "40px", marginLeft: "60px" }}
+            style={{ marginTop: "40px"}}
             onClick={() => {
               window.history.back();
             }}
           ></ArrowBackIosIcon>
         </div>
         <div>
-          <p id="title" style={{ marginTop: 3, fontFamily: "fantasy" }}>
+          <p id="title" style={{ marginTop: -33, fontFamily: "fantasy"}}>
             {" "}
             The Shoe Store
           </p>
@@ -45,7 +45,7 @@ const Header = ({ stayLogedin, userName }) => {
             style={iconStyle}
             onClick={handleMenu}
           />
-          <h3>{userName.charAt(0).toUpperCase() + userName.slice(1)}</h3>
+          <h3 id="userName">{userName.charAt(0).toUpperCase() + userName.slice(1)}</h3>
         </div>
       </div>
       <Menu

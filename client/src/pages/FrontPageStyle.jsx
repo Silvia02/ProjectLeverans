@@ -47,7 +47,7 @@ export const FrontPageWrapper = styled.div`
     margin-top: 10%;
   }
   @media (min-width: 1024.9px){
-    margin-top: 1.5%;
+    margin-top: 3.5%;
   }
 `;
 export const PhotoCard = styled.div`

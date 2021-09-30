@@ -47,7 +47,7 @@ const Register = () => {
 
   return (
     <>
-      <h2>Register</h2>
+      <h2 style={{marginBottom:30}}>Register</h2>
 
       <StlyedFormWrappper>
         <div className="register">
@@ -90,7 +90,7 @@ const Register = () => {
             <div
               style={{ marginTop: "15px", padding: "5px", textAlign: "center" }}
             >
-              <p style={{ color: "orangered", fontSize: "20px" }}>
+              <p style={{ color: "white", fontSize: "20px" }}>
                 {errorMessage}
               </p>
             </div>
