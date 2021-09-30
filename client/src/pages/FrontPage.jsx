@@ -11,7 +11,7 @@ import Footer from '../components/footer/Footer';
 import Login from "../pages/Login";
 
 
-const FrontPage = () => {
+const FrontPage = ({stayLogedin,userName}) => {
   const [width, setWidth] = useState(window.innerWidth);
   const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);
@@ -27,7 +27,7 @@ const FrontPage = () => {
   const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
 
   if (width <= 768 && !userId) {
-    return <Login />
+    return <Login stayLogedin={stayLogedin}/>
   } else {
     return (
       <>
