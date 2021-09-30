@@ -4,15 +4,13 @@ import {useParams} from 'react-router-dom'
 import {AddtoCartButton, AddtoCartWrapper, ProductDetailButton, ProductDetailCard, ProductDescription, SizeButton, SizeButtonWrapper, ProductLabel, BackButton, ProductImgDetail, ProductTextWrapper} from './ProductStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ToggleDisplay from 'react-toggle-display';
-// import logo from '../images/shop.png'
-// import {HeaderWrapper} from './FrontPageStyle';
 import Footer from '../components/footer/Footer';
-import { useHistory } from 'react-router';
+import {useHistory} from 'react-router';
 
 
-const Product = ( ) => {
+const Product = () => {
   const history = useHistory();
-  const { id } = useParams();
+  const {id} = useParams();
   const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
   const [size, setSize] = useState(null);
@@ -39,7 +37,7 @@ const Product = ( ) => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ product, size }),
+        body: JSON.stringify({product, size}),
       });
       const data = await response.json();
       setMyCartAmount(data.length);
@@ -57,7 +55,7 @@ const Product = ( ) => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ product }),
+        body: JSON.stringify({product}),
       });
       const data = await response.json();
       setFavouritesAmount(data.length);
@@ -71,7 +69,6 @@ const Product = ( ) => {
 
   return (
     <>
-  
       <ProductDetailCard>
         <ProductImgDetail src={product.image} alt="" />
         <ProductTextWrapper>
