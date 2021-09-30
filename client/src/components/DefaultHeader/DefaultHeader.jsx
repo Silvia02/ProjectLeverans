@@ -30,8 +30,10 @@ const DefaultHeader = () => {
                 // width: "50px",
                 // paddingLeft: "10px",
                 // paddingTop: "40px",
-                marginTop: 10,
-                marginLeft: 40,
+                marginTop: 30,
+                marginRight: 60,
+                height: 50,
+                width:50
              
               }}
             />
