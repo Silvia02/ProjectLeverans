@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from "react";
+import {Link} from 'react-router-dom';
 import sportPhoto from '../images/sportblack.png';
 import formalPhoto from '../images/highheel.jpeg';
 import casualPhoto from '../images/casualblack.png';
 import allkinds from '../images/differentkinds.png';
 import logo from '../images/shop.png'
-import { CategoryButton, FrontPageWrapper, HeaderLinks, HeaderWrapper, Photo, PhotoCard } from './FrontPageStyle';
+import {CategoryButton, FrontPageWrapper, HeaderLinks, HeaderWrapper, Photo, PhotoCard} from './FrontPageStyle';
 import Favourites from './Favourites';
 import Footer from '../components/footer/Footer';
 import Login from "../pages/Login";
 
 
-const FrontPage = () => {
-  
-const [width, setWidth] = useState(window.innerWidth);
-const handleWindowSizeChange = () => {
-  setWidth(window.innerWidth); 
+const FrontPage = ({stayLogedin,userName}) => {
+  const [width, setWidth] = useState(window.innerWidth);
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
   }
   useEffect(() => {
     window.addEventListener("resize", handleWindowSizeChange);
@@ -23,9 +22,12 @@ const handleWindowSizeChange = () => {
       window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, []);
-  
-  if (width <= 768) {
-    return <Login />
+
+  // Check if user is logged in
+  const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
+
+  if (width <= 768 && !userId) {
+    return <Login stayLogedin={stayLogedin}/>
   } else {
     return (
       <>
@@ -95,6 +97,6 @@ const handleWindowSizeChange = () => {
       </>
     );
   }
-  
+
 }
 export default FrontPage
