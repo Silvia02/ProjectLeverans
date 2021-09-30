@@ -81,7 +81,7 @@ const MyCart = () => {
                 <CartCardImg src={product.image} alt={product.name} />
                 <CartText>
                   <Typography variant="h6">{product.name}</Typography>
-                  <Typography variant="h6" align="center" style={{marginTop: "10px"}}>${product.price.toFixed(2)}</Typography>
+                  <Typography variant="h6" align="center" style={{ marginTop: "10px" }}>£{product.price.toFixed(2)}</Typography>
                   <div>
                     <span>EU {product.size}</span>
                   </div>
@@ -95,8 +95,8 @@ const MyCart = () => {
         <CheckoutWrapper>
           <br />
           <h2 style={{textAlign: "left", fontFamily: "'Times New Roman', Times, serif"}}>Total amount</h2>
-          <Typography style={{textAlign: "end", fontSize: "1.3em", marginTop: "20px", marginLeft: "15px", fontFamily: "'Times New Roman', Times, serif"}}>VAT: ${VAT.toFixed(2)}</Typography>
-          <Typography style={{textAlign: "end", fontSize: "1.3em", marginTop: "20px", marginLeft: "15px", fontFamily: "'Times New Roman', Times, serif"}}>Total (incl. VAT):${cartPrice.toFixed(2)}</Typography>
+          <Typography style={{ textAlign: "end", fontSize: "1.3em", marginTop: "20px", marginLeft: "15px", fontFamily: "'Times New Roman', Times, serif" }}>VAT: £{VAT.toFixed(2)}</Typography>
+          <Typography style={{ textAlign: "end", fontSize: "1.3em", marginTop: "20px", marginLeft: "15px", fontFamily: "'Times New Roman', Times, serif" }}>Total (incl. VAT):£{cartPrice.toFixed(2)}</Typography>
           <Link to="/checkout"><AddtoCartButton style={{width: '100%', marginTop: '25px', border: "none", marginBottom: '72px'}}>Check out</AddtoCartButton></Link>
         </CheckoutWrapper>
       </CartPageWrapper>

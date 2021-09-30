@@ -91,7 +91,7 @@ const Favourites = () => {
                     <FavouriteImg src={product.image} alt={product.name} />
                     <FavouriteProductInfo>
                         <span >{product.name}</span>
-                        <span style={{marginTop: '10%'}}>${product.price}</span>
+                      <span style={{ marginTop: '10%' }}>£{product.price}</span>
                     </FavouriteProductInfo>
                     <HighlightOffIcon size="20" style={{ cursor: 'pointer', marginLeft: "auto" }} onClick={() => removeProduct(index)} />
                   </FavouriteCard>
