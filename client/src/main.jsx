@@ -10,7 +10,7 @@ const ENV = {
 }
 
 ReactDOM.render(
-  <ApiUrlContext.Provider value={ENV.development}>
+  <ApiUrlContext.Provider value={ENV.production}>
     <App />
   </ApiUrlContext.Provider>,
   document.getElementById('root')
