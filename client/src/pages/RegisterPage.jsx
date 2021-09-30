@@ -47,7 +47,7 @@ const Register = () => {
 
   return (
     <>
-      <h2>Register</h2>
+      <h2 style={{marginBottom:30}}>Register</h2>
 
       <StlyedFormWrappper>
         <div className="register">
