@@ -17,19 +17,20 @@ export const ProductWrapper = styled.div`
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width:80%;
+  width:88%;
   margin-left: 10%;
   margin-top:10px;
   margin-bottom:60px;
   @media (min-width: 1023px) {
-    margin-left: 12%;
+    width:80%;
+    margin-left: 11%;
   }
   `
 export const ProductCard = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin:10px;
+  margin:5px;
   padding: 5px;
   background-color: whitesmoke;
   width:45%;
@@ -37,6 +38,7 @@ export const ProductCard = styled.div`
     display:flex;
     flex-direction: column;
     width:18%;
+    margin:10px;
 
   }
  
