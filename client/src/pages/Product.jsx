@@ -77,7 +77,7 @@ const Product = () => {
             <span>
               <strong>{product.name}</strong>
             </span>
-            <span>${product.price}</span>
+            <span>£{product.price}</span>
           </ProductLabel>
 
           <SizeButtonWrapper>

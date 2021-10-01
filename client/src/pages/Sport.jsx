@@ -62,7 +62,7 @@ const Sport = (  ) => {
             <ProductInformationWrapper>
               <ProductName>{sportCate.name}</ProductName>
               <br />
-              <ProductPrice>${sportCate.price}</ProductPrice>
+              <ProductPrice>£{sportCate.price}</ProductPrice>
             </ProductInformationWrapper>
           </ProductCard>
         ))}

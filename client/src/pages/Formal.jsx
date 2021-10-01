@@ -59,7 +59,7 @@ const Formal = () => {
             <ProductInformationWrapper>
               <ProductName>{formalCate.name}</ProductName>
               <br />
-              <ProductPrice>${formalCate.price}</ProductPrice>
+              <ProductPrice>£{formalCate.price}</ProductPrice>
             </ProductInformationWrapper>
           </ProductCard>
         ))}

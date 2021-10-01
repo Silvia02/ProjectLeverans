@@ -39,7 +39,7 @@ const Home = ( ) => {
             <ProductInformationWrapper>
               <ProductName>{product.name}</ProductName>
               <br />
-              <ProductPrice>${product.price}</ProductPrice>
+              <ProductPrice>£{product.price}</ProductPrice>
             </ProductInformationWrapper>
             {/*<p>{product.description}</p>*/}
           </ProductCard>
