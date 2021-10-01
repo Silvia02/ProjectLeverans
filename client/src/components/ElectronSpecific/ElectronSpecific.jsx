@@ -9,13 +9,37 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
   const [wishList, setWishList] = useState();
 
   const require = window.require;
+
   // Dialog and remote from electron
+  const {ipcRenderer} = require('electron');
   const remote = require('@electron/remote');
+
+  // Use dialog via remote
   const {dialog} = remote;
 
   // Use the fs and paths modules from node
   const fs = require('fs');
   const path = require('path');
+
+  // State variables
+  const [menuChoice, setMenuChoice] = useState('');
+  const [currentFilePath, setCurrentFilePath] = useState('');
+  const [fileContent, setFileContent] = useState('');
+
+  useEffect(() => {
+    ipcRenderer.on('menuChoice', (ipcEvent, choice) => {
+      if (choice === 'Save current wish list') {
+        saveFavouritesAsFile();
+      }
+      if (choice === 'Load a wish list') {
+        loadFavouritesFromFile();
+      }
+    });
+    // Return a function to run un unmount of the component
+    // that will remove the ipcRenderer-listener
+    return () => ipcRenderer.off('menuChoice');
+
+  }, []);
 
   const saveFavouritesAsFile = async () => {
     let text = '';
@@ -52,6 +76,10 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
   const loadFavouritesFromFile = async () => {
     const data = await dialog.showOpenDialog({
       properties: ['openFile'],
+      filters: [{
+        name: 'Text Files',
+        extensions: ['txt']
+      }]
     });
 
     if (!data.canceled) {
@@ -81,30 +109,35 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
     });
     const data = await response.json();
     setFavourites(data);
-    setShowMessage('read');
+    // setShowMessage('read');
   }
 
-  const writeMessage = () => (
-    <ElectronLoadMessage>Created the favourites file {favouritesFile}</ElectronLoadMessage>
-  )
-
-  const readMessage = () => (
-    <ElectronLoadMessage>Loaded favourites from {favouritesFile}</ElectronLoadMessage>
-  )
-
   return (
-    <>
-      <ElectronButtonWrapper>
-        <ElectronButton onClick={saveFavouritesAsFile}>Save favourites to file</ElectronButton>
-        <ElectronButton onClick={loadFavouritesFromFile}>Load favourites from file</ElectronButton>
-      </ElectronButtonWrapper>
-      {
-        showMessage === 'write'
-          ? writeMessage()
-          : showMessage === 'read'
-            ? readMessage()
-            : null
-      }
-    </>
+    <span style={{display: 'none'}}>PLACEHOLDER</span>
   )
 }
+
+  // const writeMessage = () => (
+  //   <ElectronLoadMessage>Created the favourites file {favouritesFile}</ElectronLoadMessage>
+  // )
+
+  // const readMessage = () => (
+  //   <ElectronLoadMessage>Loaded favourites from {favouritesFile}</ElectronLoadMessage>
+  // )
+
+  // return (
+  //   <>
+  //     <ElectronButtonWrapper>
+  //       <ElectronButton onClick={saveFavouritesAsFile}>Save favourites to file</ElectronButton>
+  //       <ElectronButton onClick={loadFavouritesFromFile}>Load favourites from file</ElectronButton>
+  //     </ElectronButtonWrapper>
+  //     {
+  //       showMessage === 'write'
+  //         ? writeMessage()
+  //         : showMessage === 'read'
+  //           ? readMessage()
+  //           : null
+  //     }
+  //   </>
+  // )
+// }
