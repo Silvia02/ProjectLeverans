@@ -76,7 +76,6 @@ function App() {
             {
               isMobile && !user._id?<Login stayLogedin={stayLogedin}/>:<FrontPage user={user._id} stayLogedin={stayLogedin}/>
             }
-            <FrontPage stayLogedin={stayLogedin} userName={user.name} />
           </Route>
           <Route path="/home">
             {
