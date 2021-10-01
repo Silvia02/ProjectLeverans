@@ -20,12 +20,15 @@ import Formal from "./pages/Formal";
 import DefaultHeader from './components/DefaultHeader/DefaultHeader';
 import Footer from './components/footer/Footer';
 import ThankYou from './pages/ThankYou';
+import { isChrome, isFirefox,isSafari,isMobile,isBrowser } from 'react-device-detect';
 
+  
 
 
 function App() {
 
   const [user, setUserLogin] = useState({})
+
   // check is user is store in local storage
   useEffect(() => {
     setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
@@ -35,16 +38,35 @@ function App() {
     setUserLogin(user)
   }
 
+  const [browser, setBrowser] = useState('');
+  useEffect(() => {
+    if (isMobile) {
+      setBrowser('Mobile')
+    }
+    if (isSafari) {
+      setBrowser('Safari')
+    }
+    if (isChrome) {
+      setBrowser('Chrome')
+    }
+    if (isFirefox) {
+      setBrowser('Firefox')
+    }
+      
+  },[])
   return (
 
     <div className="App">
-     
+      
       <Router>
         {user && user._id ? <Header stayLogedin={stayLogedin} userName={user.name} />
           : <DefaultHeader />}
         <Switch>
           <Route exact path="/">
-            <FrontPage stayLogedin={stayLogedin}/>
+            {
+              isMobile && !user._id?<Login stayLogedin={stayLogedin}/>:<FrontPage user={user._id} stayLogedin={stayLogedin}/>
+            }
+            
           </Route>
           <Route path="/home">
             {
@@ -54,7 +76,9 @@ function App() {
             }
           </Route>
           <Route path="/login">
-            <Login stayLogedin={stayLogedin} />
+            
+              <Login stayLogedin={stayLogedin}/>
+           
           </Route>
           <Route path="/register">
             <RegisterPage />
@@ -98,7 +122,7 @@ function App() {
           <Route exact path="/thankyou">
             <ThankYou />
           </Route>
-
+      
         </Switch>
       </Router>
     </div>
