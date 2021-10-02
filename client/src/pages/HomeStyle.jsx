@@ -38,6 +38,7 @@ export const ProductCard = styled.div`
     display:flex;
     flex-direction: column;
     width:18%;
+    margin:10px;
 
   }
  
