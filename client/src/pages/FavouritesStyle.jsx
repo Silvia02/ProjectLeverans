@@ -238,19 +238,22 @@ export const AddFavouritetoCartButton = styled.button`
     margin-bottom:15%;
     height:45px;
     font-size: 1.2em;
+    @media(min-width: 450px){
+      width:70%;
+    }
      @media(min-width: 767px) {
        font-size: 1.4em;
-       width: 70%;
+       width: 30%;
      }
      @media(min-width: 1023.9px) {
-       width: 70%;
+       width: 30%;
        margin-left:10%;
      }
       @media(min-width: 1050px){
-        width:80%;
+        width:30%;
       }
       @media(min-width: 1500px){
-        width:75%;
+        width:30%;
         margin-left: 8%;
   }
 
