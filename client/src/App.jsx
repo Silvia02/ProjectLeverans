@@ -20,8 +20,11 @@ import Formal from "./pages/Formal";
 import DefaultHeader from './components/DefaultHeader/DefaultHeader';
 import Footer from './components/footer/Footer';
 import ThankYou from './pages/ThankYou';
+import { isChrome, isFirefox,isSafari,isMobile,isBrowser } from 'react-device-detect';
 import ElectronSpecific from './components/ElectronSpecific/ElectronSpecific';
 
+
+  
 
 // Check if user is using electron app
 function isElectron() {
@@ -46,16 +49,33 @@ function App() {
     setUserLogin(user)
   }
 
+  const [browser, setBrowser] = useState('');
+  useEffect(() => {
+    if (isMobile) {
+      setBrowser('Mobile')
+    }
+    if (isSafari) {
+      setBrowser('Safari')
+    }
+    if (isChrome) {
+      setBrowser('Chrome')
+    }
+    if (isFirefox) {
+      setBrowser('Firefox')
+    }
+      
+  },[])
   return (
 
     <div className="App">
-
       <Router>
         {user && user._id ? <Header stayLogedin={stayLogedin} userName={user.name} />
           : <DefaultHeader />}
         <Switch>
           <Route exact path="/">
-            <FrontPage stayLogedin={stayLogedin} userName={user.name} />
+            {
+              isMobile && !user._id?<Login stayLogedin={stayLogedin}/>:<FrontPage user={user._id} stayLogedin={stayLogedin}/>
+            }
           </Route>
           <Route path="/home">
             {
@@ -65,7 +85,9 @@ function App() {
             }
           </Route>
           <Route path="/login">
-            <Login stayLogedin={stayLogedin} />
+            
+              <Login stayLogedin={stayLogedin}/>
+           
           </Route>
           <Route path="/register">
             <RegisterPage />
