@@ -60,7 +60,7 @@ const Casual = () => {
             <ProductInformationWrapper>
               <ProductName>{categorie.name}</ProductName>
               <br />
-              <ProductPrice>${categorie.price}</ProductPrice>
+              <ProductPrice>£{categorie.price}</ProductPrice>
             </ProductInformationWrapper>
           </ProductCard>
         ))}

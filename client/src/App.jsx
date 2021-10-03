@@ -20,50 +20,83 @@ import Formal from "./pages/Formal";
 import DefaultHeader from './components/DefaultHeader/DefaultHeader';
 import Footer from './components/footer/Footer';
 import ThankYou from './pages/ThankYou';
+import { isChrome, isFirefox,isSafari,isMobile,isBrowser } from 'react-device-detect';
+import ElectronSpecific from './components/ElectronSpecific/ElectronSpecific';
 
+
+  
+
+// Check if user is using electron app
+function isElectron() {
+  if (typeof window !== 'undefined' && typeof window.process === 'object' && window.process.type === 'renderer') return true;
+  if (typeof process !== 'undefined' && typeof process.versions === 'object' && !!process.versions.electron) return true;
+  if (typeof navigator === 'object' && typeof navigator.userAgent === 'string' && navigator.userAgent.indexOf('Electron') >= 0) return true;
+  return false;
+}
 
 
 function App() {
-
+  const [favourites, setFavourites] = useState([]);
   const [user, setUserLogin] = useState({})
+
   // check is user is store in local storage
   useEffect(() => {
     setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
   }, [])
+
   const stayLogedin = (user) => {
     localStorage.setItem("MyUser", JSON.stringify(user))
     setUserLogin(user)
   }
 
+  const [browser, setBrowser] = useState('');
+  useEffect(() => {
+    if (isMobile) {
+      setBrowser('Mobile')
+    }
+    if (isSafari) {
+      setBrowser('Safari')
+    }
+    if (isChrome) {
+      setBrowser('Chrome')
+    }
+    if (isFirefox) {
+      setBrowser('Firefox')
+    }
+      
+  },[])
   return (
 
     <div className="App">
-     
       <Router>
         {user && user._id ? <Header stayLogedin={stayLogedin} userName={user.name} />
           : <DefaultHeader />}
         <Switch>
           <Route exact path="/">
-            <FrontPage stayLogedin={stayLogedin} userName={user.name}/>
+            {
+              isMobile && !user._id?<Login stayLogedin={stayLogedin}/>:<FrontPage user={user._id} stayLogedin={stayLogedin}/>
+            }
           </Route>
           <Route path="/home">
             {
               user && user._id ?
-                <Home stayLogedin={stayLogedin} userName={user.name}  />
+                <Home stayLogedin={stayLogedin} userName={user.name} />
                 : <Login stayLogedin={stayLogedin} />
             }
           </Route>
           <Route path="/login">
-            <Login stayLogedin={stayLogedin} />
+            
+              <Login stayLogedin={stayLogedin}/>
+           
           </Route>
           <Route path="/register">
             <RegisterPage />
           </Route>
           <Route path="/casual">
-            <Casual  />
+            <Casual />
           </Route>
           <Route path="/sport">
-            <Sport  />
+            <Sport />
           </Route>
           <Route path="/formal">
             <Formal />
@@ -72,7 +105,7 @@ function App() {
             <RegisterPage />
           </Route>
           <Route exact path="/products">
-            <Home  />
+            <Home />
           </Route>
           <Route path="/products/:id">
             <Product
@@ -80,9 +113,9 @@ function App() {
           </Route>
           <Route path="/favourites">
             {
-              user && user._id ? <Favourites
-                
-              /> : <Login stayLogedin={stayLogedin} />
+              user && user._id
+                ? <Favourites favourites={favourites} setFavourites={setFavourites} />
+                : <Login stayLogedin={stayLogedin} />
             }
           </Route>
           <Route path="/checkout">
@@ -98,9 +131,12 @@ function App() {
           <Route exact path="/thankyou">
             <ThankYou />
           </Route>
-
         </Switch>
       </Router>
+
+      {/* Adds ipc listener that allows you to access the 
+        * menu favourites functions throughout the entire app */}
+      {isElectron() && <ElectronSpecific setFavourites={setFavourites} />}
     </div>
   )
 }

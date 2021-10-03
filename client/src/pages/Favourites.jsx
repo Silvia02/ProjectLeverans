@@ -17,19 +17,9 @@ import {
 } from './FavouritesStyle.jsx';
 import favouriteImg from '../images/heart.png';
 import Footer from '../components/footer/Footer.jsx';
-import ElectronSpecific from '../components/ElectronSpecific/ElectronSpecific.jsx';
 
-// Check if user is using electron app
-function isElectron() {
-  if (typeof window !== 'undefined' && typeof window.process === 'object' && window.process.type === 'renderer') return true;
-  if (typeof process !== 'undefined' && typeof process.versions === 'object' && !!process.versions.electron) return true;
-  if (typeof navigator === 'object' && typeof navigator.userAgent === 'string' && navigator.userAgent.indexOf('Electron') >= 0) return true;
-  return false;
-}
-
-const Favourites = () => {
+const Favourites = ({favourites, setFavourites}) => {
   const ApiUrl = useContext(ApiUrlContext);
-  const [favourites, setFavourites] = useState([]);
   const [size, setSize] = useState(null);
   const [showSizePicker, setShowSizePicker] = useState(false);
 
@@ -80,7 +70,7 @@ const Favourites = () => {
       <FavouritesWrapper>
         <FavouriteHeader>
           <img src={favouriteImg} alt="favourite" style={{width: "55px", height: 'auto', marginRight: "2px"}} />
-          <h1 style={{fontFamily: 'fantancy', marginLeft:"0px", marginTop:"2px"}}>Favourites</h1>
+          <h1 style={{fontFamily: 'fantancy', marginLeft: "0px", marginTop: "2px"}}>Favourites</h1>
         </FavouriteHeader>
         {favourites.length ? (
           <>
@@ -90,10 +80,10 @@ const Favourites = () => {
                   <FavouriteCard key={product._id} display="flex" alignItems="center" style={{justifyContent: 'space-between'}}>
                     <FavouriteImg src={product.image} alt={product.name} />
                     <FavouriteProductInfo>
-                        <span >{product.name}</span>
-                        <span style={{marginTop: '10%'}}>${product.price}</span>
+                      <span >{product.name}</span>
+                      <span style={{marginTop: '10%'}}>£{product.price}</span>
                     </FavouriteProductInfo>
-                    <HighlightOffIcon size="20" style={{ cursor: 'pointer', marginLeft: "auto" }} onClick={() => removeProduct(index)} />
+                    <HighlightOffIcon size="20" style={{cursor: 'pointer', marginLeft: "auto"}} onClick={() => removeProduct(index)} />
                   </FavouriteCard>
                 ))
               }
@@ -125,9 +115,7 @@ const Favourites = () => {
             </Modal>
           </>
         ) : null}
-        {isElectron() && <ElectronSpecific setFavourites={setFavourites} favouritesLists={favourites}/>}
       </FavouritesWrapper>
-      
       <Footer />
     </div>
   )
