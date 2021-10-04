@@ -54,8 +54,6 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
               console.log('Saved!');
             });
         }
-        setFavouritesFile(path.basename(file.filePath));
-        setShowMessage('write')
       }
     }).catch(err => {
       console.log(err)
@@ -74,10 +72,6 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
     if (!data.canceled) {
       const filePath = data.filePaths[0];
       console.log(path);
-
-      // Get and set filename from path
-      const fileName = path.basename(data.filePaths[0]);
-      setFavouritesFile(fileName);
 
       // Extract file content and format it
       const content = fs.readFileSync(filePath, {encoding: 'utf-8'});
