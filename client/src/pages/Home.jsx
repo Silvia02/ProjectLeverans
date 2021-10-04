@@ -1,11 +1,9 @@
-import React, {useState, useEffect, useContext} from 'react';
-import ApiUrlContext from '../ApiUrlContext.js';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {ProductCard, ProductPrice, ProductName, ProductWrapper, ImageWrapper, ProductInformationWrapper, } from './HomeStyle';
 import Footer from '../components/footer/Footer';
 
-const Home = ( ) => {
-  const ApiUrl = useContext(ApiUrlContext);
+const Home = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -13,7 +11,7 @@ const Home = ( ) => {
   }, []);
 
   const getAllProducts = async () => {
-    const response = await fetch(`${ApiUrl}/products`);
+    const response = await fetch('/api/products');
     const data = await response.json();
     setProducts(data);
   };
@@ -23,16 +21,12 @@ const Home = ( ) => {
       <ProductWrapper>
         {products.map((product) => (
           <ProductCard key={product._id}>
-            {/* <FavoriteBorderIcon
-              style={{ marginLeft: '85%', marginBottom: '-15%', zIndex: '5' }}
-              onClick={() => onAdd(product)}
-            />*/}
             <Link to={`/products/${product._id}`}>
               <ImageWrapper>
                 <img
                   src={product.image}
                   alt="shoes"
-                  style={{ width: "100%", height: "90%", objectFit: "cover",marginLeft:'0px', marginTop:'0px' }}
+                  style={{width: "100%", height: "90%", objectFit: "cover", marginLeft: '0px', marginTop: '0px'}}
                 />
               </ImageWrapper>
             </Link>
@@ -41,7 +35,6 @@ const Home = ( ) => {
               <br />
               <ProductPrice>£{product.price}</ProductPrice>
             </ProductInformationWrapper>
-            {/*<p>{product.description}</p>*/}
           </ProductCard>
         ))}
       </ProductWrapper>

@@ -1,5 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
-import ApiUrlContext from '../ApiUrlContext.js';
+import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import Footer from '../components/footer/Footer';
 
@@ -13,13 +12,11 @@ import {
 } from "./HomeStyle";
 
 const Formal = () => {
-  const ApiUrl = useContext(ApiUrlContext);
   const [formals, setFormals] = useState([]);
 
-  //console.log(formals);
   useEffect(() => {
     const getItems = async () => {
-      const response = await fetch(`${ApiUrl}/products/category/formal`);
+      const response = await fetch(`/api/products/category/formal`);
       const data = await response.json();
 
       setFormals(data);
@@ -33,14 +30,6 @@ const Formal = () => {
       <ProductWrapper>
         {formals.map((formalCate) => (
           <ProductCard key={formalCate._id}>
-            {/* <FavoriteBorderIcon
-              style={{
-                marginLeft: "85%",
-                marginBottom: "-15%",
-                zIndex: "5",
-              }}
-              onClick={() => onAdd(formalCate)}
-            />*/}
             <Link to={`/products/${formalCate._id}`}>
               <ImageWrapper>
                 <img
