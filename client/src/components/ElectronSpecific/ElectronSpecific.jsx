@@ -1,8 +1,6 @@
 import React, {useEffect, useContext} from "react";
-import ApiUrlContext from '../../ApiUrlContext.js';
 
 export default function ElectronSpecific({setFavourites, favouritesLists}) {
-  const ApiUrl = useContext(ApiUrlContext);
   const require = window.require;
 
   // Dialog and remote from electron
@@ -82,7 +80,7 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
 
   const setFileAsFavourites = async (favourites) => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    const response = await fetch(`${ApiUrl}/favourites/addFile/${userId}`, {
+    const response = await fetch(`/api/favourites/addFile/${userId}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',

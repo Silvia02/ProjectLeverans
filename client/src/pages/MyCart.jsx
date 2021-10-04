@@ -1,5 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
-import ApiUrlContext from '../ApiUrlContext.js';
+import React, {useState, useEffect} from 'react';
 import '../css/mycart.css'
 import {AddtoCartButton} from '../pages/ProductStyle'
 import {Link} from 'react-router-dom'
@@ -10,8 +9,6 @@ import mycarticon from '../images/mycart.jpeg';
 import Footer from '../components/footer/Footer.jsx';
 
 const MyCart = () => {
-
-  const ApiUrl = useContext(ApiUrlContext);
   const [cart, setCart] = useState([]);
   const [cartPrice, setCartPrice] = useState(0);
   const [VAT, setVAT] = useState(0);
@@ -47,14 +44,14 @@ const MyCart = () => {
 
   const fetchCart = async () => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    const response = await fetch(`${ApiUrl}/cart/${userId}`);
+    const response = await fetch(`/api/cart/${userId}`);
     const data = await response.json();
     cartUpdater(data);
   }
 
   const removeProduct = async (index) => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    const response = await fetch(`${ApiUrl}/cart/remove/${userId}`, {
+    const response = await fetch(`/api/cart/remove/${userId}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -96,7 +93,7 @@ const MyCart = () => {
           <br />
           <h2 style={{textAlign: "left", fontFamily: "'Times New Roman', Times, serif"}}>Total amount</h2>
           <Typography style={{textAlign: "end", fontSize: "1.3em", marginTop: "20px", marginLeft: "15px", fontFamily: "'Times New Roman', Times, serif"}}>VAT: £{VAT.toFixed(2)}</Typography>
-          <Typography style={{textAlign: "end", fontSize: "1.3em", marginTop: "20px", marginLeft: "15px", fontFamily: "'Times New Roman', Times, serif"}}>Total (incl. VAT):£{cartPrice.toFixed(2)}</Typography>
+          <Typography style={{textAlign: "end", fontSize: "1.3em", marginTop: "20px", marginLeft: "15px", fontFamily: "'Times New Roman', Times, serif"}}>Total (incl. VAT): £{cartPrice.toFixed(2)}</Typography>
           <Link to="/checkout"><AddtoCartButton style={{width: '100%', marginTop: '25px', border: "none", marginBottom: '72px'}}>Check out</AddtoCartButton></Link>
         </CheckoutWrapper>
       </CartPageWrapper>

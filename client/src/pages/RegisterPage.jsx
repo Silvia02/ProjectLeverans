@@ -1,5 +1,4 @@
 import React, {useState, useContext} from "react";
-import ApiUrlContext from '../ApiUrlContext.js';
 import axios from 'axios';
 import {useHistory} from "react-router";
 import {
@@ -12,8 +11,6 @@ import Header from "../components/Header/Header";
 import Footer from "../components/footer/Footer.jsx";
 
 const Register = () => {
-  const ApiUrl = useContext(ApiUrlContext);
-
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState("")
   const [user, setUser] = useState({
@@ -36,7 +33,7 @@ const Register = () => {
     const {name, email, password, confirmPassword} = user
 
     if (name && email && password && (password === confirmPassword)) {
-      axios.post(`${ApiUrl}/users`, user)
+      axios.post(`/api/users`, user)
         .then(res => {
           setErrorMessage((res.data.message))
         })
@@ -47,7 +44,7 @@ const Register = () => {
 
   return (
     <>
-      <h2 style={{marginBottom:30}}>Register</h2>
+      <h2 style={{marginBottom: 30}}>Register</h2>
 
       <StlyedFormWrappper>
         <div className="register">
@@ -88,9 +85,9 @@ const Register = () => {
               onChange={handleChange}
             />
             <div
-              style={{ marginTop: "15px", padding: "5px", textAlign: "center" }}
+              style={{marginTop: "15px", padding: "5px", textAlign: "center"}}
             >
-              <p style={{ color: "white", fontSize: "20px" }}>
+              <p style={{color: "white", fontSize: "20px"}}>
                 {errorMessage}
               </p>
             </div>

@@ -1,5 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
-import ApiUrlContext from '../ApiUrlContext.js';
+import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom'
 import {AddtoCartButton, AddtoCartWrapper, ProductDetailButton, ProductDetailCard, ProductDescription, SizeButton, SizeButtonWrapper, ProductLabel, BackButton, ProductImgDetail, ProductTextWrapper} from './ProductStyle';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -14,7 +13,6 @@ const Product = () => {
   const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
   const [size, setSize] = useState(null);
-  const ApiUrl = useContext(ApiUrlContext);
   const [favouritesAmount, setFavouritesAmount] = useState(0);
   const [myCartAmount, setMyCartAmount] = useState(0);
 
@@ -23,7 +21,7 @@ const Product = () => {
   }, []);
 
   const fetchProduct = async () => {
-    const response = await fetch(`${ApiUrl}/products/${id}`);
+    const response = await fetch(`/api/products/${id}`);
     const data = await response.json();
     setProduct(data);
   };
@@ -31,7 +29,7 @@ const Product = () => {
   const addToCart = async () => {
     const userId = JSON.parse(window.localStorage.getItem("MyUser"))._id;
     if (userId) {
-      const response = await fetch(`${ApiUrl}/cart/add/${userId}`, {
+      const response = await fetch(`/api/cart/add/${userId}`, {
         method: "PATCH",
         headers: {
           Accept: "application/json",
@@ -49,7 +47,7 @@ const Product = () => {
   const addToFavourites = async () => {
     const userId = JSON.parse(window.localStorage.getItem("MyUser"))._id;
     if (userId) {
-      const response = await fetch(`${ApiUrl}/favourites/add/${userId}`, {
+      const response = await fetch(`/api/favourites/add/${userId}`, {
         method: "PATCH",
         headers: {
           Accept: "application/json",
@@ -81,8 +79,6 @@ const Product = () => {
           </ProductLabel>
 
           <SizeButtonWrapper>
-            {" "}
-            {/* conditional styling will be added when size matches button */}
             <SizeButton selected={size === 37} onClick={() => setSize(37)}>
               37
             </SizeButton>

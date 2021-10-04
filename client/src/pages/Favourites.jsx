@@ -1,6 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
-import ApiUrlContext from '../ApiUrlContext.js';
-import {Grid, Typography, Paper, Box, } from '@material-ui/core'
+import React, {useState, useEffect} from 'react';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import {SizeButtonWrapper, SizeButton} from './ProductStyle.jsx';
 import {
@@ -19,7 +17,6 @@ import favouriteImg from '../images/heart.png';
 import Footer from '../components/footer/Footer.jsx';
 
 const Favourites = ({favourites, setFavourites}) => {
-  const ApiUrl = useContext(ApiUrlContext);
   const [size, setSize] = useState(null);
   const [showSizePicker, setShowSizePicker] = useState(false);
 
@@ -31,14 +28,14 @@ const Favourites = ({favourites, setFavourites}) => {
 
   const fetchFavourites = async () => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    const response = await fetch(`${ApiUrl}/favourites/${userId}`);
+    const response = await fetch(`/api/favourites/${userId}`);
     const data = await response.json();
     setFavourites(data);
   }
 
   const removeProduct = async (index) => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    const response = await fetch(`${ApiUrl}/favourites/remove/${userId}`, {
+    const response = await fetch(`/api/favourites/remove/${userId}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -52,7 +49,7 @@ const Favourites = ({favourites, setFavourites}) => {
 
   const addFavouritesToCart = async () => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    const response = await fetch(`${ApiUrl}/favourites/addToCart/${userId}`, {
+    const response = await fetch(`/api/favourites/addToCart/${userId}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
