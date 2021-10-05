@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { SaveButton} from './ElectronSpecificStyle'
 
 export default function ElectronSpecific({setFavourites}) {
   const require = window.require;
