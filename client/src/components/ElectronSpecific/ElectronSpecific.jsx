@@ -1,6 +1,6 @@
-import React, {useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 
-export default function ElectronSpecific({setFavourites, favouritesLists}) {
+export default function ElectronSpecific({setFavourites}) {
   const require = window.require;
 
   // Dialog and remote from electron
@@ -13,23 +13,68 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
   // Use the fs and paths modules from node
   const fs = require('fs');
   const path = require('path');
+  const [favouritesLists, setFavouritesLists] = useState([]);
+ 
+ 
+
+  useEffect(() => {
+    fetchFavourites();
+  }, []);
 
   useEffect(() => {
     ipcRenderer.on('menuChoice', (ipcEvent, choice) => {
       if (choice === 'Save current wish list') {
-        saveFavouritesAsFile();
+        //const wishLists = fetchFavourites();
+        //console.log(wishLists);
+        saveFavouritesAsFile(favouritesLists);
+        console.log(favouritesLists)
       }
       if (choice === 'Load a wish list') {
         loadFavouritesFromFile();
       }
+      return () => ipcRenderer.off('menuChoice');
     });
+  }, [favouritesLists]);
+  
 
-    // Return a function to run un unmount of the component
-    // that will remove the ipcRenderer-listener
-    return () => ipcRenderer.off('menuChoice');
-  }, []);
+  const fetchFavourites = async () => {
+    const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
+    const response = await fetch(`/api/favourites/${userId}`);
+    const data = await response.json();
+    console.log(data);
+    setFavouritesLists(data);
+  }
 
-  const saveFavouritesAsFile = async () => {
+  const saveFavouritesAsFile = async (favouritesLists) => {
+      let text = '';
+      const data = await dialog.showSaveDialog({
+        properties: ['createDirectory'],
+        title: 'Select the File Path to save',
+        defaultPath: path.join(__dirname, '../desktop/wishlist.txt'),
+        filters: [
+          {
+            name: 'Text Files',
+            extensions: ['txt', 'docx']
+          },]
+      }).then(file => {
+        // Stating whether dialog operation was cancelled or not.
+        if (!file.canceled) {
+          for (let i = 0; i < favouritesLists.length; i++) {
+            text += favouritesLists[i].name + '\n'; 
+          }
+          fs.writeFile(
+            file.filePath.toString(),
+            text,
+            function (err) {
+              if (err) throw err;
+              console.log('Saved!');
+            });
+        }
+      }).catch(err => {
+        console.log(err)
+      });
+    }
+  {/*const downloadWishList = async () => {
     let text = '';
     const data = await dialog.showSaveDialog({
       properties: ['createDirectory'],
@@ -44,20 +89,23 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
     }).then(file => {
       // Stating whether dialog operation was cancelled or not.
       if (!file.canceled) {
+        console.log(favouritesLists);
         for (let i = 0; i < favouritesLists.length; i++) {
           text += favouritesLists[i].name + '\n';
           fs.writeFile(file.filePath.toString(),
             text, function (err) {
               if (err) throw err;
               console.log('Saved!');
+
             });
         }
+        //setFavouritesFile(path.basename(file.filePath));
+        //setShowMessage('write')
       }
     }).catch(err => {
       console.log(err)
     });
-  }
-
+  }; */}
   const loadFavouritesFromFile = async () => {
     const data = await dialog.showOpenDialog({
       properties: ['openFile'],
@@ -93,6 +141,10 @@ export default function ElectronSpecific({setFavourites, favouritesLists}) {
   }
 
   return (
-    <span style={{display: 'none'}}>ELECTRONSPECIFIC</span>
+    <div>
+      {/*<SaveButton onClick={() => downloadWishList()}>&darr;</SaveButton>*/}
+      <span style={{ display: 'none' }}>ELECTRONSPECIFIC</span>    
+    </div>
+    
   )
 }

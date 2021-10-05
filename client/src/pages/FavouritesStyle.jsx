@@ -12,6 +12,11 @@ export const FavouritesWrapper = styled.div`
   align-items: center;
   margin-top: 5%;
   margin-bottom:5%;
+  margin-left:5%;
+  @media (min-width: 550px){
+    width:95%;
+    margin-left:1%;
+  }
   @media (min-width: 1023px) {
     flex-direction:column;
     width:90%;
@@ -83,7 +88,10 @@ export const FavouriteHeader = styled.div`
     margin-left:36%;
   }
   @media(min-width: 1023.9px){
-    margin-left:70%;
+    margin-left:60%;
+  }
+  @media(min-width: 1199px){
+    margin-left:40%;
   }
   @media(min-width: 1500px){
     margin-left: 44%;
@@ -235,18 +243,22 @@ export const AddFavouritetoCartButton = styled.button`
     padding:2px;
     width: 95%;
     margin: 4px;
-    margin-bottom:15%;
+    margin-bottom:5%;
     height:45px;
     font-size: 1.2em;
     @media(min-width: 450px){
       width:70%;
     }
+     @media(min-width: 710px){
+      width:60%;
+      margin-left:5%;
+    }
      @media(min-width: 767px) {
        font-size: 1.4em;
-       width: 30%;
+       width: 50%;
      }
      @media(min-width: 1023.9px) {
-       width: 30%;
+       width: 50%;
        margin-left:10%;
      }
       @media(min-width: 1050px){
@@ -255,6 +267,7 @@ export const AddFavouritetoCartButton = styled.button`
       @media(min-width: 1500px){
         width:30%;
         margin-left: 8%;
+        margin-bottom: 2%;
   }
 
 `
