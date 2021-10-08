@@ -87,6 +87,7 @@ const MyCart = () => {
               </CartCard>
             ))
           }
+          {!cart.length && <h1>The Cart is Empty</h1>}
           <br />
         </CartWrapper>
         <CheckoutWrapper>
