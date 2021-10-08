@@ -10,31 +10,26 @@ import Footer from '../components/footer/Footer';
 import Login from "../pages/Login";
 
 
-
-
-
-
-const FrontPage = () => {
-  
-  // const [width, setWidth] = useState(window.innerWidth);
-  // const handleWindowSizeChange = () => {
-  //   setWidth(window.innerWidth);
-  // }
-  // useEffect(() => {
-  //   window.addEventListener("resize", handleWindowSizeChange);
-  //   return () => {
-  //     window.removeEventListener("resize", handleWindowSizeChange);
-  //   };
-  // }, []);
+const FrontPage = ({stayLogedin, userName}) => {
+  const [width, setWidth] = useState(window.innerWidth);
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
 
   // Check if user is logged in
-  // const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
+  const userId = window.localStorage.getItem('MyUser')._id;
 
-  // if (width <= 768) {
-  //   return <Login stayLogedin={stayLogedin}/>
-  // } else {
+  if (width <= 768 && !userId) {
+    return <Login stayLogedin={stayLogedin} />
+  } else {
     return (
-    
+
       <>
         <FrontPageWrapper>
           <PhotoCard>
@@ -102,6 +97,7 @@ const FrontPage = () => {
       </>
     );
   }
+}
 
 
 
