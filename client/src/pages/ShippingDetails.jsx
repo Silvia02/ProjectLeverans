@@ -1,5 +1,4 @@
-import React, {useState, useContext} from 'react'
-import ApiUrlContext from '../ApiUrlContext.js';
+import React, {useState} from 'react'
 import '../css/shippingDetails.css'
 import {
   Grid,
@@ -28,7 +27,6 @@ const initialInputValues = {
   zipcode: ""
 }
 export const ShippingDetails = ({addToShoppingList, removeFromShoppingList, shoppingList}) => {
-  const ApiUrl = useContext(ApiUrlContext);
   const history = useHistory();
   const classes = useStyle();
   const paperStyle = {
@@ -56,7 +54,7 @@ export const ShippingDetails = ({addToShoppingList, removeFromShoppingList, shop
     if (validate()) {
       // Clear cart on checkout
       const userId = JSON.parse(window.localStorage.getItem("MyUser"))._id;
-      await fetch(`${ApiUrl}/cart/clear/${userId}`, {
+      await fetch(`/api/cart/clear/${userId}`, {
         method: "PATCH",
         headers: {
           Accept: "application/json",

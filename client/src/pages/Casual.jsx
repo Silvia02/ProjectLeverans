@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useContext} from 'react';
-import ApiUrlContext from '../ApiUrlContext.js';
 import {Link} from "react-router-dom";
 import Footer from '../components/footer/Footer';
 
@@ -14,12 +13,11 @@ import {
 } from "./HomeStyle";
 
 const Casual = () => {
-  const ApiUrl = useContext(ApiUrlContext);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const getItems = async () => {
-      const response = await fetch(`${ApiUrl}/products/category/casual`);
+      const response = await fetch(`/api/products/category/casual`);
       const data = await response.json();
 
       setCategories(data);
@@ -30,7 +28,7 @@ const Casual = () => {
 
   return (
     <div>
-    
+
       <ProductWrapper>
         {categories.map((categorie) => (
           <ProductCard key={categorie._id}>
