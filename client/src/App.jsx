@@ -36,6 +36,7 @@ function isElectron() {
 
 
 function App() {
+  localStorage.MyUser = localStorage.MyUser || "{}";
   const [favourites, setFavourites] = useState([]);
   const [user, setUserLogin] = useState({})
 
