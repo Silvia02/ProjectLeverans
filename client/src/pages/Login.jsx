@@ -1,5 +1,4 @@
-import React, {useState, useContext} from "react";
-import ApiUrlContext from '../ApiUrlContext.js';
+import React, {useState} from "react";
 import axios from "axios";
 import {useHistory} from "react-router";
 import {
@@ -13,7 +12,6 @@ import Footer from "../components/footer/Footer.jsx";
 
 const Login = ({stayLogedin}) => {
 
-  const ApiUrl = useContext(ApiUrlContext);
   const history = useHistory();
 
   const [messages, setMessages] = useState("")
@@ -33,7 +31,7 @@ const Login = ({stayLogedin}) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    axios.post(`${ApiUrl}/login`, user)
+    axios.post(`/api/login`, user)
       .then(res => {
         setMessages((res.data.message))
         stayLogedin(res.data.user);
@@ -43,7 +41,8 @@ const Login = ({stayLogedin}) => {
 
   return (
     <>
-      <h1>Login</h1>
+      <h2>Login</h2>
+
       <StlyedFormWrappper>
         <StlyedForm>
           <label htmlFor="Email">Email</label>

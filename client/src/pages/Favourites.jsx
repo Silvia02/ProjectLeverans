@@ -1,8 +1,6 @@
-import React, {useState, useEffect, useContext} from 'react';
-import ApiUrlContext from '../ApiUrlContext.js';
-import {Grid, Typography, Paper, Box, } from '@material-ui/core'
+import React, {useState, useEffect} from 'react';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import {AddtoCartButton, SizeButtonWrapper, SizeButton} from './ProductStyle.jsx';
+import {SizeButtonWrapper, SizeButton} from './ProductStyle.jsx';
 import {
   FavouritesWrapper,
   FavouritesLists,
@@ -12,15 +10,13 @@ import {
   Backdrop,
   Modal,
   ModalHeading,
-  InvertedAddtoCartButton
+  InvertedAddtoCartButton,
+  AddFavouritetoCartButton, FavouriteProductInfo
 } from './FavouritesStyle.jsx';
 import favouriteImg from '../images/heart.png';
 import Footer from '../components/footer/Footer.jsx';
 
-const Favourites = () => {
-
-  const ApiUrl = useContext(ApiUrlContext);
-  const [favourites, setFavourites] = useState([]);
+const Favourites = ({favourites, setFavourites}) => {
   const [size, setSize] = useState(null);
   const [showSizePicker, setShowSizePicker] = useState(false);
 
@@ -32,14 +28,14 @@ const Favourites = () => {
 
   const fetchFavourites = async () => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    const response = await fetch(`${ApiUrl}/favourites/${userId}`);
+    const response = await fetch(`/api/favourites/${userId}`);
     const data = await response.json();
     setFavourites(data);
   }
 
   const removeProduct = async (index) => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    const response = await fetch(`${ApiUrl}/favourites/remove/${userId}`, {
+    const response = await fetch(`/api/favourites/remove/${userId}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -53,7 +49,7 @@ const Favourites = () => {
 
   const addFavouritesToCart = async () => {
     const userId = JSON.parse(window.localStorage.getItem('MyUser'))._id;
-    await fetch(`${ApiUrl}/favourites/addToCart/${userId}`, {
+    const response = await fetch(`/api/favourites/addToCart/${userId}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -61,33 +57,35 @@ const Favourites = () => {
       },
       body: JSON.stringify({size})
     });
+    const data = await response.json();
     setShowSizePicker(false);
+    setFavourites(data);
   }
 
   return (
     <div>
       <FavouritesWrapper>
         <FavouriteHeader>
-          <img src={favouriteImg} alt="favourite" style={{width: "55px", height: 'auto', marginRight: "10px"}} />
-          <h1 style={{fontFamily: 'fantancy'}}>Favourites</h1>
+          <img src={favouriteImg} alt="favourite" style={{width: "55px", height: 'auto', marginRight: "2px"}} />
+          <h1 style={{fontFamily: 'fantancy', marginLeft: "0px", marginTop: "2px"}}>Favourites</h1>
         </FavouriteHeader>
         {favourites.length ? (
           <>
             <FavouritesLists>
               {
                 favourites.map((product, index) => (
-                  <FavouriteCard key={product._id} display="flex" paddingY="5px" alignItems="center" style={{justifyContent: 'space-between'}}>
+                  <FavouriteCard key={product._id} display="flex" alignItems="center" style={{justifyContent: 'space-between'}}>
                     <FavouriteImg src={product.image} alt={product.name} />
-                    <div style={{paddingTop: '12%'}}>
-                      <Typography variant="h6" >{product.name}</Typography>
-                      <Typography variant="h6" style={{marginTop: '10%'}}>${product.price}</Typography>
-                    </div>
-                    <HighlightOffIcon size="20" style={{cursor: 'pointer'}} onClick={() => removeProduct(index)} />
+                    <FavouriteProductInfo>
+                      <span >{product.name}</span>
+                      <span style={{marginTop: '10%'}}>£{product.price}</span>
+                    </FavouriteProductInfo>
+                    <HighlightOffIcon size="20" style={{cursor: 'pointer', marginLeft: "auto"}} onClick={() => removeProduct(index)} />
                   </FavouriteCard>
                 ))
               }
             </FavouritesLists>
-            <AddtoCartButton style={{whiteSpace: "nowrap"}} onClick={() => setShowSizePicker(true)}>Add favourites to cart</AddtoCartButton>
+            <AddFavouritetoCartButton style={{whiteSpace: "nowrap"}} onClick={() => setShowSizePicker(true)}>Add to cart</AddFavouritetoCartButton>
           </>
         ) : null}
         {showSizePicker ? (

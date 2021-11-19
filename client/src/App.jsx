@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,149 +19,129 @@ import Sport from "./pages/Sport";
 import Formal from "./pages/Formal";
 import DefaultHeader from './components/DefaultHeader/DefaultHeader';
 import Footer from './components/footer/Footer';
+import ThankYou from './pages/ThankYou';
+import {isChrome, isFirefox, isSafari, isMobile, isBrowser} from 'react-device-detect';
+import ElectronSpecific from './components/ElectronSpecific/ElectronSpecific';
 
+
+
+
+// Check if user is using electron app
+function isElectron() {
+  if (typeof window !== 'undefined' && typeof window.process === 'object' && window.process.type === 'renderer') return true;
+  if (typeof process !== 'undefined' && typeof process.versions === 'object' && !!process.versions.electron) return true;
+  if (typeof navigator === 'object' && typeof navigator.userAgent === 'string' && navigator.userAgent.indexOf('Electron') >= 0) return true;
+  return false;
+}
 
 
 function App() {
-  
+  const [favourites, setFavourites] = useState([]);
   const [user, setUserLogin] = useState({})
+
   // check is user is store in local storage
   useEffect(() => {
     setUserLogin(JSON.parse(localStorage.getItem("MyUser")))
   }, [])
+
   const stayLogedin = (user) => {
     localStorage.setItem("MyUser", JSON.stringify(user))
     setUserLogin(user)
   }
-  const [favourites, setFavourites] = useState([])
-  const [shoppingList, setShoppingList] = useState([]);
 
-  const onAdd = (product) => {
-    const exist = favourites.find(favourite => favourite._id === product._id);
-    setFavourites([...favourites, { ...product }])
-    if (exist) {
-      setFavourites(
-        favourites.map(favourite =>
-          favourite._id === product._id ? { ...exist, quantity: exist.quantity + 1 }
-            : favourite
-        )
-      )
-    } else {
-      setFavourites([...favourites, product])
+  const [browser, setBrowser] = useState('');
+  useEffect(() => {
+    if (isMobile) {
+      setBrowser('Mobile')
     }
-  }
-  const onRemove = (product) => {
-    const exist = favourites.find(favourite => favourite._id === product._id);
-    if (exist.quantity === 1) {
-      setFavourites(favourites.filter(favourite => favourite._id !== product._id))
-    } else {
-      setFavorites(
-        favourites.map(favourite =>
-          favourite._id === product._id
-            ? { ...exist, quantity: exist.quantity - 1 }
-            : favourite
-        )
-      )
+    if (isSafari) {
+      setBrowser('Safari')
     }
-  }
+    if (isChrome) {
+      setBrowser('Chrome')
+    }
+    if (isFirefox) {
+      setBrowser('Firefox')
+    }
 
-  const addToShoppingList = (product) => {
-    const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
-    setShoppingList([...shoppingList, { ...product }])
-    if (exist) {
-      setShoppingList(
-        shoppingList.map(shoppingItem =>
-          shoppingItem._id === product._id ? { ...exist, quantity: exist.quantity + 1 }
-            : shoppingItem
-        )
-      )
-    } else {
-      setShoppingList([...shoppingList, product])
-    }
-    
-  }
-  const removeFromShoppingList = (product) => {
-    const exist = shoppingList.find(shoppingItem => shoppingItem._id === product._id);
-    if (exist.quantity === 1) {
-      setShoppingList(shoppingList.filter(shoppingItem => shoppingItem._id !== product._id))
-    } else {
-      setShoppingList(
-        shoppingList.map(shoppingItem =>
-          shoppingItem._id === product._id
-            ? { ...exist, quantity: exist.quantity - 1 }
-            : shoppingItem
-        )
-      )
-    }
-  }
+  }, [])
   return (
 
     <div className="App">
-      
       <Router>
-        {user && user._id ? <Header stayLogedin={stayLogedin} userName={user.name}/>
+        {user && user._id ? <Header stayLogedin={stayLogedin} userName={user.name} />
           : <DefaultHeader />}
         <Switch>
           <Route exact path="/">
-            <FrontPage />   
-           </Route>
+            {
+              isMobile && !user?._id ? <Login stayLogedin={stayLogedin} /> : <FrontPage user={user?._id} stayLogedin={stayLogedin} />
+            }
+          </Route>
           <Route path="/home">
-              {
+            {
               user && user._id ?
-                <Home stayLogedin={stayLogedin} userName={user.name} favourites={favourites} onAdd={onAdd} />
+                <Home stayLogedin={stayLogedin} userName={user.name} />
                 : <Login stayLogedin={stayLogedin} />
             }
           </Route>
           <Route path="/login">
-              <Login stayLogedin={stayLogedin}/>
-            </Route> 
-            <Route path="/register">
-              <RegisterPage/>
-            </Route>
-          <Route path="/casual">
-            <Casual favourites={favourites} onAdd={onAdd} />
-          </Route>
-          <Route path="/sport">
-            <Sport favourites={favourites} onAdd={onAdd}/>
-          </Route>
-          <Route path="/formal">
-            <Formal favourites={favourites} onAdd={onAdd}/>
+
+            <Login stayLogedin={stayLogedin} />
+
           </Route>
           <Route path="/register">
-            <RegisterPage/>
+            <RegisterPage />
+          </Route>
+          <Route path="/casual">
+            <Casual />
+          </Route>
+          <Route path="/sport">
+            <Sport />
+          </Route>
+          <Route path="/formal">
+            <Formal />
+          </Route>
+          <Route path="/register">
+            <RegisterPage />
           </Route>
           <Route exact path="/products">
-            <Home favourites={favourites} onAdd={onAdd} /> 
+            <Home />
           </Route>
           <Route path="/products/:id">
             <Product
-              favourites={favourites}
-              shoppingList={shoppingList}
-              onAdd={onAdd}
-              addToShoppingList={addToShoppingList}
             />
           </Route>
           <Route path="/favourites">
-            <Favourites
-              favourites={favourites}
-              onAdd={onAdd}
-              onRemove={onRemove}
-            />
+            {
+              user && user._id
+                ? <Favourites favourites={favourites} setFavourites={setFavourites} />
+                : <Login stayLogedin={stayLogedin} />
+            }
           </Route>
           <Route path="/checkout">
             {
-              user && user._id ? <ShippingDetails/> : <RegisterPage/>
-            }    
+              user && user._id ? <ShippingDetails /> : <RegisterPage />
+            }
           </Route>
           <Route path="/mycart">
-            <MyCart />
+            {
+              user && user._id ? <MyCart /> : <Login stayLogedin={stayLogedin} />
+            }
+          </Route>
+          <Route exact path="/thankyou">
+            <ThankYou />
           </Route>
         </Switch>
       </Router>
+
+      {/* Adds ipc listener that allows you to access the 
+        * menu favourites functions throughout the entire app */}
+      {isElectron() && <ElectronSpecific setFavourites={setFavourites} />}
     </div>
-  )}
+  )
+}
 
 export default App;
-    
+
 
 

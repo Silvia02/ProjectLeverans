@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useContext} from 'react';
-import ApiUrlContext from '../ApiUrlContext.js';
+import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
-import Footer from '../components/footer/Footer'
+import Footer from '../components/footer/Footer';
+
 import {
   ProductCard,
   ProductPrice,
@@ -12,24 +12,25 @@ import {
 } from "./HomeStyle";
 
 const Sport = () => {
-  const ApiUrl = useContext(ApiUrlContext);
   const [sports, setSports] = useState([]);
 
   console.log(sports);
 
   useEffect(() => {
     const getItems = async () => {
-      const response = await fetch(`${ApiUrl}/products/category/sport`);
+      const response = await fetch(`/api/products/category/sport`);
       const data = await response.json();
 
-      setSports(data)
-    }
+      setSports(data);
+    };
 
     getItems();
   }, []);
 
   return (
     <div>
+
+
       <ProductWrapper>
         {sports.map((sportCate) => (
           <ProductCard key={sportCate._id}>
@@ -50,6 +51,8 @@ const Sport = () => {
                     width: "100%",
                     height: "90%",
                     objectFit: "cover",
+                    marginLeft: '0px',
+                    marginTop: '0px'
                   }}
                 />
               </ImageWrapper>
@@ -57,7 +60,7 @@ const Sport = () => {
             <ProductInformationWrapper>
               <ProductName>{sportCate.name}</ProductName>
               <br />
-              <ProductPrice>${sportCate.price}</ProductPrice>
+              <ProductPrice>£{sportCate.price}</ProductPrice>
             </ProductInformationWrapper>
           </ProductCard>
         ))}

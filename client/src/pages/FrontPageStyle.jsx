@@ -1,30 +1,43 @@
 import styled from "styled-components";
 
 export const HeaderWrapper = styled.header`
-  display:flex;
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   text-align: center;
   border-bottom: 1px solid lightgray;
   padding-bottom: 5px;
-`
+
+  @media only screen and (max-width: 600px) and (min-width: 320px) {
+  .logo img {
+    margin-left:10px !important;
+  }
+`;
 
 export const HeaderLinks = styled.div`
-  width:50%;
-  display:flex;
+  width: 50%;
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
   text-align: center;
   padding-top: 22px;
   padding-right: 10px;
-  font-size:0.95em;
-`
+  font-size: 0.95em;
+   @media only screen and (max-width: 600px) and (min-width: 320px) {
+  a {
+    margin-right:10px !important;
+    margin-top: -30px;
+  }
+
+  
+`;
 
 export const FrontPageWrapper = styled.div`
   display:flex;
   flex-direction: column;
   margin-bottom: 80px;
+  width:100%;
   @media (min-width: 1023px) {
     width:80%;
     flex-direction: row;
@@ -34,7 +47,7 @@ export const FrontPageWrapper = styled.div`
     margin-top: 10%;
   }
   @media (min-width: 1024.9px){
-    margin-top: 0%;
+    margin-top: 3.5%;
   }
 `;
 export const PhotoCard = styled.div`
@@ -89,29 +102,36 @@ export const CategoryButton = styled.button`
 *************************LOGIN PAGE STYLES************************
 */
   
-  export const StlyedFormWrappper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 0 20px;
-    
-  `;
-
-  export const StlyedForm = styled.form`
-    width: 100%;
-    max-width: 500px;
-    padding: 40px;
-    background-color: #ffff;
-    border-radius: 10px;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
-    label {
-      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
-   
+export const StlyedFormWrappper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 20px;
+  margin-top: -80px;
+  @media only screen and (max-width: 768px) and (min-width: 320px) {
+    .register form {
+      margin-top: 10px;
+      padding: 20px;
     }
-  `;
+  }
+ 
+`;
+
+export const StlyedForm = styled.form`
+  background-color: black;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  //background-color: #ffff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  label {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+  }
+`;
 
   export const StlyedInput = styled.input`
     display: block;
